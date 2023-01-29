@@ -1,0 +1,28 @@
+.p-global-error {
+  &__section {
+    position: absolute;
+    left: 50%;
+    border: 1px solid $color-secondary-grey;
+    border-radius: 16px;
+    transform: translate(-50%, 50%);
+
+    .m-section__container {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      margin: 48px 65px;
+      @include sp {
+        margin: 32px 24px;
+      }
+    }
+
+    .a-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 3.8rem;
+      height: 3.8rem;
+      border-radius: 50%;
+    }
+  }
+}

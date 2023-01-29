@@ -1,0 +1,17 @@
+.m-input {
+  display: flex;
+  justify-content: space-between;
+  width: 50rem;
+
+  &__text {
+    width: 80%;
+    padding-left: 2rem;
+    margin-right: 1rem;
+    border: 1px solid $color-primary-light;
+    outline: 0;
+
+    &:focus {
+      border: 2px solid $color-base-mantis;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.o-side-by-side {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  color: $color-base-black;
+
+  &__left {
+    width: 50%;
+    height: 100%;
+    background-color: $color-base-darkmagenta;
+  }
+
+  &__right {
+    width: 50%;
+    height: 100%;
+    background-color: $color-base-mantis;
+  }
+}

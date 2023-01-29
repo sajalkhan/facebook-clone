@@ -1,0 +1,36 @@
+.a-navigation {
+  position: fixed;
+  z-index: $zindex-navbar;
+  width: 100%;
+  height: 5rem;
+  background-color: $color-base-darkmagenta;
+
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    font-size: 1.4rem;
+    color: $color-white;
+    text-transform: capitalize;
+    cursor: pointer;
+
+    @include sp {
+      font-size: 1.1rem;
+    }
+
+    a:hover {
+      color: $color-primary;
+    }
+  }
+
+  & + div {
+    > :first-child {
+      margin-top: 60px;
+    }
+  }
+
+  .p-global-error__section {
+    margin-top: 100px;
+  }
+}

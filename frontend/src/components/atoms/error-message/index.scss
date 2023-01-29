@@ -1,0 +1,46 @@
+.a-error-message {
+  $root: &;
+
+  width: 100%;
+
+  &__message {
+    line-height: 22px;
+    & + #{$root}__codes {
+      margin-top: 24px;
+    }
+  }
+
+  &__codes {
+    width: 100%;
+    padding: 20px 24px;
+    background-color: $color-base-white;
+    border-radius: 8px;
+
+    ul {
+      li {
+        font-size: 14px;
+        font-weight: xd-font-weight('regular');
+        line-height: 20px;
+        color: $color-text-black;
+        list-style: none;
+
+        &:not(:first-child) {
+          margin-top: 8px;
+          @include sp {
+            margin-top: 16px;
+          }
+        }
+
+        span {
+          margin-left: 8px;
+          font-weight: xd-font-weight('bold');
+          @include sp {
+            display: block;
+            margin-top: 8px;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
