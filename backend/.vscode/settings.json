@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "files.eol": "\n",
+  "stylelint.enable": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.organizeImports": true
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "swaggerViewer.previewInBrowser": true,
+}
