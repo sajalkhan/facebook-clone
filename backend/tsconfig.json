@@ -9,9 +9,9 @@
     "strict": true,         
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "."
   },
-  "include": ["src", "config-overrides.js"],
   "exclude": ["node_modules", "build", "scripts"],
   "ts-node": {
     "compilerOptions": {
