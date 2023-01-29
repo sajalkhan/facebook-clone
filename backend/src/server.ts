@@ -17,7 +17,7 @@ readdirSync(path.resolve (__dirname, './routes')).map((file: string) => app.use(
 
 //Database Connection
 const PORT = process.env.PORT || 8000;
-const connectDB = require("./config/db");
+const connectDB = require("./config/dbConfig");
 try {
   connectDB();
   app.listen(PORT, () => console.log(`server started on port ${PORT}`));

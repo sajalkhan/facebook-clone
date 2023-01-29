@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const ObjectId = Schema.Types.ObjectId;
 
@@ -163,4 +163,4 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-module.exports = mongoose.model('User', userSchema);
+export default model('User', userSchema);
