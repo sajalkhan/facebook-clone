@@ -1,10 +1,10 @@
 import joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
-import { ErrorHandler } from '../middleware';
+import  ErrorHandler  from '../helpers/errorHandler';
 
 const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,12})(\.[a-z]{2,12})?$/;
 
-export const schema = joi.object({
+const schema = joi.object({
   first_name: joi.string().min(3).max(30).required(),
   last_name: joi.string().min(3).max(30).required(),
   password: joi.string().min(6).max(40).required(),

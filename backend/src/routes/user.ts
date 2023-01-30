@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import { home, register } from "../controllers/user";
-import { validateUserInfo } from '../helpers/userValidation';
+import { validateUserInfo } from '../middleware';
+import { home, register } from '../controllers/user';
 
 const router = Router();
-router.use(validateUserInfo('body'));
 
 router.get('/user', home);
-router.post('/register', register);
+router.post('/register', validateUserInfo('body'), register);
 
 module.exports = router;

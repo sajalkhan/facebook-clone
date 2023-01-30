@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt';
 import User from '../model/user';
+import ErrorHandler from '../helpers/errorHandler';
 import { Request, Response, NextFunction } from 'express';
-import { ErrorHandler, catchAsyncError } from '../middleware';
 
 export const home = (_req: Request, res: Response) => {
   res.send('welcome from user home');
 };
 
-export const register = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { first_name, last_name, email, password, username, bYear, bMonth, bDay, gender } = req.body;
 
@@ -38,4 +38,4 @@ export const register = catchAsyncError(async (req: Request, res: Response, next
   } catch (error: any) {
     return next(new ErrorHandler(error.message, 500));
   }
-});
+};
