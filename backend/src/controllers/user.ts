@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import User from '../model/user';
 import ErrorHandler from '../helpers/errorHandler';
 import { Request, Response, NextFunction } from 'express';
+import { generateToken } from '../helpers/token';
 
 export const home = (_req: Request, res: Response) => {
   res.send('welcome from user home');
@@ -29,6 +30,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       bDay,
       gender,
     }).save();
+
+    const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
+    console.log(emailVerificationToken);
 
     res.status(200).json({
       success: true,
