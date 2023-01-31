@@ -1,6 +1,6 @@
-import { Response } from 'express';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
+import { Response } from 'express';
 
 const { OAuth2 } = google.auth;
 const oauth_link: string = 'https://developers.google.com/oauthplayground';

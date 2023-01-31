@@ -1,13 +1,10 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import User from '../model/user';
 import ErrorHandler from '../helpers/errorHandler';
 import { Request, Response, NextFunction } from 'express';
 import { generateToken } from '../helpers/token';
 import { sendVerificationEmail } from '../helpers/mailer';
-
-export const home = (_req: Request, res: Response) => {
-  res.send('welcome from user home');
-};
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -35,7 +32,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.first_name, url);
-    
+
     const token = generateToken({ id: user._id.toString() }, '7d');
     res.send({
       id: user._id,
@@ -50,4 +47,16 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
   } catch (error: any) {
     return next(new ErrorHandler(error.message, 500));
   }
+};
+
+export const activateAccount = async (req: Request, res: Response) => {
+  const { token } = req.body;
+  // const user = jwt.verify(token, process.env.TOKEN_SECRET);
+  // const check = await User.findById(user.id);
+  // if (check?.verified == true) {
+  //   return res.status(400).json({ message: 'this email is already activated' });
+  // } else {
+  //   await User.findByIdAndUpdate(user.id, { verified: true });
+  //   return res.status(200).json({ message: 'Account has been activated successfully.' });
+  // }
 };
