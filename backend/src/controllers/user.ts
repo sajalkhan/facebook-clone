@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import User from '../model/user';
 import ErrorHandler from '../helpers/errorHandler';
 import { Request, Response, NextFunction } from 'express';
@@ -51,12 +51,24 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
 export const activateAccount = async (req: Request, res: Response) => {
   const { token } = req.body;
-  // const user = jwt.verify(token, process.env.TOKEN_SECRET);
-  // const check = await User.findById(user.id);
-  // if (check?.verified == true) {
-  //   return res.status(400).json({ message: 'this email is already activated' });
-  // } else {
-  //   await User.findByIdAndUpdate(user.id, { verified: true });
-  //   return res.status(200).json({ message: 'Account has been activated successfully.' });
-  // }
+  const secret: string = process.env.TOKEN_SECRET || '3xgDmbD8WC';
+
+  try {
+    const user = jwt.verify(token, secret) as JwtPayload;
+    const check = await User.findById(user.id);
+
+    if (!check) {
+      throw new Error('User not found');
+    }
+
+    if (check.verified === true) {
+      return res.status(400).json({ message: 'This email is already activated.' });
+    }
+
+    await User.findByIdAndUpdate(user.id, { verified: true });
+    return res.status(200).json({ message: 'Account has been activated successfully.' });
+  } catch (error) {
+    if (error instanceof jwt.JsonWebTokenError) return res.status(400).json({ message: 'Invalid token.' });
+    return res.status(500).json({ message: 'An unexpected error has occurred.' });
+  }
 };
