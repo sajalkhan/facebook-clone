@@ -72,3 +72,32 @@ export const activateAccount = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'An unexpected error has occurred.' });
   }
 };
+
+export const login = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return next(new ErrorHandler('Email not found', 400));
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return next(new ErrorHandler('Invalid password', 400));
+    }
+
+    const token = generateToken({ id: user._id.toString() }, '7d');
+    return res.json({
+      id: user._id,
+      username: user.username,
+      picture: user.picture,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      token,
+      verified: user.verified,
+      message: 'Login success',
+    });
+  } catch (error: any) {
+    return res.status(500).json({ error: error.message });
+  }
+};
