@@ -1,6 +1,6 @@
 import joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
-import  ErrorHandler  from '../helpers/errorHandler';
+import ErrorHandler from '../helpers/errorHandler';
 
 const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,12})(\.[a-z]{2,12})?$/;
 

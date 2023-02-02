@@ -6,13 +6,32 @@ import { Request, Response, NextFunction } from 'express';
 import { generateToken } from '../helpers/token';
 import { sendVerificationEmail } from '../helpers/mailer';
 
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const { first_name, last_name, email, password, username, bYear, bMonth, bDay, gender } = req.body;
+    const {
+      first_name,
+      last_name,
+      email,
+      password,
+      username,
+      bYear,
+      bMonth,
+      bDay,
+      gender,
+    } = req.body;
 
     const check = await User.findOne({ email });
     if (check) {
-      return next(new ErrorHandler('This email address already exists,try with a different email address', 400));
+      return next(
+        new ErrorHandler(
+          'This email address already exists,try with a different email address',
+          400,
+        ),
+      );
     }
 
     const hash_Password = await bcrypt.hash(password, 12);
@@ -29,7 +48,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       gender,
     }).save();
 
-    const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      '30m',
+    );
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.first_name, url);
 
@@ -62,18 +84,29 @@ export const activateAccount = async (req: Request, res: Response) => {
     }
 
     if (check.verified === true) {
-      return res.status(400).json({ message: 'This email is already activated.' });
+      return res
+        .status(400)
+        .json({ message: 'This email is already activated.' });
     }
 
     await User.findByIdAndUpdate(user.id, { verified: true });
-    return res.status(200).json({ message: 'Account has been activated successfully.' });
+    return res
+      .status(200)
+      .json({ message: 'Account has been activated successfully.' });
   } catch (error) {
-    if (error instanceof jwt.JsonWebTokenError) return res.status(400).json({ message: 'Invalid token.' });
-    return res.status(500).json({ message: 'An unexpected error has occurred.' });
+    if (error instanceof jwt.JsonWebTokenError)
+      return res.status(400).json({ message: 'Invalid token.' });
+    return res
+      .status(500)
+      .json({ message: 'An unexpected error has occurred.' });
   }
 };
 
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });

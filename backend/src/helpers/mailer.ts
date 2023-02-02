@@ -4,11 +4,16 @@ import { Response } from 'express';
 
 const { OAuth2 } = google.auth;
 const oauth_link: string = 'https://developers.google.com/oauthplayground';
-const { EMAIL, MAILING_ID, MAILING_REFRESH_TOKEN, MAILING_SECRET } = process.env;
+const { EMAIL, MAILING_ID, MAILING_REFRESH_TOKEN, MAILING_SECRET } =
+  process.env;
 
 const auth = new OAuth2(MAILING_ID, MAILING_SECRET, oauth_link);
 
-export const sendVerificationEmail = (email: string, name: string, url: string) => {
+export const sendVerificationEmail = (
+  email: string,
+  name: string,
+  url: string,
+) => {
   auth.setCredentials({
     refresh_token: MAILING_REFRESH_TOKEN,
   });

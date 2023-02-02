@@ -1,26 +1,24 @@
-import express from "express";
-import cors from "cors";
-import path from "path";
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import fs from 'fs';
+import dotenv from 'dotenv';
+import { connectDB } from './config/dbConfig';
 
-const { readdirSync } = require("fs");
-const dotenv = require("dotenv");
 dotenv.config();
-
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
-//routes
-//Note: https://www.geeksforgeeks.org/node-js-fs-readdirsync-method/
-readdirSync(path.resolve (__dirname, './routes')).map((file: string) => app.use("/", require("./routes/" + file)));
+fs.readdirSync(path.resolve(__dirname, './routes')).forEach((file) => {
+  app.use('/', require(`./routes/${file}`));
+});
 
-
-//Database Connection
 const PORT = process.env.PORT || 8000;
-const connectDB = require("./config/dbConfig");
-try {
-  connectDB();
-  app.listen(PORT, () => console.log(`server started on port ${PORT}`));
-} catch (error) {
-  console.log("error mongodb connection");
-}
+
+connectDB().catch((error) => {
+  console.error('Error connecting to database: ', error);
+});
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
