@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @mixin clearfix {
   &:after {
     display: table;
@@ -15,6 +16,18 @@
 @mixin sp() {
   @media (max-width: $breakpoint-sp) {
     @content;
+  }
+}
+
+.hp_onlyPc {
+  @include sp {
+    display: none !important;
+  }
+}
+
+.hp_onlySp {
+  @include pc {
+    display: none !important;
   }
 }
 
@@ -43,4 +56,40 @@
 }
 @mixin sprite-icon-active() {
   background-position: 100% center;
+}
+
+@mixin make-block-element {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  content: '.';
+}
+
+@mixin line-height-crop($line-height: $default-line-height) {
+  line-height: $line-height;
+
+  &:before {
+    @include make-block-element;
+
+    width: 0;
+    margin-top: calc((1 - #{$line-height}) * 0.5em);
+  }
+
+  &:after {
+    @include make-block-element;
+
+    width: 0;
+    margin-top: calc((1 - #{$line-height}) * 0.5em);
+  }
+}
+
+@mixin flex-with-gap($row-gap: 0, $column-gap: 0) {
+  display: flex;
+  margin-top: calc(-1 * $row-gap);
+  margin-left: calc(-1 * $column-gap);
+
+  & > * {
+    margin-top: $row-gap;
+    margin-left: $column-gap;
+  }
 }

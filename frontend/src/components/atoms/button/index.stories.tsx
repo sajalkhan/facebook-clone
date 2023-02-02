@@ -1,5 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
 import { Button } from './';
 
 export default {
@@ -63,4 +63,21 @@ export const Text = Template.bind({});
 Text.args = {
   children: 'click me',
   modifiers: 'text',
+};
+
+export const DeleteButton = Template.bind({});
+DeleteButton.args = {
+  children: '編集',
+  modifiers: 'third',
+  iconName: 'delete',
+  size: 'small',
+  color: 'delete',
+};
+
+export const IconAtRightPosition = Template.bind({});
+IconAtRightPosition.args = {
+  children: '申請書をダウンロード',
+  modifiers: 'primary',
+  iconName: 'external-blue',
+  iconPositionRight: true,
 };

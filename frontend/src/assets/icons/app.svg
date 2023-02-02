@@ -1,0 +1,11 @@
+<svg id="app" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <rect id="Rectangle_26382" data-name="Rectangle 26382" width="16" height="16" fill="none"/>
+  <g id="Group_27983" data-name="Group 27983">
+    <path id="Path_28055" data-name="Path 28055" d="M13,0H3A2.006,2.006,0,0,0,1,2V14a2.006,2.006,0,0,0,2,2h7.1L15,11.33V2A2.006,2.006,0,0,0,13,0ZM9,10v4H3V2H13v8Z" fill="#fff"/>
+    <g id="Group_27982" data-name="Group 27982">
+      <rect id="Rectangle_26383" data-name="Rectangle 26383" width="6" height="1" transform="translate(5 4)" fill="#fff"/>
+      <rect id="Rectangle_26384" data-name="Rectangle 26384" width="6" height="1" transform="translate(5 7)" fill="#fff"/>
+      <rect id="Rectangle_26385" data-name="Rectangle 26385" width="2" height="1" transform="translate(5 10)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

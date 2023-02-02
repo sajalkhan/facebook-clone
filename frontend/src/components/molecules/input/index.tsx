@@ -28,7 +28,7 @@ export const InputText: React.FC<inputProps> = ({ onSubmit, placeholder }) => {
         onChange={e => setName(e.target.value)}
         autoFocus
       />
-      <Button modifiers="secondary" size="small" type="submit">
+      <Button modifiers="secondary" size="small">
         Submit
       </Button>
     </form>

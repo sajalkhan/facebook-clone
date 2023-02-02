@@ -1,0 +1,18 @@
+<svg id="date" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_26367" data-name="Rectangle 26367" width="16" height="16" fill="#1c61be"/>
+    </clipPath>
+  </defs>
+  <g id="Group_27961" data-name="Group 27961" clip-path="url(#clip-path)">
+    <path id="Path_28048" data-name="Path 28048" d="M13.994,1H12a1,1,0,0,0-2,0H6A1,1,0,0,0,4,1H2A1,1,0,0,0,1,2V14a1,1,0,0,0,1,1h11.99A1,1,0,0,0,15,14V2a1,1,0,0,0-1.01-1M13,13H3V3H13Z" fill="#1c61be"/>
+    <rect id="Rectangle_26359" data-name="Rectangle 26359" width="2" height="2" transform="translate(4 10)" fill="#1c61be"/>
+    <rect id="Rectangle_26360" data-name="Rectangle 26360" width="2" height="2" transform="translate(4 7)" fill="#1c61be"/>
+    <rect id="Rectangle_26361" data-name="Rectangle 26361" width="2" height="2" transform="translate(7 10)" fill="#1c61be"/>
+    <rect id="Rectangle_26362" data-name="Rectangle 26362" width="2" height="2" transform="translate(7 7)" fill="#1c61be"/>
+    <rect id="Rectangle_26363" data-name="Rectangle 26363" width="2" height="2" transform="translate(4 4)" fill="#1c61be"/>
+    <rect id="Rectangle_26364" data-name="Rectangle 26364" width="2" height="2" transform="translate(7 4)" fill="#1c61be"/>
+    <rect id="Rectangle_26365" data-name="Rectangle 26365" width="2" height="2" transform="translate(10 7)" fill="#1c61be"/>
+    <rect id="Rectangle_26366" data-name="Rectangle 26366" width="2" height="2" transform="translate(10 4)" fill="#1c61be"/>
+  </g>
+</svg>

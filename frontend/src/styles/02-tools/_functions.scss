@@ -38,3 +38,8 @@
   $size: math.div(100%, math.div(12, $value));
   @return $size;
 }
+
+@function fr($frames) {
+  $frame-per-sec: 60;
+  @return math.div($frames, $frame-per-sec) * 1s;
+}

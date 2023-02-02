@@ -1,0 +1,98 @@
+.a-icon {
+  $root: &;
+  $icons: (
+    // iconList icon name must be kabab case
+    'arrow-top',
+    'arrow-union',
+    'blue-card',
+    'blue-flag',
+    'map-pin-blue-square',
+    'phone',
+    'map-pin',
+    'globe',
+    'asterisk',
+    'blue-eyes-file',
+    'outlink-white',
+    'brand-vehicle-footer',
+    'blue-eyes-checked',
+    'internal-link',
+    'heading2-sp',
+    'heading2',
+    'hashlink',
+    'hand-held',
+    'brand-vehicle-logo-sp',
+    'brand-vehicle-logo-pc',
+    'brand-vehicle-sp',
+    'brand-vehicle-pc',
+    'error-caution',
+    'caution',
+    'chat-stroke',
+    'contact',
+    'info',
+    'modal-close',
+    'external-blue',
+    'navtoggle-white',
+    'outlink-red',
+    'navtoggle',
+    'download-with-color',
+    'search-marine-blue',
+    'search',
+    'h1-heading2',
+    'close',
+    'next-icon',
+    'prev-icon',
+    'h1-sp',
+    'h1-white',
+    'external',
+    'pdf',
+    'pdf-blue',
+    'inlinelink',
+    'h1-small',
+    'h1-large',
+    'h1-sp',
+    'speech-bubble',
+    'check',
+    'pulldown',
+    'outlink',
+    'outlink-white',
+    'visible',
+    'invisible',
+    'delete',
+    'plus',
+    'h1',
+    'help',
+    'calender',
+    'download',
+    'edit',
+    'app',
+    'circle',
+    'cross'
+  );
+
+  display: inline-block;
+
+  &__icon-size {
+    width: 16px;
+    height: 16px;
+  }
+
+  @each $icon-name in $icons {
+    $url: '#{$icon-path}/#{$icon-name}.svg';
+
+    &--#{$icon-name} {
+      background-image: url($url);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &--#{$icon-name}-mask {
+      background-color: currentcolor;
+      background-image: unset;
+      mask-image: url($url);
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: contain;
+    }
+  }
+}

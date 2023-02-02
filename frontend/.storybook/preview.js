@@ -1,42 +1,30 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import '../src/styles/index.scss';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-    },
-  },
-});
 
 const MINIMAL_VIEWPORTS = {
   mobile1: {
     name: 'Small mobile',
     styles: {
       height: '568px',
-      width: '375px',
+      width: '375px'
     },
-    type: 'mobile',
+    type: 'mobile'
   },
   mobile2: {
     name: 'Large mobile',
     styles: {
       height: '896px',
-      width: '480px',
+      width: '480px'
     },
-    type: 'mobile',
+    type: 'mobile'
   },
   tablet: {
     name: 'Tablet',
     styles: {
       height: '1024px',
-      width: '768px',
+      width: '768px'
     },
-    type: 'tablet',
-  },
+    type: 'tablet'
+  }
 };
 
 export const parameters = {
@@ -47,45 +35,36 @@ export const parameters = {
       { name: 'none', value: '0' },
       { name: 'small', value: '16px' },
       { name: 'medium', value: '32px' },
-      { name: 'large', value: '64px' },
+      { name: 'large', value: '64px' }
     ],
-    default: 'none',
+    default: 'none'
   },
   viewport: {
-    viewports: MINIMAL_VIEWPORTS,
+    viewports: MINIMAL_VIEWPORTS
   },
   backgrounds: {
     default: 'white',
     values: [
       {
         name: 'white',
-        value: '#ffffff',
+        value: '#ffffff'
       },
       {
         name: 'gray',
-        value: '#f6f6f6',
+        value: '#f6f6f6'
       },
       {
         name: 'black',
-        value: '#373a44',
-      },
-    ],
+        value: '#373a44'
+      }
+    ]
   },
   html: {
     root: '#root', // default: #root
     removeEmptyComments: true, // default: false
     highlighter: {
       showLineNumbers: true, // default: false
-      wrapLines: true, // default: true
-    },
-  },
+      wrapLines: true // default: true
+    }
+  }
 };
-
-export const decorators = [
-  story => (
-    <QueryClientProvider client={queryClient}>
-      {story()}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  ),
-];

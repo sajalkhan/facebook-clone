@@ -1,31 +1,61 @@
+/* stylelint-disable selector-class-pattern */
 .a-button {
   $root: &;
+  $root-icon: '.a-icon';
 
-  position: relative;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 40px;
-  padding: 0 20px;
-  font-size: 14px;
-  font-weight: xd-font-weight('bold');
-  line-height: 24px;
-  color: $color-primary-grey;
+  padding: 14px 0;
+  text-decoration: none;
   cursor: pointer;
-  background: $color-base-white;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px 0 rgba($color-base-black, 5%);
-  transition: box-shadow 0.25s;
+  background-color: $color-white;
+  border: 2px solid $color-white;
+  border-radius: 24px;
+  transition: background-color fr(10) fr(0), border fr(10) fr(0); /* property name | duration | delay */ /* Apply to 2 properties */
 
+  // Default Button Hover
   &:hover {
-    text-decoration: none;
-    background: $color-grey-4;
+    background-color: transparent;
+
+    #{$root}__text {
+      color: $color-white;
+    }
+
+    #{$root-icon} {
+      background-color: $color-white;
+    }
+  }
+
+  .icon-wrapper {
+    display: flex;
+    order: 0;
+    margin: 0 8px;
+  }
+
+  &__text {
+    order: 2;
+    font-size: 16px;
+    font-size: xd-font-weight('bold');
+    color: $color-blue-eyes; // Default Text color
+    text-align: center;
+    transition: color fr(10) fr(0); /* property name | duration | delay */
+
+    @include sp {
+      font-size: 14px;
+    }
+  }
+
+  #{$root-icon} {
+    width: 16px;
+    height: 16px;
+    background-color: $color-blue-eyes; // Default Icon color
+    transition: background-color fr(10) fr(0);
   }
 
   &:active {
-    background: $color-base-lavender;
+    background-color: $color-base-lavender;
     box-shadow: none;
   }
 
@@ -42,26 +72,44 @@
   }
 
   &--primary {
-    color: $color-text-white !important;
-    background: $color-primary-purple-gradient;
-    background: $color-primary-purple-gradient-ms;
+    background-color: $color-blue-eyes;
+    border: 2px solid $color-blue-eyes;
+
+    #{$root}__text {
+      color: $color-white;
+    }
+
+    #{$root-icon} {
+      background-color: $color-white;
+    }
 
     &:hover {
-      background: $color-primary-purple;
+      background-color: transparent;
+
+      #{$root}__text {
+        color: $color-blue-eyes;
+      }
+
+      #{$root-icon} {
+        background-color: $color-blue-eyes;
+      }
     }
 
     &:active {
-      background: $color-base-darkmagenta;
+      background-color: $color-base-darkmagenta;
     }
   }
 
   &--secondary {
-    color: $color-primary-purple;
-    background: $color-secondary-purple-v-gradient;
-    background: $color-secondary-purple-v-gradient-ms;
+    background-color: $color-secondary-purple-v-gradient;
+    background-color: $color-secondary-purple-v-gradient-ms;
+
+    #{$root}__text {
+      color: $color-white;
+    }
 
     &:hover {
-      background: $color-base-mistyrose;
+      background-color: $color-base-mistyrose;
     }
 
     &:active {
@@ -70,13 +118,17 @@
   }
 
   &--third {
-    color: $color-text-white;
     background: $color-primary-grey-gradient;
     background: $color-primary-grey-gradient-ms;
 
+    #{$root}__text {
+      color: $color-white;
+    }
+
     &:hover {
       color: $color-text-white;
-      background: $color-secondary-grey;
+      background: $color-secondary-purple-gradient;
+      background: $color-secondary-purple-gradient-ms;
     }
 
     &:active {
@@ -87,13 +139,16 @@
   &--fourth {
     height: 40px;
     line-height: 20px;
-    color: $color-text-white;
-    background: $color-base-dimgray;
+    background-color: $color-base-dimgray;
     border: 1px solid $color-line-light-gray;
+
+    #{$root}__text {
+      color: $color-white;
+    }
 
     &:hover {
       color: $color-text-white;
-      background: $color-primary-purple;
+      background-color: $color-primary-purple;
     }
   }
 
@@ -166,6 +221,29 @@
     &--upload {
       height: 48px;
       border-radius: 28px;
+    }
+  }
+
+  &--delete,
+  &--delete:hover {
+    #{$root}__text {
+      color: $color-primary-red;
+    }
+
+    #{$root-icon} {
+      background-color: $color-primary-red;
+    }
+  }
+
+  &--icon-right {
+    #{$root}__text {
+      order: 0;
+    }
+
+    .icon-wrapper {
+      order: 1;
+      margin-right: 0;
+      margin-left: 3px;
     }
   }
 }

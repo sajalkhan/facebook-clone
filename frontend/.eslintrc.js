@@ -1,4 +1,4 @@
-import {resolve} from "path";
+import { resolve } from 'path';
 
 module.exports = {
   root: true,
@@ -9,21 +9,21 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:import/typescript',
     'plugin:react/recommended',
-    'plugin:storybook/recommended',
+    'plugin:storybook/recommended'
   ],
   env: {
     browser: true,
-    node: true,
+    node: true
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: resolve(__dirname, './tsconfig.json'),
+    project: resolve(__dirname, './tsconfig.json')
   },
   plugins: ['import', '@typescript-eslint', 'react-hooks'],
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   rules: {
     // ESLint default rules
@@ -37,8 +37,8 @@ module.exports = {
         devDependencies: true,
         optionalDependencies: true,
         peerDependencies: true,
-        bundledDependencies: true,
-      },
+        bundledDependencies: true
+      }
     ],
     'consistent-return': 2,
     'default-case': 2,
@@ -68,7 +68,7 @@ module.exports = {
     // `semi-spacing` conflicts with `prettier`
     // `space-infix-ops` conflicts with `prettier`
     // `space-in-parens` conflicts with `prettier`
-    yoda: 2,
+    yoda: 2
   },
   overrides: [
     {
@@ -84,21 +84,21 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': [
           1,
           {
-            argsIgnorePattern: '^_',
-          },
+            argsIgnorePattern: '^_'
+          }
         ],
         // React rules
         'react/prop-types': 0,
         // React Hooks rules
         'react-hooks/exhaustive-deps': 1,
-        'react-hooks/rules-of-hooks': 2,
-      },
+        'react-hooks/rules-of-hooks': 2
+      }
     },
     {
       files: ['src/**/*.stories.tsx'],
       rules: {
-        'react/jsx-key': 0,
-      },
-    },
-  ],
+        'react/jsx-key': 0
+      }
+    }
+  ]
 };

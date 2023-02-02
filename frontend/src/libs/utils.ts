@@ -10,7 +10,7 @@ export interface ErrorBody {
 export const errorResParser = (error: Error | null | undefined) => {
   if (!error) {
     return {
-      Code: '0',
+      Code: '0'
     };
   }
   try {
@@ -21,12 +21,6 @@ export const errorResParser = (error: Error | null | undefined) => {
 
     return concatedError;
   } catch {
-    try {
-      const errorStr = error.toString();
-      window.newrelic?.addPageAction('unknownErrorHappened', { error: errorStr });
-    } catch {
-      window.newrelic?.addPageAction('unknownErrorHappened', { error: 'unparsable error' });
-    }
     return getErrorObjFromErrorCode('99999');
   }
 };
