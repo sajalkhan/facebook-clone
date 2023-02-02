@@ -10,7 +10,7 @@ export const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DATABASE, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
   } catch (error) {
     console.error('Unable to connect to the mongodb instance. Error: ', error);

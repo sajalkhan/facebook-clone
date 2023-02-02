@@ -15,7 +15,7 @@ const validateUserInfoSchema = joi.object<UserInfo>({
   first_name: joi.string().min(3).max(30).required(),
   last_name: joi.string().min(3).max(30).required(),
   password: joi.string().min(6).max(40).required(),
-  email: joi.string().pattern(emailRegex).required(),
+  email: joi.string().pattern(emailRegex).required()
 });
 
 export const validateUserInfo = (property: string) => {

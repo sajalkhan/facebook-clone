@@ -30,137 +30,137 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, 'first name is required'],
       trim: true,
-      text: true,
+      text: true
     },
     last_name: {
       type: String,
       required: [true, 'last name is required'],
       trim: true,
-      text: true,
+      text: true
     },
     username: {
       type: String,
       required: [true, 'username is required'],
       trim: true,
       text: true,
-      unique: true,
+      unique: true
     },
 
     email: {
       type: String,
       required: [true, 'email is required'],
-      trim: true,
+      trim: true
     },
     password: {
       type: String,
-      required: [true, 'password is required'],
+      required: [true, 'password is required']
     },
     picture: {
       type: String,
       trim: true,
-      default: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
+      default: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png'
     },
     cover: {
       type: String,
-      trim: true,
+      trim: true
     },
     gender: {
       type: String,
       required: [true, 'gender is required'],
-      trim: true,
+      trim: true
     },
     bYear: {
       type: Number,
       required: true,
-      trim: true,
+      trim: true
     },
     bMonth: {
       type: Number,
       required: true,
-      trim: true,
+      trim: true
     },
     bDay: {
       type: Number,
       required: true,
-      trim: true,
+      trim: true
     },
     verified: {
       type: Boolean,
-      default: false,
+      default: false
     },
     friends: {
       type: [ObjectId],
-      default: [],
+      default: []
     },
     following: {
       type: [ObjectId],
-      default: [],
+      default: []
     },
     followers: {
       type: [ObjectId],
-      default: [],
+      default: []
     },
     requests: {
       type: [ObjectId],
-      default: [],
+      default: []
     },
     search: [
       {
         user: {
           type: ObjectId,
-          ref: 'User',
-        },
-      },
+          ref: 'User'
+        }
+      }
     ],
     details: {
       bio: {
-        type: String,
+        type: String
       },
       otherName: {
-        type: String,
+        type: String
       },
       job: {
-        type: String,
+        type: String
       },
       workplace: {
-        type: String,
+        type: String
       },
       highSchool: {
-        type: String,
+        type: String
       },
       college: {
-        type: String,
+        type: String
       },
       currentCity: {
-        type: String,
+        type: String
       },
       hometown: {
-        type: String,
+        type: String
       },
       relationship: {
         type: String,
-        enum: ['Single', 'In a relationship', 'Married', 'Divorced'],
+        enum: ['Single', 'In a relationship', 'Married', 'Divorced']
       },
       instagram: {
-        type: String,
-      },
+        type: String
+      }
     },
     savedPosts: [
       {
         post: {
           type: ObjectId,
-          ref: 'Post',
+          ref: 'Post'
         },
         savedAt: {
           type: Date,
-          default: new Date(),
-        },
-      },
-    ],
+          default: new Date()
+        }
+      }
+    ]
   },
   {
-    timestamps: true,
-  },
+    timestamps: true
+  }
 );
 
 export default model('User', userSchema);

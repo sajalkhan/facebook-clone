@@ -10,7 +10,7 @@ const auth = new OAuth2(MAILING_ID, MAILING_SECRET, oauth_link);
 
 export const sendVerificationEmail = (email: string, name: string, url: string) => {
   auth.setCredentials({
-    refresh_token: MAILING_REFRESH_TOKEN,
+    refresh_token: MAILING_REFRESH_TOKEN
   });
   const accessToken = auth.getAccessToken();
   const smtp = nodemailer.createTransport({
@@ -21,8 +21,8 @@ export const sendVerificationEmail = (email: string, name: string, url: string) 
       clientId: MAILING_ID,
       clientSecret: MAILING_SECRET,
       refreshToken: MAILING_REFRESH_TOKEN,
-      accessToken,
-    },
+      accessToken
+    }
   });
   const mailOptions = {
     from: EMAIL,
@@ -37,7 +37,7 @@ export const sendVerificationEmail = (email: string, name: string, url: string) 
             </div>
             <a href=${url} style="width:200px;padding:10px 15px;background:#4c649b;color:#fff;text-decoration:none;font-weight:600">Confirm your account</a><br>
         <div style="padding-top:20px"><span style="margin:1.5rem 0;color:#898f9c">Facebook allows you to stay in touch with all your friends, once refistered on facebook,you can share photos,organize events and much more.</span></div>
-    </div>`,
+    </div>`
   };
 
   smtp.sendMail(mailOptions, (err: Error, res: Response) => {

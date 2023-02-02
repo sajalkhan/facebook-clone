@@ -11,13 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-fs.readdirSync(path.resolve(__dirname, './routes')).forEach((file) => {
+fs.readdirSync(path.resolve(__dirname, './routes')).forEach(file => {
   app.use('/', require(`./routes/${file}`));
 });
 
 const PORT = process.env.PORT || 8000;
 
-connectDB().catch((error) => {
+connectDB().catch(error => {
   console.error('Error connecting to database: ', error);
 });
 

@@ -13,7 +13,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     const check = await User.findOne({ email });
     if (check) {
       return next(
-        new ErrorHandler('This email address already exists,try with a different email address', 400).message,
+        new ErrorHandler('This email address already exists,try with a different email address', 400).message
       );
     }
 
@@ -28,7 +28,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       bYear,
       bMonth,
       bDay,
-      gender,
+      gender
     }).save();
 
     const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
@@ -44,7 +44,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       last_name: user.last_name,
       token: token,
       verified: user.verified,
-      message: 'Register Success ! please activate your email to start',
+      message: 'Register Success ! please activate your email to start'
     });
   } catch (error: any) {
     return next(new ErrorHandler(error.message, 500).message);
@@ -65,23 +65,23 @@ export const activateAccount = async (req: Request, res: Response) => {
 
     if (check.verified === true) {
       return res.status(400).json({
-        message: 'This email is already activated.',
+        message: 'This email is already activated.'
       });
     }
 
     await User.findByIdAndUpdate(user.id, {
-      verified: true,
+      verified: true
     });
     return res.status(200).json({
-      message: 'Account has been activated successfully.',
+      message: 'Account has been activated successfully.'
     });
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError)
       return res.status(400).json({
-        message: 'Invalid token.',
+        message: 'Invalid token.'
       });
     return res.status(500).json({
-      message: 'An unexpected error has occurred.',
+      message: 'An unexpected error has occurred.'
     });
   }
 };
@@ -108,11 +108,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       last_name: user.last_name,
       token,
       verified: user.verified,
-      message: 'Login success',
+      message: 'Login success'
     });
   } catch (error: any) {
     return res.status(500).json({
-      error: error.message,
+      error: error.message
     });
   }
 };
