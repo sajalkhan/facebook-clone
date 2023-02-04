@@ -1,8 +1,10 @@
 import * as Sentry from '@sentry/react';
 import ReactDOM from 'react-dom';
+import App from '@/pages/App';
 import './styles/index.scss';
+import { store } from '@/store';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import App from './pages/App';
 
 Sentry.init({
   dsn: 'https://examplePublicKey@o0.ingest.sentry.io/0'
@@ -11,7 +13,10 @@ Sentry.init({
 });
 
 ReactDOM.render(
-  <Router>
+  <Provider store={store}>
+    <Router>
       <App />
-    </Router>,
-  document.getElementById('root'));
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+);
