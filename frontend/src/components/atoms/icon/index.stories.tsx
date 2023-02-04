@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Icon } from './';
 
@@ -82,4 +81,9 @@ Delete.args = {
 export const Edit = Template.bind({});
 Edit.args = {
   iconName: 'edit'
+};
+
+export const Facebook = Template.bind({});
+Facebook.args = {
+  iconName: 'facebook'
 };
