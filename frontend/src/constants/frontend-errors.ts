@@ -6,7 +6,7 @@ const errors = {
   '99998':
     'A timeout error has occurred. Please wait for a while and try again. If the problem persists, please contact the help desk.',
   '99999':
-    'An unexpected error has occurred. Please wait for a while and try again. If the problem persists, please contact the help desk.',
+    'An unexpected error has occurred. Please wait for a while and try again. If the problem persists, please contact the help desk.'
 } as const;
 
 export type errorCode = keyof typeof errors;
@@ -15,7 +15,7 @@ export const getErrorObjFromErrorCode = (code: errorCode) => {
   return {
     Message: errors[code],
     Code: code,
-    TranToken: '',
+    TranToken: ''
   };
 };
 
@@ -24,9 +24,9 @@ export const getErrorResFromErrorCode = (code: errorCode) => {
     response: {
       data: {
         DestSystem: {
-          Result: getErrorObjFromErrorCode(code),
-        },
-      },
-    },
+          Result: getErrorObjFromErrorCode(code)
+        }
+      }
+    }
   };
 };

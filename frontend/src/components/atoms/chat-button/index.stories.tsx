@@ -6,8 +6,8 @@ export default {
   title: 'components/atoms/ChatButton',
   component: ChatButton,
   parameters: {
-    layout: 'padded',
-  },
+    layout: 'padded'
+  }
 } as ComponentMeta<typeof ChatButton>;
 
 const Template: ComponentStory<typeof ChatButton> = args => <ChatButton {...args} />;

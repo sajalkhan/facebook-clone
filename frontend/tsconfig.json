@@ -16,13 +16,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@atom/*": ["src/components/atoms/*"],
-      "@molecules/*": ["src/components/molecules/*"],
-      "@organisms/*": ["src/components/organisms/*"]
-    },
+    "baseUrl": "src",
     "downlevelIteration": true,
     "sourceMap": true,
     "noImplicitAny": true

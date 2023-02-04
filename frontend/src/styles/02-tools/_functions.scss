@@ -19,7 +19,7 @@
     'bold': 700,
     'w6': 700,
     'extrabold': 800,
-    'black': 900,
+    'black': 900
   );
   $weight: map.get($weights, string.to-lower-case($name));
 

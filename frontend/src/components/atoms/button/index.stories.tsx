@@ -7,12 +7,12 @@ export default {
   component: Button,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
@@ -20,49 +20,49 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 export const Normal = Template.bind({});
 Normal.args = {
   children: 'click me',
-  modifiers: 'primary',
+  modifiers: 'primary'
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'click me',
-  modifiers: 'secondary',
+  modifiers: 'secondary'
 };
 
 export const Third = Template.bind({});
 Third.args = {
   children: 'click me',
-  modifiers: 'third',
+  modifiers: 'third'
 };
 
 export const Fourth = Template.bind({});
 Fourth.args = {
   children: 'click me',
-  modifiers: 'fourth',
+  modifiers: 'fourth'
 };
 
 export const Red = Template.bind({});
 Red.args = {
   children: 'click me',
-  modifiers: 'red',
+  modifiers: 'red'
 };
 
 export const Transparent = Template.bind({});
 Transparent.args = {
   children: 'click me',
-  modifiers: 'transparent',
+  modifiers: 'transparent'
 };
 
 export const TransparentBlack = Template.bind({});
 TransparentBlack.args = {
   children: 'click me',
-  modifiers: 'transparent-black',
+  modifiers: 'transparent-black'
 };
 
 export const Text = Template.bind({});
 Text.args = {
   children: 'click me',
-  modifiers: 'text',
+  modifiers: 'text'
 };
 
 export const DeleteButton = Template.bind({});
@@ -71,7 +71,7 @@ DeleteButton.args = {
   modifiers: 'third',
   iconName: 'delete',
   size: 'small',
-  color: 'delete',
+  color: 'delete'
 };
 
 export const IconAtRightPosition = Template.bind({});
@@ -79,5 +79,5 @@ IconAtRightPosition.args = {
   children: '申請書をダウンロード',
   modifiers: 'primary',
   iconName: 'external-blue',
-  iconPositionRight: true,
+  iconPositionRight: true
 };

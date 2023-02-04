@@ -1,8 +1,9 @@
+import React from 'react';
 import * as Sentry from '@sentry/react';
 import ReactDOM from 'react-dom';
-import App from '@/pages/App';
+import App from 'pages/App';
 import './styles/index.scss';
-import { store } from '@/store';
+import { store } from 'store';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 

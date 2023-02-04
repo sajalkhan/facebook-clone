@@ -30,8 +30,8 @@ module.exports = {
     'selector-class-pattern': [
       '(?!(^|-|_)[0-9])(?!(^-|-$|^([amotpu]|swiper)--|---|__-|-__))^([amotpu]|swiper)-[0-9a-z-]+(__[0-9a-z-]+){0,2}(--[0-9a-z-]+)?$',
       {
-        resolveNestedSelectors: true,
-      },
+        resolveNestedSelectors: true
+      }
     ],
     // `selector-combinator-space-after` conflicts with `prettier`
     'selector-no-vendor-prefix': true,
@@ -40,12 +40,12 @@ module.exports = {
     'value-no-vendor-prefix': true,
 
     // `stylelint-scss` rules
-    'scss/at-rule-no-unknown': true,
+    'scss/at-rule-no-unknown': true
   },
   overrides: [
     {
       files: ['**/*.scss'],
-      customSyntax: 'postcss-scss',
-    },
-  ],
+      customSyntax: 'postcss-scss'
+    }
+  ]
 };

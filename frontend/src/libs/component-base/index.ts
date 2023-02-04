@@ -32,7 +32,7 @@ export const createComponentBase = <T extends keyof React.ReactHTML>(baseClassNa
         ...otherProps,
         className,
         ref: ref || propsRef,
-        ...dataModifier,
+        ...dataModifier
       },
       children
     );
@@ -40,6 +40,6 @@ export const createComponentBase = <T extends keyof React.ReactHTML>(baseClassNa
 
   return {
     Container,
-    elementClass,
+    elementClass
   };
 };

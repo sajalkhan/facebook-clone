@@ -7,12 +7,12 @@ export default {
   component: Navigation,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof Navigation>;
 
 const Template: ComponentStory<typeof Navigation> = args => <Navigation {...args} />;
@@ -24,6 +24,6 @@ Normal.args = {
       <a href="#">home</a>
       <a href="#">super heros</a>
       <a href="#">rq super heros</a>
-    </>,
-  ],
+    </>
+  ]
 };

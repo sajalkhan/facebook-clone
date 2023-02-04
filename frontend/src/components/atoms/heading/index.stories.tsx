@@ -7,12 +7,12 @@ export default {
   component: Heading,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof Heading>;
 
 const Template: ComponentStory<typeof Heading> = args => <Heading {...args} />;
@@ -20,11 +20,11 @@ const Template: ComponentStory<typeof Heading> = args => <Heading {...args} />;
 export const Normal = Template.bind({});
 Normal.args = {
   children: 'ボタン',
-  tag: 'h3',
+  tag: 'h3'
 };
 
 export const Large = Template.bind({});
 Large.args = {
   large: true,
-  children: 'ボタン',
+  children: 'ボタン'
 };

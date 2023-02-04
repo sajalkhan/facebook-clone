@@ -6,8 +6,8 @@ export default {
   title: 'components/atoms/AnnouncementLink',
   component: AnnouncementLink,
   parameters: {
-    layout: 'padded',
-  },
+    layout: 'padded'
+  }
 } as ComponentMeta<typeof AnnouncementLink>;
 
 const Template: ComponentStory<typeof AnnouncementLink> = args => <AnnouncementLink {...args} />;
@@ -15,5 +15,5 @@ const Template: ComponentStory<typeof AnnouncementLink> = args => <AnnouncementL
 export const Normal = Template.bind({});
 Normal.args = {
   children: 'Announcement link',
-  href: '#',
+  href: '#'
 };

@@ -8,12 +8,12 @@ export default {
   component: ListItems,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof ListItems>;
 
 const Template: ComponentStory<typeof ListItems> = args => (
@@ -27,19 +27,19 @@ Normal.args = {
   items: [
     {
       id: '1',
-      name: 'test data 1',
+      name: 'test data 1'
     },
     {
       id: '2',
-      name: 'test data 2',
+      name: 'test data 2'
     },
     {
       id: '3',
-      name: 'test data 3',
+      name: 'test data 3'
     },
     {
       id: '4',
-      name: 'test data 4',
-    },
-  ],
+      name: 'test data 4'
+    }
+  ]
 };

@@ -7,17 +7,17 @@ export default {
   component: Modal,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = args => <Modal {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {
-  children: 'ボタン',
+  children: 'ボタン'
 };

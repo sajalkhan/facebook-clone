@@ -23,6 +23,6 @@ module.exports = {
     },
     normalizePath(url) {
       return path.normalize(url);
-    },
-  },
+    }
+  }
 };

@@ -10,7 +10,7 @@ export const modifierName = (modifiers?: ModifiersDictionaryType) => {
           .map(item => (modifiers[item] ? `${item}` : modifiers[item]))
           .filter(item => item)
           .join(' ')
-      : '',
+      : ''
   };
 };
 

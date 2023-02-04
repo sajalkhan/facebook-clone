@@ -64,7 +64,7 @@ export const IconList = [
   'edit',
   'app',
   'circle',
-  'cross',
+  'cross'
 ] as const;
 
 export type IconType = typeof IconList[number];

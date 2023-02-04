@@ -17,7 +17,7 @@ export const Heading: React.FC<headingProps> = ({
   tag = 'h1',
   useDiv,
   align,
-  large,
+  large
 }) => {
   const componentClassName = mapModifiers('a-heading', `tag-${tag}`, large && 'large', align);
   const className = `${componentClassName} ${additionalClassName}`.trim();

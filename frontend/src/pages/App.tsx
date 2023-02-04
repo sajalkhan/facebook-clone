@@ -1,8 +1,8 @@
 import * as Sentry from '@sentry/react';
-import { Navigation } from '@atom/navigation';
-import { ROUTES } from 'src/constants/routes';
-import GlobalError from 'src/pages/global-error';
-import { PagesRoutes } from 'src/pages/routes';
+import { Navigation } from 'components/atoms/navigation';
+import { ROUTES } from 'constants/routes';
+import GlobalError from 'pages/global-error';
+import { PagesRoutes } from 'pages/routes';
 import React from 'react';
 import { Link } from 'react-router-dom';
 

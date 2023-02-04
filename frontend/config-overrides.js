@@ -9,12 +9,12 @@ module.exports = {
           loader: 'sass-resources-loader',
           options: {
             // Or array of paths
-            resources: ['./src/styles/index.scss', './src/components/**/*.scss', './src/pages/**/*.scss'],
-          },
-        },
-      ],
+            resources: ['./src/styles/index.scss', './src/components/**/*.scss', './src/pages/**/*.scss']
+          }
+        }
+      ]
     });
 
     return config;
-  },
+  }
 };

@@ -7,17 +7,17 @@ export default {
   component: InputText,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof InputText>;
 
 const Template: ComponentStory<typeof InputText> = args => <InputText {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {
-  placeholder: 'Enter user name',
+  placeholder: 'Enter user name'
 };

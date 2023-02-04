@@ -9,12 +9,12 @@ export default {
   component: Section,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof Section>;
 
 const Template: ComponentStory<typeof Section> = args => <Section {...args} />;
@@ -30,7 +30,7 @@ Normal.args = {
         adjustment of condolence leave (or special leave).
       </Text>
     </>
-  ),
+  )
 };
 
 export const Border = Template.bind({});
@@ -45,7 +45,7 @@ Border.args = {
         adjustment of condolence leave (or special leave).
       </Text>
     </>
-  ),
+  )
 };
 
 export const CardBorder = Template.bind({});
@@ -60,7 +60,7 @@ CardBorder.args = {
         adjustment of condolence leave (or special leave).
       </Text>
     </>
-  ),
+  )
 };
 
 export const Card = Template.bind({});
@@ -75,5 +75,5 @@ Card.args = {
         adjustment of condolence leave (or special leave).
       </Text>
     </>
-  ),
+  )
 };

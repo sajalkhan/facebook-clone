@@ -7,12 +7,12 @@ export default {
   component: Loading,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof Loading>;
 
 const Template: ComponentStory<typeof Loading> = args => <Loading {...args} />;
