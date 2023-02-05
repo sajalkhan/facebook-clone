@@ -77,10 +77,6 @@
         background-color: $color-blue-eyes;
       }
     }
-
-    &:active {
-      background-color: $color-base-darkmagenta;
-    }
   }
 
   &--secondary {
@@ -92,10 +88,6 @@
 
     &:hover {
       background-color: rgba($color-primary, 0.9);
-    }
-
-    &:active {
-      background: $color-base-thistle;
     }
   }
 

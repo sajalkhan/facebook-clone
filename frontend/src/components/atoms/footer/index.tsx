@@ -1,10 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Footer() {
+export const Footer = () => {
   return (
-    <footer className="login_footer">
-      <div className="login_footer_wrap">
+    <footer className="a-login-footer">
+      <div className="a-login-footer__wrapper">
         <Link to="/">English(UK)</Link>
         <Link to="/">Français(FR)</Link>
         <Link to="/">العربية</Link>
@@ -16,12 +15,12 @@ export default function Footer() {
         <Link to="/">हिन्दी</Link>
         <Link to="/">中文(简体)</Link>
         <Link to="/">日本語</Link>
-        <Link to="/" className="footer_square">
+        <Link to="/" className="a-login-footer__square">
           <i className="plus_icon"></i>
         </Link>
       </div>
-      <div className="footer_splitter"></div>
-      <div className="login_footer_wrap">
+      <div className="a-login-footer__divider"></div>
+      <div className="a-login-footer__wrapper">
         <Link to="/">Sign Up</Link>
         <Link to="/">Log in</Link>
         <Link to="/">Messenger</Link>
@@ -54,11 +53,11 @@ export default function Footer() {
         <Link to="/">Terms</Link>
         <Link to="/">Help</Link>
       </div>
-      <div className="login_footer_wrap">
+      <div className="a-login-footer__wrapper">
         <Link to="/" style={{ fontSize: '12px', marginTop: '10px' }}>
           Meta © 2022
         </Link>
       </div>
     </footer>
   );
-}
+};

@@ -8,7 +8,7 @@ type LoginInputProps = {
   type: string;
 } & any;
 
-const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, type, ...props }) => {
+export const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, type, ...props }) => {
   const [field, meta] = useField(props);
 
   const desktopView = useMediaQuery({
@@ -45,5 +45,3 @@ const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, type, ...p
     </div>
   );
 };
-
-export default LoginInput;

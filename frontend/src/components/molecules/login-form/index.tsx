@@ -1,10 +1,10 @@
 import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import { Icon } from 'components/atoms/icon';
-import LoginInput from 'components/atoms/login-input';
+import { Link } from 'react-router-dom';
 import { loginValidation } from './form-validation';
+import { LoginInput } from 'components/atoms/login-input';
 import { Button } from 'components/atoms/button';
+
 export interface LoginFormValues {
   email: string;
   password: string;
@@ -16,11 +16,11 @@ const initialValues: LoginFormValues = {
 };
 
 type LoginFormProps = {
-  handleRegister: () => void;
+  handleRegisterForm: () => void;
   handleSubmit: (values: LoginFormValues, actions: any) => void;
 };
 
-const LoginForm: React.FC<LoginFormProps> = ({ handleRegister, handleSubmit }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handleSubmit }) => {
   const [login, setLogin] = useState<LoginFormValues>(initialValues);
   const { email, password } = login;
 
@@ -30,59 +30,49 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleRegister, handleSubmit }) =
   };
 
   return (
-    <div className="login_wrap">
-      <div className="login_1">
-        <div className="icon-wrapper">
-          <Icon iconName="facebook" />
-        </div>
-        <span>Facebook helps you connect and share with the people in your life.</span>
-      </div>
-      <div className="login_2">
-        <div className="login_2_wrap">
-          <Formik
-            enableReinitialize
-            initialValues={initialValues}
-            validationSchema={loginValidation}
-            onSubmit={handleSubmit}
-          >
-            {() => (
-              <Form>
-                <LoginInput
-                  type="text"
-                  name="email"
-                  value={email}
-                  placeholder="Email address or phone number"
-                  onChange={handleLoginChange}
-                />
-                <LoginInput
-                  type="password"
-                  name="password"
-                  password={password}
-                  placeholder="Password"
-                  onChange={handleLoginChange}
-                  bottom
-                />
-                <Button modifiers="primary" type="submit">
-                  Log In
-                </Button>
-              </Form>
-            )}
-          </Formik>
+    <div className="m-login-form">
+      <div className="m-login-form__container">
+        <Formik
+          enableReinitialize
+          initialValues={initialValues}
+          validationSchema={loginValidation}
+          onSubmit={handleSubmit}
+        >
+          {() => (
+            <Form>
+              <LoginInput
+                type="text"
+                name="email"
+                value={email}
+                placeholder="Email address or phone number"
+                onChange={handleLoginChange}
+              />
+              <LoginInput
+                type="password"
+                name="password"
+                password={password}
+                placeholder="Password"
+                onChange={handleLoginChange}
+                bottom
+              />
+              <Button modifiers="primary" type="submit">
+                Log In
+              </Button>
+            </Form>
+          )}
+        </Formik>
 
-          <Link to="/forgot" className="forgot_password">
-            Forgotten password?
-          </Link>
-          <div className="sign_splitter"></div>
-          <Button modifiers="secondary" size="medium" onClick={handleRegister}>
-            Create Account
-          </Button>
-        </div>
-        <Link to="/" className="sign_extra">
-          <b>Create a Page</b> for a celebrity, brand or business.
+        <Link to="/forgot" className="m-login-form__forgot-pass">
+          Forgotten password?
         </Link>
+        <div className="m-login-form__divider"></div>
+        <Button modifiers="secondary" size="medium" onClick={handleRegisterForm}>
+          Create Account
+        </Button>
       </div>
+      <Link to="/" className="m-login-form__sign-extra">
+        <b>Create a Page</b> for a celebrity, brand or business.
+      </Link>
     </div>
   );
 };
-
-export default LoginForm;

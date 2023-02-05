@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import LoginInput from './';
+import { LoginInput } from './';
 import withFormik from '@bbbtech/storybook-formik';
 
 export default {

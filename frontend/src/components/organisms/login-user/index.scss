@@ -1,0 +1,54 @@
+.m-login-user {
+  height: 78vh;
+  text-align: center;
+  color: var(--color-primary);
+  background: var(--bg-secondary);
+
+  &__container {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  &__icon {
+    height: 100px;
+  }
+
+  &__text {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 850px) {
+  .m-login-user {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-bottom: 15vh;
+    }
+
+    &__icon {
+      width: 300px;
+      height: 100px;
+      margin-left: -3.7rem;
+    }
+
+    &__text {
+      font-size: 28px;
+    }
+  }
+
+  .m-login-form {
+    width: 400px;
+  }
+
+  .m-login-form__container {
+    width: 360px !important;
+  }
+}
