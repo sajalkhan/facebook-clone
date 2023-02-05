@@ -1,10 +1,9 @@
-import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Icon } from 'components/atoms/icon';
 import LoginInput from 'components/atoms/login-input';
-
+import { loginValidation } from './form-validation';
 export interface LoginFormValues {
   email: string;
   password: string;
@@ -16,10 +15,11 @@ const initialValues: LoginFormValues = {
 };
 
 type LoginFormProps = {
+  handleRegister: () => void;
   handleSubmit: (values: LoginFormValues, actions: any) => void;
 };
 
-const LoginForm: React.FC<LoginFormProps> = ({ handleSubmit }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ handleRegister, handleSubmit }) => {
   const [login, setLogin] = useState<LoginFormValues>(initialValues);
   const { email, password } = login;
 
@@ -27,11 +27,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleSubmit }) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
-
-  const loginValidation = Yup.object({
-    email: Yup.string().required('Email address is required.').email('Must be a valid email.').max(100),
-    password: Yup.string().required('Password is required')
-  });
 
   return (
     <div className="login_wrap">
@@ -70,11 +65,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleSubmit }) => {
               </Form>
             )}
           </Formik>
+
           <Link to="/forgot" className="forgot_password">
             Forgotten password?
           </Link>
           <div className="sign_splitter"></div>
-          <button className="blue_btn open_signup">Create Account</button>
+          <button className="blue_btn open_signup" onClick={handleRegister}>
+            Create Account
+          </button>
         </div>
         <Link to="/" className="sign_extra">
           <b>Create a Page</b> for a celebrity, brand or business.

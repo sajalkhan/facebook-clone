@@ -16,7 +16,7 @@ const initialState: loginState = {
   fetchLoginStatus: 'IDLE'
 };
 
-export const loginUser = createAsyncThunk('login', userLogin);
+export const loginUser = createAsyncThunk('user/login', userLogin);
 
 export const login = createSlice({
   name: 'login',
