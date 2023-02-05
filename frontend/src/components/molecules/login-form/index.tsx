@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Icon } from 'components/atoms/icon';
 import LoginInput from 'components/atoms/login-input';
 import { loginValidation } from './form-validation';
+import { Button } from 'components/atoms/button';
 export interface LoginFormValues {
   email: string;
   password: string;
@@ -31,7 +32,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleRegister, handleSubmit }) =
   return (
     <div className="login_wrap">
       <div className="login_1">
-        <Icon iconName="facebook" />
+        <div className="icon-wrapper">
+          <Icon iconName="facebook" />
+        </div>
         <span>Facebook helps you connect and share with the people in your life.</span>
       </div>
       <div className="login_2">
@@ -59,9 +62,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleRegister, handleSubmit }) =
                   onChange={handleLoginChange}
                   bottom
                 />
-                <button type="submit" className="blue_btn">
+                <Button modifiers="primary" type="submit">
                   Log In
-                </button>
+                </Button>
               </Form>
             )}
           </Formik>
@@ -70,9 +73,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleRegister, handleSubmit }) =
             Forgotten password?
           </Link>
           <div className="sign_splitter"></div>
-          <button className="blue_btn open_signup" onClick={handleRegister}>
+          <Button modifiers="secondary" size="medium" onClick={handleRegister}>
             Create Account
-          </button>
+          </Button>
         </div>
         <Link to="/" className="sign_extra">
           <b>Create a Page</b> for a celebrity, brand or business.

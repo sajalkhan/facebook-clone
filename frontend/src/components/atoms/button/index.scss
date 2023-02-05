@@ -12,7 +12,7 @@
   cursor: pointer;
   background-color: $color-white;
   border: 2px solid $color-white;
-  border-radius: 24px;
+  border-radius: 10px;
   transition: background-color fr(10) fr(0), border fr(10) fr(0); /* property name | duration | delay */ /* Apply to 2 properties */
 
   // Default Button Hover
@@ -32,19 +32,6 @@
     display: flex;
     order: 0;
     margin: 0 8px;
-  }
-
-  &__text {
-    order: 2;
-    font-size: 16px;
-    font-size: xd-font-weight('bold');
-    color: $color-blue-eyes; // Default Text color
-    text-align: center;
-    transition: color fr(10) fr(0); /* property name | duration | delay */
-
-    @include sp {
-      font-size: 14px;
-    }
   }
 
   #{$root-icon} {
@@ -84,11 +71,7 @@
     }
 
     &:hover {
-      background-color: transparent;
-
-      #{$root}__text {
-        color: $color-blue-eyes;
-      }
+      background-color: rgba($color-blue-eyes, 0.9);
 
       #{$root-icon} {
         background-color: $color-blue-eyes;
@@ -101,54 +84,18 @@
   }
 
   &--secondary {
-    background-color: $color-secondary-purple-v-gradient;
-    background-color: $color-secondary-purple-v-gradient-ms;
+    background-color: $color-primary;
 
     #{$root}__text {
       color: $color-white;
     }
 
     &:hover {
-      background-color: $color-base-mistyrose;
+      background-color: rgba($color-primary, 0.9);
     }
 
     &:active {
       background: $color-base-thistle;
-    }
-  }
-
-  &--third {
-    background: $color-primary-grey-gradient;
-    background: $color-primary-grey-gradient-ms;
-
-    #{$root}__text {
-      color: $color-white;
-    }
-
-    &:hover {
-      color: $color-text-white;
-      background: $color-secondary-purple-gradient;
-      background: $color-secondary-purple-gradient-ms;
-    }
-
-    &:active {
-      background: $color-base-dimgray;
-    }
-  }
-
-  &--fourth {
-    height: 40px;
-    line-height: 20px;
-    background-color: $color-base-dimgray;
-    border: 1px solid $color-line-light-gray;
-
-    #{$root}__text {
-      color: $color-white;
-    }
-
-    &:hover {
-      color: $color-text-white;
-      background-color: $color-primary-purple;
     }
   }
 
@@ -164,37 +111,6 @@
 
     &:active {
       background: transparent;
-    }
-  }
-
-  &--red {
-    color: $color-white;
-    background: $color-primary-red;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-
-    &:hover {
-      background: $color-primary-red;
-    }
-  }
-
-  &--text {
-    height: auto;
-    padding: 0;
-    font-size: 16px;
-    color: $color-text-white;
-    text-align: left;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-
-    &:hover {
-      background: transparent;
-    }
-
-    @include sp {
-      font-size: 12px;
     }
   }
 
@@ -216,34 +132,6 @@
     &--postal {
       height: 44px;
       border-radius: 22px;
-    }
-
-    &--upload {
-      height: 48px;
-      border-radius: 28px;
-    }
-  }
-
-  &--delete,
-  &--delete:hover {
-    #{$root}__text {
-      color: $color-primary-red;
-    }
-
-    #{$root-icon} {
-      background-color: $color-primary-red;
-    }
-  }
-
-  &--icon-right {
-    #{$root}__text {
-      order: 0;
-    }
-
-    .icon-wrapper {
-      order: 1;
-      margin-right: 0;
-      margin-left: 3px;
     }
   }
 }

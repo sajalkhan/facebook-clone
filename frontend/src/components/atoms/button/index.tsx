@@ -9,12 +9,11 @@ type inheritedProps = Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'ta
 export interface ButtonProps extends inheritedProps {
   iconName?: IconType;
   children?: React.ReactNode;
-  modifiers?: ModifierProp<
-    'primary' | 'secondary' | 'third' | 'fourth' | 'red' | 'transparent' | 'transparent-black' | 'text'
-  >;
+  modifiers?: ModifierProp<'primary' | 'secondary' | 'transparent-black'>;
   color?: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'delete';
   iconPositionRight?: boolean;
   size?: 'small' | 'medium' | 'large';
+  type?: 'button' | 'reset' | 'submit';
   className?: string;
 }
 
@@ -24,6 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   target,
   color,
+  type = 'button',
   iconName,
   iconPositionRight,
   className: additionalClassName = '',
@@ -47,7 +47,7 @@ export const Button: React.FC<ButtonProps> = ({
     );
   } else {
     return (
-      <button type="button" className={className} onClick={onClick} {...props}>
+      <button type={type} className={className} onClick={onClick} {...props}>
         {iconName && (
           <span className="icon-wrapper">
             <Icon mask iconName={iconName} />

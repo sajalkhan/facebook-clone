@@ -5,6 +5,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/preset-create-react-app',
     '@whitespace/storybook-addon-html',
+    '@bbbtech/storybook-formik/register'
   ],
   // The Webpack config to use when compiling your react app for development or production.
   webpack: function (config) {
@@ -17,19 +18,19 @@ module.exports = {
           options: {
             // Or array of paths
             resources: ['./src/styles/index.scss', './src/components/**/*.scss'],
-            hoistUseStatements: true,
-          },
-        },
-      ],
+            hoistUseStatements: true
+          }
+        }
+      ]
     });
 
     return config;
   },
   framework: '@storybook/react',
   core: {
-    builder: 'webpack5',
+    builder: 'webpack5'
   },
   typescript: {
-    reactDocgen: 'none',
-  },
+    reactDocgen: 'none'
+  }
 };

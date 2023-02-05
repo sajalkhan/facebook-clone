@@ -1,51 +1,55 @@
 module.exports = {
-  extends: ['@fourdigit/stylelint-config-fourdigit'],
+  plugins: ['stylelint-scss', 'stylelint-order'],
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-standard-scss',
+    'stylelint-config-recess-order',
+    'stylelint-config-prettier'
+  ],
   rules: {
-    // Stylelint default rules
-    'at-rule-no-unknown': null,
-    // `color-hex-case` conflicts with `prettier`
-    'color-hex-length': 'long',
-    'comment-empty-line-before': 'never',
-    'comment-whitespace-inside': 'always',
-    // `declaration-block-trailing-semicolon` conflicts with `prettier`
-    // `declaration-colon-space-after` conflicts with `prettier`
-    // `declaration-colon-space-before` conflicts with `prettier`
-    'font-family-name-quotes': 'always-where-recommended',
-    'function-url-quotes': 'always',
-    // `identation` conflicts with `prettier`
-    // `media-feature-colon-space-after` is set by `stylelint-config-prettier`
-    // `media-feature-colon-space-before` is set by `stylelint-config-prettier`
-    'media-feature-name-no-vendor-prefix': true,
-    'media-feature-range-operator-space-after': 'never',
-    'media-feature-colon-space-after': 'always',
-    'media-feature-range-operator-space-before': 'never',
-    // `media-feature-parentheses-space-inside` is set by `stylelint-config-prettier`
-    // `number-leading-zero` conflicts with `prettier`
-    'property-no-vendor-prefix': true,
-    // `rule-empty-line-before` conflicts with `prettier
-    // `selector-attribute-brackets-space-inside` is set by `stylelint-config-prettier`
-    'selector-attribute-operator-space-after': 'never',
-    'selector-attribute-operator-space-before': 'never',
-    // `selector-attribute-quotes` is set by `stylelint-config-prettier`
-    'selector-class-pattern': [
-      '(?!(^|-|_)[0-9])(?!(^-|-$|^([amotpu]|swiper)--|---|__-|-__))^([amotpu]|swiper)-[0-9a-z-]+(__[0-9a-z-]+){0,2}(--[0-9a-z-]+)?$',
+    'at-rule-disallowed-list': ['import'],
+    // https://github.com/hudochenkov/stylelint-order/issues/66#issuecomment-428185810
+    'rule-empty-line-before': [
+      'always',
       {
-        resolveNestedSelectors: true
+        except: ['first-nested'],
+        ignore: ['after-comment']
       }
     ],
-    // `selector-combinator-space-after` conflicts with `prettier`
-    'selector-no-vendor-prefix': true,
-    // `selector-pseudo-class-parentheses-space-inside` is set by `stylelint-config-prettier`
-    // `string-quotes` conflicts with `prettier`
-    'value-no-vendor-prefix': true,
-
-    // `stylelint-scss` rules
-    'scss/at-rule-no-unknown': true
+    'at-rule-empty-line-before': [
+      'always',
+      {
+        except: ['blockless-after-blockless', 'first-nested'],
+        ignore: ['after-comment']
+      }
+    ],
+    'selector-pseudo-class-disallowed-list': ['hover'],
+    'unit-disallowed-list': ['px'],
+    'order/order': [
+      [
+        {
+          type: 'at-rule',
+          name: 'include'
+        },
+        'declarations',
+        {
+          type: 'at-rule',
+          name: 'include',
+          hasBlock: true
+        }
+      ]
+    ]
   },
   overrides: [
     {
       files: ['**/*.scss'],
-      customSyntax: 'postcss-scss'
+      customSyntax: 'postcss-scss',
+      rules: {
+        'at-rule-no-unknown': null,
+        'scss/dollar-variable-pattern': /^_?[a-zA-Z0-9-]+$/,
+        'scss/at-mixin-pattern': /^_?[a-zA-Z0-9-]+$/,
+        'scss/operator-no-newline-after': null
+      }
     }
   ]
 };

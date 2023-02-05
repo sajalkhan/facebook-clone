@@ -16,28 +16,22 @@ const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, type, ...p
   });
 
   return (
-    <div className="input_wrap">
+    <div className="a-login-input">
       {meta.touched && meta.error && !bottom && (
-        <div
-          className={desktopView ? 'input_error input_error_desktop' : 'input_error'}
-          style={{ transform: 'translateY(3px)' }}
-        >
+        <div className={desktopView ? 'input_error input_error_desktop' : 'input_error'}>
           {meta.touched && meta.error && <ErrorMessage name={field.name} />}
           {meta.touched && meta.error && <div className={desktopView ? 'error_arrow_left' : 'error_arrow_top'}></div>}
         </div>
       )}
       <input
-        className={meta.touched && meta.error ? 'input_error_border' : ''}
+        className={meta.touched && meta.error ? 'a-login-input--error-border' : ''}
         placeholder={placeholder}
         type={type}
         {...props}
         {...field}
       />
       {meta.touched && meta.error && bottom && (
-        <div
-          className={desktopView ? 'input_error input_error_desktop' : 'input_error'}
-          style={{ transform: 'translateY(2px)' }}
-        >
+        <div className={desktopView ? 'input_error input_error_desktop' : 'input_error'}>
           {meta.touched && meta.error && <ErrorMessage name={field.name} />}
           {meta.touched && meta.error && (
             <div className={desktopView ? 'error_arrow_left' : 'error_arrow_bottom'}></div>
