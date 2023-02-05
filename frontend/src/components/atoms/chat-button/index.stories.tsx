@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ChatButton } from './';
 
