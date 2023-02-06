@@ -50,7 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handle
               <LoginInput
                 type="password"
                 name="password"
-                password={password}
+                value={password}
                 placeholder="Password"
                 onChange={handleLoginChange}
                 bottom

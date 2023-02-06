@@ -10,7 +10,6 @@ type LoginInputProps = {
 
 export const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, type, ...props }) => {
   const [field, meta] = useField(props);
-
   const desktopView = useMediaQuery({
     query: '(min-width: 850px)'
   });
@@ -19,8 +18,8 @@ export const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, typ
     <div className="a-login-input">
       {meta.touched && meta.error && !bottom && (
         <div className={desktopView ? 'input_error input_error_desktop' : 'input_error'}>
-          {meta.touched && meta.error && <ErrorMessage name={field.name} />}
-          {meta.touched && meta.error && <div className={desktopView ? 'error_arrow_left' : 'error_arrow_top'}></div>}
+          <ErrorMessage name={field.name} />
+          <div className={desktopView ? 'error_arrow_left' : 'error_arrow_top'} />
         </div>
       )}
       <input
@@ -32,15 +31,12 @@ export const LoginInput: React.FC<LoginInputProps> = ({ placeholder, bottom, typ
       />
       {meta.touched && meta.error && bottom && (
         <div className={desktopView ? 'input_error input_error_desktop' : 'input_error'}>
-          {meta.touched && meta.error && <ErrorMessage name={field.name} />}
-          {meta.touched && meta.error && (
-            <div className={desktopView ? 'error_arrow_left' : 'error_arrow_bottom'}></div>
-          )}
+          <ErrorMessage name={field.name} />
+          <div className={desktopView ? 'error_arrow_left' : 'error_arrow_bottom'} />
         </div>
       )}
-
       {meta.touched && meta.error && (
-        <i className="error_icon" style={{ top: `${!bottom && !desktopView ? '63%' : '15px'}` }}></i>
+        <i className="error_icon" style={{ top: `${!bottom && !desktopView ? '63%' : '15px'}` }} />
       )}
     </div>
   );

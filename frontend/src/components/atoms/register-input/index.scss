@@ -1,4 +1,4 @@
-.register_input_wrap {
+.a-register-input {
   width: 100% !important;
 }
 .register_input_wrap input {
@@ -19,7 +19,14 @@
   top: 14px;
 }
 @media (min-width: 539px) {
-  .register_input_wrap .input_error {
+  .a-register-input .input_error {
     max-width: 100%;
+  }
+}
+
+
+@media (min-width: 850px) {
+  .a-register-input {
+    width: 360px !important;
   }
 }
