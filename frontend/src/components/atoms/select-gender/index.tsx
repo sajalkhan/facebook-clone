@@ -12,7 +12,7 @@ const GenderSelect: React.FC<GenderSelectProps> = ({ handleRegisterChange, gende
   });
 
   return (
-    <div className='a-select-gender' style={{ marginBottom: `${genderError && !isLargeScreen ? '70px' : '0'}` }}>
+    <div className="a-select-gender" style={{ marginBottom: `${genderError && !isLargeScreen ? '70px' : '0'}` }}>
       <label htmlFor="male">
         Male
         <input type="radio" name="gender" id="male" value="male" onChange={handleRegisterChange} />
@@ -26,8 +26,8 @@ const GenderSelect: React.FC<GenderSelectProps> = ({ handleRegisterChange, gende
         <input type="radio" name="gender" id="custom" value="custom" onChange={handleRegisterChange} />
       </label>
       {genderError && (
-        <div className={`input_error ${isLargeScreen ? 'input_error_select_large' : ''}`}>
-          <div className={`error_arrow_${isLargeScreen ? 'left' : 'bottom'}`}></div>
+        <div className={!isLargeScreen ? 'input_error' : 'input_error input_error_select_large'}>
+          <div className={!isLargeScreen ? 'error_arrow_bottom' : 'error_arrow_left'}></div>
           {genderError}
         </div>
       )}

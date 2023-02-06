@@ -54,8 +54,6 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
   };
 
   const registerSubmit = async () => {
-
-    console.log('user -- ',user);
     // try {
     //   const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
     //     first_name,
@@ -130,8 +128,20 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
           {() => (
             <Form className="m-register-form__input">
               <div className="m-register-form__input-row">
-                <RegisterInput type="text" placeholder="First name" value={first_name} name="first_name" onChange={handleRegisterChange} />
-                <RegisterInput type="text" placeholder="Surname" value={last_name} name="last_name" onChange={handleRegisterChange} />
+                <RegisterInput
+                  type="text"
+                  placeholder="First name"
+                  value={first_name}
+                  name="first_name"
+                  onChange={handleRegisterChange}
+                />
+                <RegisterInput
+                  type="text"
+                  placeholder="Surname"
+                  value={last_name}
+                  name="last_name"
+                  onChange={handleRegisterChange}
+                />
               </div>
               <div className="m-register-form__input-row">
                 <RegisterInput
