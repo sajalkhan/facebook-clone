@@ -17,18 +17,6 @@ export default {
 } as ComponentMeta<typeof RegisterInput>;
 
 const Template: ComponentStory<typeof RegisterInput> = args => <RegisterInput {...args} />;
-Template.parameters = {
-  formik: {
-    initialValues: {
-      name: ''
-    },
-    validateOnBlur: true,
-    validationSchema: {
-      email: 'Email is required',
-      password: 'Password in required'
-    }
-  }
-};
 
 export const FirstName = Template.bind({});
 FirstName.args = {
@@ -46,14 +34,14 @@ LastName.args = {
 
 export const Email = Template.bind({});
 Email.args = {
-  name: 'last_name',
+  name: 'email',
   placeholder: 'Enter your email',
   type: 'text'
 };
 
 export const Password = Template.bind({});
 Password.args = {
-  name: 'last_name',
+  name: 'password',
   placeholder: 'Enter your password',
   type: 'password'
 };

@@ -42,10 +42,10 @@ const RegisterInput: React.FC<RegisterInputProps> = ({ placeholder, type, ...pro
       <input
         type={type}
         placeholder={placeholder}
-        className={meta.touched && meta.error ? 'input_error_border' : ''}
+        className={meta.touched && meta.error ? 'a-register-input--error-border' : ''}
         style={{ width: inputWidth }}
-        {...field}
         {...props}
+        {...field}
       />
       {meta.touched && meta.error && (
         <div className={errorClass} style={errorStyle}>
