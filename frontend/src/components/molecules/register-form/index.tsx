@@ -51,6 +51,7 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
+    console.log('user -- ', user);
   };
 
   const registerSubmit = async () => {
