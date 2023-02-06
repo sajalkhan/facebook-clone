@@ -77,7 +77,6 @@ button {
   background: $color-secondary-grey;
 }
 
-
 .error_arrow_left {
   border-left: 10px solid #b94a48;
   border-top: 10px solid transparent;
@@ -92,7 +91,7 @@ button {
   border-right: 10px solid transparent;
   border-left: 10px solid transparent;
   position: absolute;
-  top: -10px;
+  top: -9px;
 }
 
 .error_arrow_top {
@@ -100,7 +99,7 @@ button {
   border-right: 10px solid transparent;
   border-left: 10px solid transparent;
   position: absolute;
-  bottom: -10px;
+  bottom: -9px;
 }
 
 :root {

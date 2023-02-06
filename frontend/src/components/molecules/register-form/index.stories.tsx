@@ -1,10 +1,10 @@
-import { LoginForm } from '.';
+import RegisterForm from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
-  title: 'components/molecules/LoginForm',
-  component: LoginForm,
+  title: 'components/molecules/RegisterForm',
+  component: RegisterForm,
   parameters: {
     paddings: {
       default: 'small'
@@ -13,11 +13,11 @@ export default {
       default: 'gray'
     }
   }
-} as ComponentMeta<typeof LoginForm>;
+} as ComponentMeta<typeof RegisterForm>;
 
-const Template: ComponentStory<typeof LoginForm> = args => (
+const Template: ComponentStory<typeof RegisterForm> = args => (
   <MemoryRouter>
-    <LoginForm {...args} />
+    <RegisterForm {...args} />
   </MemoryRouter>
 );
 

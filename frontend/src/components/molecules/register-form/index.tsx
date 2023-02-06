@@ -6,6 +6,7 @@ import DateOfBirthSelect from 'components/atoms/select-birth-date';
 import GenderSelect from 'components/atoms/select-gender';
 import DotLoader from 'react-spinners/DotLoader';
 import { registerValidation } from './form-validation';
+import { Button } from 'components/atoms/button';
 // import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 // import Cookies from 'js-cookie';
@@ -80,9 +81,9 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
   };
 
   return (
-    <div className="blur">
-      <div className="register">
-        <div className="register_header">
+    <div className="m-register-form">
+      <div className="m-register-form__container">
+        <div className="m-register-form__container--header">
           <i className="exit_icon" onClick={handleRegister}></i>
           <span>Sign Up</span>
           <span>it's quick and easy</span>
@@ -125,12 +126,12 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
           }}
         >
           {() => (
-            <Form className="register_form">
-              <div className="reg_line">
+            <Form className="m-register-form__input">
+              <div className="m-register-form__input-row">
                 <RegisterInput type="text" placeholder="First name" name="first_name" onChange={handleRegisterChange} />
                 <RegisterInput type="text" placeholder="Surname" name="last_name" onChange={handleRegisterChange} />
               </div>
-              <div className="reg_line">
+              <div className="m-register-form__input-row">
                 <RegisterInput
                   type="text"
                   placeholder="Mobile number or email address"
@@ -138,7 +139,7 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
                   onChange={handleRegisterChange}
                 />
               </div>
-              <div className="reg_line">
+              <div className="m-register-form__input-row">
                 <RegisterInput
                   type="password"
                   placeholder="New password"
@@ -146,7 +147,7 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
                   onChange={handleRegisterChange}
                 />
               </div>
-              <div className="reg_col">
+              <div className="m-register-form__input-col">
                 <div className="reg_line_header">
                   Date of birth <i className="info_icon"></i>
                 </div>
@@ -161,19 +162,21 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
                   dateError={dateError}
                 />
               </div>
-              <div className="reg_col">
-                <div className="reg_line_header">
+              <div className="m-register-form__input-col">
+                <div className="m-register-form__input-col--header">
                   Gender <i className="info_icon"></i>
                 </div>
 
                 <GenderSelect handleRegisterChange={handleRegisterChange} genderError={genderError} />
               </div>
-              <div className="reg_infos">
+              <div className="m-register-form__infos">
                 By clicking Sign Up, you agree to our <span>Terms, Data Policy &nbsp;</span>
                 and <span>Cookie Policy.</span> You may receive SMS notifications from us and can opt out at any time.
               </div>
-              <div className="reg_btn_wrapper">
-                <button className="blue_btn open_signup">Sign Up</button>
+              <div className="m-register-form__button-wrapper">
+                <Button type="submit" modifiers="primary">
+                  Sing Up
+                </Button>
               </div>
               <DotLoader color="#1876f2" loading={loading} size={30} />
               {error && <div className="error_text">{error}</div>}
