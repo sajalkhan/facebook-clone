@@ -26,15 +26,17 @@ const DateOfBirthSelect: React.FC<DateOfBirthProps> = ({
     query: '(min-width: 1170px)'
   });
 
+  const options = [
+    { name: 'bDay', value: bDay, options: days },
+    { name: 'bMonth', value: bMonth, options: months },
+    { name: 'bYear', value: bYear, options: years }
+  ];
+
   return (
-    <div className="reg_grid" style={{ marginBottom: `${dateError && !isLargeScreen ? '90px' : '0'}` }}>
-      {[
-        { name: 'bDay', value: bDay },
-        { name: 'bMonth', value: bMonth },
-        { name: 'bYear', value: bYear }
-      ].map(({ name, value }, index) => (
+    <div className="a-select-birth-date" style={{ marginBottom: `${dateError && !isLargeScreen ? '90px' : '0'}` }}>
+      {options.map(({ name, value, options }, index) => (
         <select name={name} value={value} onChange={handleRegisterChange} key={index}>
-          {(name === 'bDay' ? days : name === 'bMonth' ? months : years).map((option, i) => (
+          {options.map((option, i) => (
             <option value={option} key={i}>
               {option}
             </option>

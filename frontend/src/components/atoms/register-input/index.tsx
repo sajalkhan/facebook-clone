@@ -30,7 +30,7 @@ const RegisterInput: React.FC<RegisterInputProps> = ({ placeholder, type, ...pro
       : 'error_arrow_left'
     : 'error_arrow_bottom';
 
-  const errorLeft = isFirstName ? '-107%' : isLastName ? '107%' : '';
+  const errorLeft = isFirstName ? '-173%' : isLastName ? '107%' : '';
   const errorClass = isVeryWideScreen ? 'input_error input_error_desktop' : 'input_error';
   const errorStyle = {
     transform: 'translateY(2px)',

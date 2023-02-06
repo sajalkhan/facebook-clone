@@ -54,6 +54,8 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
   };
 
   const registerSubmit = async () => {
+
+    console.log('user -- ',user);
     // try {
     //   const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
     //     first_name,
@@ -128,14 +130,15 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
           {() => (
             <Form className="m-register-form__input">
               <div className="m-register-form__input-row">
-                <RegisterInput type="text" placeholder="First name" name="first_name" onChange={handleRegisterChange} />
-                <RegisterInput type="text" placeholder="Surname" name="last_name" onChange={handleRegisterChange} />
+                <RegisterInput type="text" placeholder="First name" value={first_name} name="first_name" onChange={handleRegisterChange} />
+                <RegisterInput type="text" placeholder="Surname" value={last_name} name="last_name" onChange={handleRegisterChange} />
               </div>
               <div className="m-register-form__input-row">
                 <RegisterInput
                   type="text"
                   placeholder="Mobile number or email address"
                   name="email"
+                  value={email}
                   onChange={handleRegisterChange}
                 />
               </div>
@@ -144,11 +147,12 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
                   type="password"
                   placeholder="New password"
                   name="password"
+                  password={password}
                   onChange={handleRegisterChange}
                 />
               </div>
               <div className="m-register-form__input-col">
-                <div className="reg_line_header">
+                <div className="m-register-form__input-col--header">
                   Date of birth <i className="info_icon"></i>
                 </div>
                 <DateOfBirthSelect
@@ -174,7 +178,7 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
                 and <span>Cookie Policy.</span> You may receive SMS notifications from us and can opt out at any time.
               </div>
               <div className="m-register-form__button-wrapper">
-                <Button type="submit" modifiers="primary">
+                <Button type="submit" modifiers="secondary">
                   Sing Up
                 </Button>
               </div>
