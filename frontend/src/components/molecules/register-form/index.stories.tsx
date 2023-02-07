@@ -1,4 +1,4 @@
-import RegisterForm from '.';
+import { RegisterForm } from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 

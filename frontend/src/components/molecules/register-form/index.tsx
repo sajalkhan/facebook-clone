@@ -7,19 +7,25 @@ import GenderSelect from 'components/atoms/select-gender';
 import DotLoader from 'react-spinners/DotLoader';
 import { registerValidation } from './form-validation';
 import { Button } from 'components/atoms/button';
-// import axios from 'axios';
-// import { useDispatch } from 'react-redux';
-// import Cookies from 'js-cookie';
-// import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from 'store/hooks';
+export interface UserInfoType {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  bYear: number;
+  bMonth: number;
+  bDay: number;
+  gender: string;
+}
 
 type RegisterFormType = {
-  handleRegister: () => void;
+  handleRegisterForm: () => void;
+  handleRegisterSubmit: (value: UserInfoType) => void;
 };
 
-const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
-  //   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
-  const userInfos = {
+export const RegisterForm: React.FC<RegisterFormType> = ({ handleRegisterForm, handleRegisterSubmit }) => {
+  const userInfos: UserInfoType = {
     first_name: '',
     last_name: '',
     email: '',
@@ -44,48 +50,22 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
   const [dateError, setDateError] = useState('');
   const [genderError, setGenderError] = useState('');
 
-  const [error] = useState('');
-  const [success] = useState('');
-  const [loading] = useState(false);
-
   const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log('user -- ', user);
   };
 
-  const registerSubmit = async () => {
-    // try {
-    //   const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
-    //     first_name,
-    //     last_name,
-    //     email,
-    //     password,
-    //     bYear,
-    //     bMonth,
-    //     bDay,
-    //     gender
-    //   });
-    //   setError('');
-    //   setSuccess(data.message);
-    //   const { message, ...rest } = data;
-    //   setTimeout(() => {
-    //     dispatch({ type: 'LOGIN', payload: rest });
-    //     Cookies.set('user', JSON.stringify(rest));
-    //     navigate('/');
-    //   }, 2000);
-    // } catch (error) {
-    //   setLoading(false);
-    //   setSuccess('');
-    //   setError(error.response.data.message);
-    // }
-  };
+  const registerPending = useAppSelector(state => state.register.fetchRegisterStatus === 'PENDING');
+  const registerSuccess = useAppSelector(state => state.register.fetchRegisterStatus === 'SUCCESS');
+  const registerError = useAppSelector(state => state.register.fetchRegisterStatus === 'ERROR');
+  const response = useAppSelector(state => state.register.response);
 
+  console.log('response -- ', registerPending, ' xxx -- ', registerSuccess, ' +++ ', registerError);
   return (
     <div className="m-register-form">
       <div className="m-register-form__container">
         <div className="m-register-form__container--header">
-          <i className="exit_icon" onClick={handleRegister}></i>
+          <i className="exit_icon" onClick={handleRegisterForm}></i>
           <span>Sign Up</span>
           <span>it's quick and easy</span>
         </div>
@@ -122,7 +102,7 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
             } else {
               setDateError('');
               setGenderError('');
-              registerSubmit();
+              handleRegisterSubmit(user);
             }
           }}
         >
@@ -193,9 +173,9 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
                   Sing Up
                 </Button>
               </div>
-              <DotLoader color="#1876f2" loading={loading} size={30} />
-              {error && <div className="error_text">{error}</div>}
-              {success && <div className="success_text">{success}</div>}
+              <DotLoader color="#1876f2" loading={registerPending} size={30} />
+              {registerError && <div className="error_text">{response}</div>}
+              {registerSuccess && <div className="success_text">{response}</div>}
             </Form>
           )}
         </Formik>
@@ -203,5 +183,3 @@ const RegisterForm: React.FC<RegisterFormType> = ({ handleRegister }) => {
     </div>
   );
 };
-
-export default RegisterForm;

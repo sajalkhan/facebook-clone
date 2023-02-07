@@ -1,6 +1,6 @@
 import { userLogin } from 'api/userApi';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { loginInfo } from './user.types';
+import { loginInfo } from './userInfo.type';
 
 type ApiStatus = 'IDLE' | 'PENDING' | 'SUCCESS' | 'ERROR';
 
