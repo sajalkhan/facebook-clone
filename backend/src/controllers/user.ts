@@ -58,13 +58,11 @@ export const activateAccount = async (req: Request, res: Response) => {
     const check = await User.findById(user.id);
 
     if (!check) {
-      throw new Error('User not found');
+      throw new HttpError('User not found', 400);
     }
 
     if (check.verified === true) {
-      return res.status(400).json({
-        message: 'This email is already activated.'
-      });
+      throw new HttpError('This email is already activated.', 400);
     }
 
     await User.findByIdAndUpdate(user.id, {
