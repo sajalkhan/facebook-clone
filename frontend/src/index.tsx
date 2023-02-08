@@ -6,11 +6,12 @@ import './styles/index.scss';
 import { store } from 'store';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserTracing } from '@sentry/tracing';
 
 Sentry.init({
-  dsn: 'https://examplePublicKey@o0.ingest.sentry.io/0'
-  // integrations: [new BrowserTracing()],
-  // tracesSampleRate: 1.0,
+  dsn: 'https://bbfc31ef4bbe4cd391244a3774218328@o4504645513052160.ingest.sentry.io/4504645518360576',
+  integrations: [new BrowserTracing()],
+  tracesSampleRate: 1.0
 });
 
 ReactDOM.render(

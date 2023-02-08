@@ -5,14 +5,14 @@ import { loginInfo } from './userInfo.type';
 type ApiStatus = 'IDLE' | 'PENDING' | 'SUCCESS' | 'ERROR';
 
 export interface loginState extends loginInfo {
-  currentUser: any;
+  response: any;
   fetchLoginStatus: ApiStatus;
 }
 
 const initialState: loginState = {
   email: '',
   password: '',
-  currentUser: {},
+  response: {},
   fetchLoginStatus: 'IDLE'
 };
 
@@ -35,7 +35,7 @@ export const login = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.fetchLoginStatus = 'SUCCESS';
-      state.currentUser = action.payload;
+      state.response = action.payload;
     });
     builder.addCase(loginUser.rejected, state => {
       state.fetchLoginStatus = 'ERROR';

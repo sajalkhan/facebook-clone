@@ -60,7 +60,6 @@ export const RegisterForm: React.FC<RegisterFormType> = ({ handleRegisterForm, h
   const registerError = useAppSelector(state => state.register.fetchRegisterStatus === 'ERROR');
   const response = useAppSelector(state => state.register.response);
 
-  console.log('response -- ', registerPending, ' xxx -- ', registerSuccess, ' +++ ', registerError);
   return (
     <div className="m-register-form">
       <div className="m-register-form__container">

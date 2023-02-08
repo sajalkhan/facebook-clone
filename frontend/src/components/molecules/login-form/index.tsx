@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { loginValidation } from './form-validation';
 import { LoginInput } from 'components/atoms/login-input';
 import { Button } from 'components/atoms/button';
+import { DotLoader } from 'react-spinners';
+import { useAppSelector } from 'store/hooks';
 
 export interface LoginFormValues {
   email: string;
@@ -28,6 +30,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handle
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
+
+  const loginPending = useAppSelector(state => state.login.fetchLoginStatus === 'PENDING');
+  const response = useAppSelector(state => state.login.response);
 
   return (
     <div className="m-login-form">
@@ -65,6 +70,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handle
         <Link to="/forgot" className="m-login-form__forgot-pass">
           Forgotten password?
         </Link>
+
+        <DotLoader color="#1876f2" loading={loginPending} size={30} />
+        <div className="error_text">{typeof response === 'object' ? response?.message : response}</div>
+
         <div className="m-login-form__divider"></div>
         <Button modifiers="secondary" size="medium" onClick={handleRegisterForm}>
           Create Account
