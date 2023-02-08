@@ -56,8 +56,6 @@ export const RegisterForm: React.FC<RegisterFormType> = ({ handleRegisterForm, h
   };
 
   const registerPending = useAppSelector(state => state.register.fetchRegisterStatus === 'PENDING');
-  const registerSuccess = useAppSelector(state => state.register.fetchRegisterStatus === 'SUCCESS');
-  const registerError = useAppSelector(state => state.register.fetchRegisterStatus === 'ERROR');
   const response = useAppSelector(state => state.register.response);
 
   return (
@@ -173,8 +171,11 @@ export const RegisterForm: React.FC<RegisterFormType> = ({ handleRegisterForm, h
                 </Button>
               </div>
               <DotLoader color="#1876f2" loading={registerPending} size={30} />
-              {registerError && <div className="error_text">{response}</div>}
-              {registerSuccess && <div className="success_text">{response}</div>}
+              {response && typeof response === 'object' ? (
+                <span className="success_text">{response.message}</span>
+              ) : (
+                <span className="error_text">{response}</span>
+              )}
             </Form>
           )}
         </Formik>

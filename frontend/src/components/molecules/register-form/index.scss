@@ -100,10 +100,13 @@
 }
 
 .error_text {
-  color: #b94a48;
-}
-.success_text {
+  display: inline-block;
   color: $color-yellow;
+}
+
+.success_text {
+  display: inline-block;
+  color: $color-primary-light;
 }
 
 @media (min-width: 539px) {

@@ -42,5 +42,11 @@
 }
 
 .error_text {
+  display: inline-block;
   color: $color-yellow;
+}
+
+.success_text {
+  display: inline-block;
+  color: $color-primary-light;
 }

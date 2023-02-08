@@ -72,7 +72,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handle
         </Link>
 
         <DotLoader color="#1876f2" loading={loginPending} size={30} />
-        <div className="error_text">{typeof response === 'object' ? response?.message : response}</div>
+        {response && typeof response === 'object' ? (
+          <span className="success_text">{response.message}</span>
+        ) : (
+          <span className="error_text">{response}</span>
+        )}
 
         <div className="m-login-form__divider"></div>
         <Button modifiers="secondary" size="medium" onClick={handleRegisterForm}>
