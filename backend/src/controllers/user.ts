@@ -1,39 +1,37 @@
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import User from '../model/user';
-import ErrorHandler from '../helpers/errorHandler';
-import { Request, Response, NextFunction } from 'express';
 import { generateToken } from '../helpers/token';
+import { Request, Response } from 'express';
 import { sendVerificationEmail } from '../helpers/mailer';
+import HttpError, { handleError } from '../helpers/errorHandler';
 
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (req: Request, res: Response) => {
+  const { first_name, last_name, email, password, username, bYear, bMonth, bDay, gender } = req.body;
+
   try {
-    const { first_name, last_name, email, password, username, bYear, bMonth, bDay, gender } = req.body;
-
-    const check = await User.findOne({ email });
-    if (check) {
-      return next(
-        new ErrorHandler('This email address already exists,try with a different email address', 400).message
-      );
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      throw new HttpError('This email address already exists, try with a different email address', 400);
     }
 
-    const hash_Password = await bcrypt.hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-    const user = await new User({
+    const user = await User.create({
       first_name,
       last_name,
       email,
-      password: hash_Password,
+      password: hashedPassword,
       username,
       bYear,
       bMonth,
       bDay,
       gender
-    }).save();
+    });
 
     const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
-    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    sendVerificationEmail(user.email, user.first_name, url);
+    const verificationURL = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    sendVerificationEmail(user.email, user.first_name, verificationURL);
 
     const token = generateToken({ id: user._id.toString() }, '7d');
     res.send({
@@ -44,10 +42,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       last_name: user.last_name,
       token: token,
       verified: user.verified,
-      message: 'Register Success ! please activate your email to start'
+      message: 'Register Success! Please activate your email to start.'
     });
   } catch (error: any) {
-    return next(new ErrorHandler(error.message, 500).message);
+    handleError(error, res);
   }
 };
 
@@ -86,21 +84,22 @@ export const activateAccount = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
+
     const user = await User.findOne({ email });
     if (!user) {
-      return next(new ErrorHandler('Email not found', 400).message);
+      throw new HttpError('Email not found', 400);
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return next(new ErrorHandler('Invalid password', 400).message);
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      throw new HttpError('Invalid password', 400);
     }
 
     const token = generateToken({ id: user._id.toString() }, '7d');
-    return res.json({
+    res.json({
       id: user._id,
       username: user.username,
       picture: user.picture,
@@ -111,8 +110,6 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       message: 'Login success'
     });
   } catch (error: any) {
-    return res.status(500).json({
-      error: error.message
-    });
+    handleError(error, res);
   }
 };
