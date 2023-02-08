@@ -58,7 +58,7 @@ export const activateAccount = async (req: Request, res: Response) => {
     const check = await User.findById(user.id);
 
     if (!check) {
-      throw new HttpError('User not found', 400);
+      throw new HttpError('User not found', 404);
     }
 
     if (check.verified === true) {
@@ -72,10 +72,12 @@ export const activateAccount = async (req: Request, res: Response) => {
       message: 'Account has been activated successfully.'
     });
   } catch (error) {
-    if (error instanceof jwt.JsonWebTokenError)
-      return res.status(400).json({
-        message: 'Invalid token.'
-      });
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new HttpError('Invalid token.', 400);
+    }
+    if (error instanceof HttpError) {
+      return res.status(error.statusCode).json({ message: error.message });
+    }
     return res.status(500).json({
       message: 'An unexpected error has occurred.'
     });
