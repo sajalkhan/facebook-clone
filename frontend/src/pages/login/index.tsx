@@ -2,7 +2,6 @@ import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { useAppDispatch } from 'store/hooks';
 import { useNavigate } from 'react-router-dom';
-import { AnyAction } from '@reduxjs/toolkit';
 import { Footer } from 'components/atoms/footer';
 import { RegisterForm, UserInfoType } from 'components/molecules/register-form';
 import { LoginFormValues } from 'components/molecules/login-form';
