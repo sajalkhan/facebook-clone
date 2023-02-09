@@ -27,14 +27,11 @@ export const login = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    setEmail: (state: loginState, action: PayloadAction<string>) => {
-      state.email = action.payload;
-    },
-    setPassword: (state: loginState, action: PayloadAction<string>) => {
-      state.password = action.payload;
-    },
-    loginUserInfo: (_state, action) => {
-      return action.payload;
+    setLoginUser: (state: loginState, action: PayloadAction<loginState>) => {
+      return {
+        ...state,
+        ...action.payload
+      };
     }
   },
   extraReducers: builder => {
@@ -51,6 +48,6 @@ export const login = createSlice({
   }
 });
 
-export const { setEmail, setPassword, loginUserInfo } = login.actions;
+export const { setLoginUser } = login.actions;
 
 export default login.reducer;

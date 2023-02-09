@@ -33,29 +33,11 @@ export const register = createSlice({
   name: 'register',
   initialState,
   reducers: {
-    setFirstName: (state: registerState, action: PayloadAction<string>) => {
-      state.first_name = action.payload;
-    },
-    setLastName: (state: registerState, action: PayloadAction<string>) => {
-      state.last_name = action.payload;
-    },
-    setEmail: (state: registerState, action: PayloadAction<string>) => {
-      state.email = action.payload;
-    },
-    setPassword: (state: registerState, action: PayloadAction<string>) => {
-      state.password = action.payload;
-    },
-    setGender: (state: registerState, action: PayloadAction<string>) => {
-      state.gender = action.payload;
-    },
-    setBirthYear: (state: registerState, action: PayloadAction<number>) => {
-      state.bYear = action.payload;
-    },
-    setBirthMont: (state: registerState, action: PayloadAction<number>) => {
-      state.bMonth = action.payload;
-    },
-    setBirthDay: (state: registerState, action: PayloadAction<number>) => {
-      state.bDay = action.payload;
+    setRegisterUser: (state: registerState, action: PayloadAction<registerState>) => {
+      return {
+        ...state,
+        ...action.payload
+      };
     }
   },
   extraReducers: builder => {
@@ -73,7 +55,6 @@ export const register = createSlice({
   }
 });
 
-export const { setFirstName, setLastName, setEmail, setPassword, setGender, setBirthDay, setBirthMont, setBirthYear } =
-  register.actions;
+export const { setRegisterUser } = register.actions;
 
 export default register.reducer;
