@@ -33,7 +33,7 @@ const Login: React.FC = () => {
   };
 
   const handleRegisterSubmit = async (values: UserInfoType) => {
-    dispatch(registerUserAction(values) as unknown as AnyAction);
+    dispatch(registerUserAction(values));
     if (registerSuccess) {
       Cookies.set('user', JSON.stringify(registerResponse));
       navigate('/');
