@@ -1,6 +1,7 @@
 import { userRegister } from 'api/userApi';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { registerInfo } from './userInfo.type';
+import Cookies from 'js-cookie';
 
 type ApiStatus = 'IDLE' | 'PENDING' | 'SUCCESS' | 'ERROR';
 
@@ -9,18 +10,22 @@ export interface registerState extends registerInfo {
   fetchRegisterStatus: ApiStatus;
 }
 
-const initialState: registerState = {
-  first_name: '',
-  last_name: '',
-  email: '',
-  password: '',
-  gender: '',
-  response: {},
-  bYear: new Date().getFullYear(),
-  bMonth: new Date().getMonth() + 1,
-  bDay: new Date().getDate(),
-  fetchRegisterStatus: 'IDLE'
-};
+const user = Cookies.get('user');
+const initialState: registerState =
+  user !== undefined
+    ? JSON.parse(user)
+    : {
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        gender: '',
+        response: {},
+        bYear: new Date().getFullYear(),
+        bMonth: new Date().getMonth() + 1,
+        bDay: new Date().getDate(),
+        fetchRegisterStatus: 'IDLE'
+      };
 
 export const registerUser = createAsyncThunk('user/register', userRegister);
 

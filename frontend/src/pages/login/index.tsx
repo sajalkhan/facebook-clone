@@ -1,5 +1,6 @@
+import Cookies from 'js-cookie';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { AnyAction } from '@reduxjs/toolkit';
 import { Footer } from 'components/atoms/footer';
@@ -12,20 +13,31 @@ import { useAppSelector } from 'store/hooks';
 
 const Login: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const registerSuccess = useAppSelector(state => state.register.fetchRegisterStatus === 'SUCCESS');
+  const loginSuccess = useAppSelector(state => state.login.fetchLoginStatus === 'SUCCESS');
+  const registerResponse = useAppSelector(state => state.register.response);
+  const loginResponse = useAppSelector(state => state.login.response);
 
   const handleRegisterForm = () => setVisible(!visible);
-  const registerSuccess = useAppSelector(state => state.register.fetchRegisterStatus === 'SUCCESS');
 
-  const handleSubmit = async (values: LoginFormValues, actions: any) => {
-    dispatch(loginUserAction(values) as unknown as AnyAction);
-    actions.setSubmitting(false);
+  const handleSubmit = async (values: LoginFormValues) => {
+    dispatch(loginUserAction(values));
+
+    if (loginSuccess) {
+      Cookies.set('user', JSON.stringify(loginResponse));
+      navigate('/');
+    }
   };
 
   const handleRegisterSubmit = async (values: UserInfoType) => {
     dispatch(registerUserAction(values) as unknown as AnyAction);
-    registerSuccess ?? navigate('/');
+    if (registerSuccess) {
+      Cookies.set('user', JSON.stringify(registerResponse));
+      navigate('/');
+    }
   };
 
   return (

@@ -19,7 +19,7 @@ const initialValues: LoginFormValues = {
 
 type LoginFormProps = {
   handleRegisterForm: () => void;
-  handleSubmit: (values: LoginFormValues, actions: any) => void;
+  handleSubmit: (values: LoginFormValues) => void;
 };
 
 export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handleSubmit }) => {

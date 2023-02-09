@@ -5,7 +5,7 @@ import { LoginFormValues } from 'components/molecules/login-form';
 
 type LoginUserProps = {
   handleRegisterForm: () => void;
-  handleSubmit: (values: LoginFormValues, actions: any) => void;
+  handleSubmit: (values: LoginFormValues) => void;
 };
 
 export const LoginUser: React.FC<LoginUserProps> = ({ handleRegisterForm, handleSubmit }) => {
