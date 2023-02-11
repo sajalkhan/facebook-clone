@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { mapModifiers } from 'libs/component';
+import React, { useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import {
@@ -16,6 +15,8 @@ import {
   Watch
 } from 'assets/svg';
 import SearchMenu from 'components/molecules/search-menu';
+import MenuList from 'components/molecules/menu-list';
+import useClickOutside from 'helpers/clickOutside';
 
 type HeaderProps = {
   name: string;
@@ -26,13 +27,15 @@ export const Header: React.FC<HeaderProps> = ({
   name,
   imgUrl = 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png'
 }) => {
-  const componentClassName = mapModifiers('o-header');
-  const className = `${componentClassName}`.trim();
-  const [showSearchMenu, setShowSearchMenu] = useState<boolean>(false);
-
   const color = '#65676b';
+  const [showSearchMenu, setShowSearchMenu] = useState<boolean>(false);
+  const [showMenuList, setShowMenuList] = useState(false);
+
+  const menuListRef = useRef<HTMLDivElement>(null);
+  useClickOutside(menuListRef, () => setShowMenuList(false));
+
   return (
-    <header className={className}>
+    <header className="o-header">
       <div className="o-header__left">
         <Link to="/" className="o-header__logo">
           <Logo />
@@ -69,9 +72,12 @@ export const Header: React.FC<HeaderProps> = ({
           <img src={imgUrl} alt="" />
           <span>{name}</span>
         </Link>
-        <div className="o-header__right-icon">
+
+        <div className="o-header__right-icon" onClick={() => setShowMenuList(prev => !prev)}>
           <Menu />
         </div>
+        {showMenuList && <MenuList ref={menuListRef} />}
+
         <div className="o-header__right-icon">
           <Messenger />
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { menu, create } from 'constants/all-menu';
 import { MenuItem, MenuItemType } from 'components/atoms/menu-item';
 import { SearchInput } from 'components/atoms/search-input';
@@ -8,7 +8,11 @@ interface MenuGroupType {
   items: MenuItemType[];
 }
 
-export const MenuList: React.FC = () => {
+interface MenuListProps {
+  ref?: React.Ref<HTMLDivElement>;
+}
+
+const MenuList: React.FC<MenuListProps> = forwardRef((_, ref) => {
   const menuGroups: MenuGroupType[] = [
     { name: 'Social', items: menu.slice(0, 6) },
     { name: 'Entertainment', items: menu.slice(6, 9) },
@@ -20,7 +24,7 @@ export const MenuList: React.FC = () => {
   ];
 
   return (
-    <div className="m-menu-list">
+    <div className="m-menu-list" ref={ref}>
       <div className="m-menu-list__header">Menu</div>
       <div className="m-menu-list__wrapper">
         <div className="m-menu-list__left">
@@ -49,4 +53,7 @@ export const MenuList: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+export default MenuList;
+MenuList.displayName = 'menuList';

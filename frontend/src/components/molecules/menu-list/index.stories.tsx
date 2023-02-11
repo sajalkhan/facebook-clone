@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { MenuList } from '.';
+import MenuList from '.';
 
 export default {
   title: 'components/molecules/MenuList',
