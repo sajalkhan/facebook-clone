@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { AllMenuItem } from './';
+import { MenuItem } from '.';
 
 export default {
-  title: 'components/atoms/AllMenuItem',
-  component: AllMenuItem,
+  title: 'components/atoms/MenuItem',
+  component: MenuItem,
   parameters: {
     paddings: {
       default: 'small'
@@ -12,9 +12,9 @@ export default {
       default: 'gray'
     }
   }
-} as ComponentMeta<typeof AllMenuItem>;
+} as ComponentMeta<typeof MenuItem>;
 
-const Template: ComponentStory<typeof AllMenuItem> = args => <AllMenuItem {...args} />;
+const Template: ComponentStory<typeof MenuItem> = args => <MenuItem {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {

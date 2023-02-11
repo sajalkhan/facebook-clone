@@ -1,4 +1,4 @@
-.a-all_menu_item {
+.a-menu_item {
   display: flex;
   align-items: center;
   width: 100%;
@@ -26,6 +26,7 @@
   span:last-of-type {
     font-size: 12px;
     color: #65676b;
+    max-width: 95%;
   }
 
   &:hover {
