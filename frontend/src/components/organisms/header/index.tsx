@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { mapModifiers } from 'libs/component';
 
 import { Link } from 'react-router-dom';
@@ -15,6 +15,7 @@ import {
   Search,
   Watch
 } from 'assets/svg';
+import SearchMenu from 'components/molecules/search-menu';
 
 type HeaderProps = {
   name: string;
@@ -27,6 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const componentClassName = mapModifiers('o-header');
   const className = `${componentClassName}`.trim();
+  const [showSearchMenu, setShowSearchMenu] = useState<boolean>(false);
 
   const color = '#65676b';
   return (
@@ -35,11 +37,13 @@ export const Header: React.FC<HeaderProps> = ({
         <Link to="/" className="o-header__logo">
           <Logo />
         </Link>
-        <div className="o-header__search">
+        <div className="o-header__search" onClick={() => setShowSearchMenu(true)}>
           <Search color={color} />
           <input type="text" placeholder="Search Facebook" />
         </div>
       </div>
+
+      {showSearchMenu && <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />}
 
       <div className="o-header__middle">
         <Link to="/" className="o-header__middle-icon o-header__middle-icon--active">

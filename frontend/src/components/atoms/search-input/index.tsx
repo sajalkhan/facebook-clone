@@ -16,11 +16,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ color = '#65676b' }) =
 
   return (
     <div className="a-search-input">
-      {iconVisible && (
-        <div>
-          <Search color={color} />
-        </div>
-      )}
+      {iconVisible && <Search color={color} />}
       <input
         ref={input}
         type="text"
