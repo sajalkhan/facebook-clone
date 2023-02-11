@@ -3,9 +3,10 @@ import { Search } from 'assets/svg';
 
 interface SearchInputProps {
   color?: string;
+  placeholder?: string;
 }
 
-export const SearchInput: React.FC<SearchInputProps> = ({ color = '#65676b' }) => {
+export const SearchInput: React.FC<SearchInputProps> = ({ color = '#65676b', placeholder }) => {
   const [iconVisible, setIconVisible] = useState(true);
 
   const input = useRef<HTMLInputElement>(null);
@@ -20,7 +21,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ color = '#65676b' }) =
       <input
         ref={input}
         type="text"
-        placeholder="Search Facebook"
+        placeholder={placeholder}
         onFocus={() => setIconVisible(false)}
         onBlur={() => setIconVisible(true)}
       />

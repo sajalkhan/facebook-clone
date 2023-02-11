@@ -20,7 +20,7 @@ const SearchMenu: React.FC<SearchMenuProps> = ({ color, setShowSearchMenu }) => 
             <Return color={color} />
           </div>
         </div>
-        <SearchInput />
+        <SearchInput placeholder="Search Facebook" />
       </div>
 
       <div className="m-search-menu__history-header">
