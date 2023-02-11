@@ -23,7 +23,7 @@ const initialState: loginState =
 
 export const loginUser = createAsyncThunk('user/login', userLogin);
 
-export const login = createSlice({
+export const Login = createSlice({
   name: 'login',
   initialState,
   reducers: {
@@ -48,6 +48,6 @@ export const login = createSlice({
   }
 });
 
-export const { setLoginUser } = login.actions;
+export const { setLoginUser } = Login.actions;
 
-export default login.reducer;
+export default Login.reducer;

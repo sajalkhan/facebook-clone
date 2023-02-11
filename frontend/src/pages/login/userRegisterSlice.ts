@@ -29,7 +29,7 @@ const initialState: registerState =
 
 export const registerUser = createAsyncThunk('user/register', userRegister);
 
-export const register = createSlice({
+export const Register = createSlice({
   name: 'register',
   initialState,
   reducers: {
@@ -55,6 +55,6 @@ export const register = createSlice({
   }
 });
 
-export const { setRegisterUser } = register.actions;
+export const { setRegisterUser } = Register.actions;
 
-export default register.reducer;
+export default Register.reducer;

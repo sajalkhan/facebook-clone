@@ -1,4 +1,4 @@
-.m-header {
+.o-header {
   position: fixed;
   top: 0;
   height: 56px;
@@ -11,7 +11,7 @@
   color: var(--color-primary);
   box-sizing: border-box;
 
-  // left part
+  /*---Header left-----*/
   &__left {
     display: flex;
     align-items: center;
@@ -35,12 +35,12 @@
     align-items: center;
     gap: 8px;
     background: var(--bg-forth);
-    padding: 10px 32px 10px 10px;
     border-radius: 50px;
     cursor: text;
 
     input {
       outline: none;
+      padding: 10px 32px 10px 10px;
       border: none;
       background: transparent;
       font-size: 15px;
@@ -50,10 +50,14 @@
         transform: translateY(-1px);
       }
     }
-  }
-  // left part
 
-  //middle part
+    svg {
+      transform: translateX(10px);
+    }
+  }
+  /*---Header left-----*/
+
+  /*---Header middle-----*/
   &__middle {
     display: flex;
     align-items: center;
@@ -95,6 +99,12 @@
     &--active svg {
       transform: translateY(1px) translateX(-1px);
     }
+
+    &:not(&--active) {
+      &:hover {
+        background: var(--bg-secondary);
+      }
+    }
   }
 
   &__middle-notification {
@@ -107,9 +117,9 @@
     font-size: 13px;
     color: #fff;
   }
-  //middle part
+  /*---Header middle-----*/
 
-  //right part
+  /*---Header right-----*/
   &__right {
     display: flex;
     position: absolute;
@@ -154,6 +164,10 @@
     margin-right: 8px;
     background: var(--bg-third);
     cursor: pointer;
+
+    &:hover {
+      background: var(--bg-secondary);
+    }
   }
 
   &__right-notification {
@@ -166,5 +180,5 @@
     font-size: 13px;
     color: #fff;
   }
-  //right part
+  /*---Header right-----*/
 }
