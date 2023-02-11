@@ -19,6 +19,6 @@ const Template: ComponentStory<typeof MenuItem> = args => <MenuItem {...args} />
 export const Normal = Template.bind({});
 Normal.args = {
   name: 'Groups',
-  imgName: 'groups',
+  icon: 'groups',
   description: 'Connect with people who share your interests.'
 };

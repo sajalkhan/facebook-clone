@@ -1,19 +1,14 @@
 import React from 'react';
-import { mapModifiers } from 'libs/component';
-
-interface MenuItemProps {
+export interface MenuItemType {
   name: string;
   description: string;
-  imgName: string;
+  icon: string;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ name, description, imgName }) => {
-  const componentClassName = mapModifiers('a-menu_item');
-  const className = `${componentClassName}`.trim();
-
+export const MenuItem: React.FC<MenuItemType> = ({ name, description, icon }) => {
   return (
-    <div className={className}>
-      <img src={require(`assets/menu-items/${imgName}.png`)} alt="" />
+    <div className="a-menu_item">
+      <img src={require(`assets/menu-items/${icon}.png`)} alt="" />
       <div className="a-menu_item__info">
         <span>{name}</span>
         <span>{description}</span>
