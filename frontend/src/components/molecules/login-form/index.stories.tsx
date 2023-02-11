@@ -1,4 +1,6 @@
 import { LoginForm } from '.';
+import { store } from 'store';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
@@ -17,7 +19,9 @@ export default {
 
 const Template: ComponentStory<typeof LoginForm> = args => (
   <MemoryRouter>
-    <LoginForm {...args} />
+    <Provider store={store}>
+      <LoginForm {...args} />
+    </Provider>
   </MemoryRouter>
 );
 

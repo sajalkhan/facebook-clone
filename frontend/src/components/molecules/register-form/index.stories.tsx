@@ -1,5 +1,8 @@
 import { RegisterForm } from '.';
 import { MemoryRouter } from 'react-router-dom';
+
+import { store } from 'store';
+import { Provider } from 'react-redux';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
@@ -17,7 +20,9 @@ export default {
 
 const Template: ComponentStory<typeof RegisterForm> = args => (
   <MemoryRouter>
-    <RegisterForm {...args} />
+    <Provider store={store}>
+      <RegisterForm {...args} />
+    </Provider>
   </MemoryRouter>
 );
 

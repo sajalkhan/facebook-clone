@@ -1,6 +1,8 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { MemoryRouter } from 'react-router-dom';
 import { LoginUser } from '.';
+import { store } from 'store';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
   title: 'components/organisms/LoginUser',
@@ -10,7 +12,9 @@ export default {
 
 const Template: ComponentStory<typeof LoginUser> = args => (
   <MemoryRouter>
-    <LoginUser {...args} />
+    <Provider store={store}>
+      <LoginUser {...args} />
+    </Provider>
   </MemoryRouter>
 );
 
