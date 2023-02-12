@@ -23,10 +23,7 @@ type HeaderProps = {
   imgUrl?: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({
-  name,
-  imgUrl = 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png'
-}) => {
+export const Header: React.FC<HeaderProps> = ({ name, imgUrl = process.env.REACT_APP_DEFAULT_IMAGE }) => {
   const color = '#65676b';
   const [showSearchMenu, setShowSearchMenu] = useState<boolean>(false);
   const [showMenuList, setShowMenuList] = useState(false);
