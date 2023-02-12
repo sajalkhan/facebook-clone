@@ -1,10 +1,9 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { UserMenu } from './';
+import { UserMenu } from '.';
 
 export default {
-  title: 'components/molecules/UserMenu',
+  title: 'components/organisms/UserMenu',
   component: UserMenu,
   parameters: {
     paddings: {

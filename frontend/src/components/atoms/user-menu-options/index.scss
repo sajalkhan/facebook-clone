@@ -1,0 +1,37 @@
+.a-user-menu-options {
+  $root: &;
+
+  padding: 0 0.3rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 360px;
+  height: fit-content;
+  border-radius: 10px;
+  background: var(--bg-primary);
+  box-shadow: 2px 2px 2px var(--shadow-1);
+  user-select: none;
+  padding: 10px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: #d4d6da3a;
+    }
+  }
+}
