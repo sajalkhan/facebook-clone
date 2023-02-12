@@ -1,0 +1,22 @@
+.a-user-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  padding: 7px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &__right-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    background: #d4d6da3a;
+  }
+}

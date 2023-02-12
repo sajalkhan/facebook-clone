@@ -1,4 +1,3 @@
-import { Text } from 'components/atoms/text';
 import { mapModifiers } from 'libs/component';
 import { ErrorBody } from 'libs/utils';
 import React from 'react';
@@ -14,11 +13,7 @@ export const ErrorMessage: React.FC<errorMessageProps> = ({ id, className: addit
   const className = `${componentClassName} ${additionalClassName}`.trim();
   return (
     <div className={className} id={id}>
-      {error?.Message && (
-        <Text size="small" className="a-error-message__message">
-          {error?.Message}
-        </Text>
-      )}
+      {error?.Message && <div className="a-error-message__message">{error?.Message}</div>}
       <div className="a-error-message__codes">
         <ul>
           <li>
