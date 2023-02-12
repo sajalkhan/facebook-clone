@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PrivacySettings, HelpSupports } from 'components/molecules/user-menu-options';
+import { PrivacySettings, HelpSupports, DisplayAccessibility } from 'components/molecules/user-menu-options';
 import { UserMenuItem } from 'components/atoms/user-menu-item';
 
 interface UserMenuProps {
@@ -51,14 +51,22 @@ export const UserMenu: React.FC<UserMenuProps> = ({
             onClick={() => setVisible(1)}
             rightArrow
           />
+
           <UserMenuItem icon="help_filled_icon" text="Help & support" onClick={() => setVisible(2)} rightArrow />
-          <UserMenuItem icon="dark_filled_icon" text="Display & Accessibility" rightArrow />
+
+          <UserMenuItem
+            icon="dark_filled_icon"
+            text="Display & Accessibility"
+            onClick={() => setVisible(3)}
+            rightArrow
+          />
           <UserMenuItem icon="logout_filled_icon" text="Logout" />
         </>
       )}
 
       {visible === 1 && <PrivacySettings setVisible={setVisible} />}
       {visible === 2 && <HelpSupports setVisible={setVisible} />}
+      {visible === 3 && <DisplayAccessibility setVisible={setVisible} />}
     </div>
   );
 };
