@@ -14,22 +14,31 @@ import {
   Search,
   Watch
 } from 'assets/svg';
+import UserMenu from 'components/organisms/user-menu';
 import SearchMenu from 'components/molecules/search-menu';
 import MenuList from 'components/molecules/menu-list';
 import useClickOutside from 'helpers/clickOutside';
 
 type HeaderProps = {
-  name: string;
+  first_name: string;
+  last_name: string;
   imgUrl?: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({ name, imgUrl = process.env.REACT_APP_DEFAULT_IMAGE }) => {
+export const Header: React.FC<HeaderProps> = ({
+  first_name,
+  last_name,
+  imgUrl = process.env.REACT_APP_DEFAULT_IMAGE
+}) => {
   const color = '#65676b';
   const [showSearchMenu, setShowSearchMenu] = useState<boolean>(false);
-  const [showMenuList, setShowMenuList] = useState(false);
+  const [showMenuList, setShowMenuList] = useState<boolean>(false);
+  const [showUserMenu, setShowUserMenu] = useState<boolean>(false);
 
   const menuListRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
   useClickOutside(menuListRef, () => setShowMenuList(false));
+  useClickOutside(userMenuRef, () => setShowUserMenu(false));
 
   return (
     <header className="o-header">
@@ -67,24 +76,51 @@ export const Header: React.FC<HeaderProps> = ({ name, imgUrl = process.env.REACT
       <div className="o-header__right">
         <Link to="/profile" className="o-header__right-profile">
           <img src={imgUrl} alt="" />
-          <span>{name}</span>
+          <span>{first_name}</span>
         </Link>
 
-        <div className="o-header__right-icon" onClick={() => setShowMenuList(prev => !prev)}>
+        <div
+          className="o-header__right-icon"
+          onClick={() => {
+            setShowUserMenu(false);
+            setShowMenuList(prev => !prev);
+          }}
+        >
           <Menu />
         </div>
         {showMenuList && <MenuList ref={menuListRef} />}
 
-        <div className="o-header__right-icon">
+        <div
+          className="o-header__right-icon"
+          onClick={() => {
+            setShowUserMenu(false);
+            setShowMenuList(false);
+          }}
+        >
           <Messenger />
         </div>
-        <div className="o-header__right-icon">
+
+        <div
+          className="o-header__right-icon"
+          onClick={() => {
+            setShowUserMenu(false);
+            setShowMenuList(false);
+          }}
+        >
           <Notifications />
           <div className="o-header__right-notification">5</div>
         </div>
-        <div className="o-header__right-icon">
+
+        <div
+          className="o-header__right-icon"
+          onClick={() => {
+            setShowMenuList(false);
+            setShowUserMenu(prev => !prev);
+          }}
+        >
           <ArrowDown color={color} />
         </div>
+        {showUserMenu && <UserMenu first_name={first_name} last_name={last_name} ref={userMenuRef} />}
       </div>
     </header>
   );

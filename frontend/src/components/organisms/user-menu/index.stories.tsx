@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { UserMenu } from '.';
+import UserMenu from '.';
 
 export default {
   title: 'components/organisms/UserMenu',

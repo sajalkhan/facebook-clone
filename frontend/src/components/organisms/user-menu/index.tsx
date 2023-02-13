@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { UserMenuItem } from 'components/atoms/user-menu-item';
 import { UserMenuPrivacy } from 'components/molecules/user-menu-privacy';
@@ -9,6 +9,7 @@ interface UserMenuProps {
   first_name: string;
   last_name: string;
   imgUrl?: string;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 const MAIN_PAGE = 0;
@@ -17,11 +18,11 @@ const HELP_SUPPORT_PAGE = 2;
 const DISPLAY_ACCESSIBILITY_PAGE = 3;
 const DEFAULT_IMAGE = process.env.REACT_APP_DEFAULT_IMAGE;
 
-export const UserMenu: React.FC<UserMenuProps> = ({ first_name, last_name, imgUrl = DEFAULT_IMAGE }) => {
+const UserMenu: React.FC<UserMenuProps> = forwardRef(({ first_name, last_name, imgUrl = DEFAULT_IMAGE }, ref) => {
   const [visible, setVisible] = React.useState(MAIN_PAGE);
 
   return (
-    <div className="o-user-menu">
+    <div className="o-user-menu" ref={ref}>
       {visible === MAIN_PAGE && (
         <>
           <Link to="/profile" className="o-user-menu__header">
@@ -78,4 +79,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ first_name, last_name, imgUr
       {visible === DISPLAY_ACCESSIBILITY_PAGE && <UserMenuDisplayAccessibility setVisible={setVisible} />}
     </div>
   );
-};
+});
+
+export default UserMenu;
+UserMenu.displayName = 'userMenu';
