@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory  } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { UserMenuDisplayAccessibility } from './';
 
 export default {
@@ -7,17 +7,19 @@ export default {
   component: UserMenuDisplayAccessibility,
   parameters: {
     paddings: {
-      default: 'small',
+      default: 'small'
     },
     backgrounds: {
-      default: 'gray',
-    },
-  },
+      default: 'gray'
+    }
+  }
 } as ComponentMeta<typeof UserMenuDisplayAccessibility>;
 
-const Template: ComponentStory<typeof UserMenuDisplayAccessibility> = args => <UserMenuDisplayAccessibility {...args} />;
+const Template: ComponentStory<typeof UserMenuDisplayAccessibility> = args => (
+  <UserMenuDisplayAccessibility {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
-  children: 'ボタン',
+  children: 'ボタン'
 };

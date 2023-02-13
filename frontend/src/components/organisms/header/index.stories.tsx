@@ -23,6 +23,7 @@ const Template: ComponentStory<typeof Header> = args => (
 
 export const Normal = Template.bind({});
 Normal.args = {
-  name: 'sohrab',
+  first_name: 'sajal',
+  last_name: 'khan',
   imgUrl: 'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png'
 };
