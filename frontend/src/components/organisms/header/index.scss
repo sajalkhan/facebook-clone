@@ -38,6 +38,12 @@
     border-radius: 50px;
     cursor: text;
 
+    @include desktop-small {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+    }
+
     input {
       outline: none;
       padding: 10px 32px 10px 10px;
@@ -48,6 +54,10 @@
 
       &::placeholder {
         transform: translateY(-1px);
+      }
+
+      @include desktop-small {
+        display: none;
       }
     }
 
@@ -63,6 +73,25 @@
     align-items: center;
     gap: 14px;
     transform: translateX(3px);
+
+    @include desktop-small {
+      transform: translateX(-15%);
+    }
+    @include tablet-medium {
+      transform: translateX(-30%);
+    }
+    @include tablet-small {
+      transform: translateX(-37%);
+    }
+    @include mobile-large {
+      transform: translateX(-40%);
+    }
+    @include mobile-medium {
+      transform: translateX(-30%);
+    }
+    @include mobile-small-x {
+      transform: translateX(-15%);
+    }
   }
 
   &__middle-icon {
@@ -76,17 +105,35 @@
     cursor: pointer;
     transform: translateX(-2px);
 
+    @include desktop-large {
+      width: 90px;
+    }
+
+    @include desktop-medium {
+      width: 70px;
+    }
+
     &:nth-child(2) {
       transform: translateX(-4px);
     }
     &:nth-child(3) {
       transform: translateX(-3px);
+      @include tablet-small-X {
+        display: none;
+      }
     }
     &:nth-child(4) {
       transform: translateX(-5px);
+      @include tablet-small {
+        display: none;
+      }
     }
     &:nth-child(5) {
       transform: translateX(-5px);
+
+      @include tablet-medium {
+        display: none;
+      }
     }
 
     &--active {
@@ -140,6 +187,10 @@
     line-height: 19px;
     margin-right: 10px;
 
+    @include mobile-large {
+      display: none;
+    }
+
     img {
       width: 28.7px;
       height: 28.7px;
@@ -167,6 +218,12 @@
 
     &:hover {
       background: var(--bg-secondary);
+    }
+
+    @include mobile-small-x {
+      &:nth-last-child(3) {
+        display: none;
+      }
     }
   }
 

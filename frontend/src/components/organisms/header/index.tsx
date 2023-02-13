@@ -16,7 +16,7 @@ import {
 } from 'assets/svg';
 import UserMenu from 'components/organisms/user-menu';
 import SearchMenu from 'components/molecules/search-menu';
-import MenuList from 'components/molecules/menu-list';
+import AllMenuList from 'components/molecules/menu-list';
 import useClickOutside from 'helpers/clickOutside';
 
 type HeaderProps = {
@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Menu />
         </div>
-        {showMenuList && <MenuList ref={menuListRef} />}
+        {showMenuList && <AllMenuList ref={menuListRef} />}
 
         <div
           className="o-header__right-icon"
