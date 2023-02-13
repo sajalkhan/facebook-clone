@@ -1,9 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { PrivacySettings, HelpSupports, DisplayAccessibility } from '.';
+import { UserMenuItem } from 'components/atoms/user-menu-item';
+import { UserMenuOptions } from '.';
 
 export default {
-  title: 'components/molecules/UserMenuOptions',
-  component: PrivacySettings,
+  title: 'components/atoms/UserMenuOptions',
+  component: UserMenuOptions,
   parameters: {
     paddings: {
       default: 'small'
@@ -12,17 +13,16 @@ export default {
       default: 'gray'
     }
   }
-} as ComponentMeta<typeof PrivacySettings>;
+} as ComponentMeta<typeof UserMenuOptions>;
 
-const Template1: ComponentStory<typeof PrivacySettings> = args => <PrivacySettings {...args} />;
-const Template2: ComponentStory<typeof HelpSupports> = args => <HelpSupports {...args} />;
-const Template3: ComponentStory<typeof DisplayAccessibility> = args => <DisplayAccessibility {...args} />;
+const Template: ComponentStory<typeof UserMenuOptions> = args => <UserMenuOptions {...args} />;
 
-export const SettingsPrivacy = Template1.bind({});
-SettingsPrivacy.args = {};
-
-export const HelpSupport = Template2.bind({});
-HelpSupport.args = {};
-
-export const DisplayAccess = Template3.bind({});
-DisplayAccess.args = {};
+export const Default = Template.bind({});
+Default.args = {
+  headerText: 'User Menu Heading',
+  children: (
+    <>
+      <UserMenuItem icon="help_center_icon" text="Help Center" />
+    </>
+  )
+};
