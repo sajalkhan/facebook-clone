@@ -5,7 +5,6 @@ const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (event: MouseEv
     (event: MouseEvent | TouchEvent) => {
       const headerRightIcon = document.querySelector<HTMLDivElement>('.o-header__right-icon');
 
-      console.log('event - ', event.target);
       if (!ref.current || ref.current.contains(event.target as Node)) return;
       if (headerRightIcon && (event.target as HTMLElement).classList.contains(headerRightIcon.className)) return;
       if (
