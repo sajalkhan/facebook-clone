@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import { userLogin } from 'api/userApi';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { loginInfo, registerInfo } from './userInfo.type';
@@ -10,17 +10,15 @@ export interface loginState extends loginInfo, registerInfo {
   fetchLoginStatus?: ApiStatus;
 }
 
-const user = Cookies.get('user');
-const initialState: loginState =
-  user !== undefined
-    ? JSON.parse(user)
-    : {
-        email: '',
-        password: '',
-        response: {},
-        fetchLoginStatus: 'IDLE'
-      };
+// const user = Cookies.get('user');
+const initialState: any = {
+  email: '',
+  password: '',
+  response: {},
+  fetchLoginStatus: 'IDLE'
+};
 
+console.log('initial state -- ', initialState);
 export const loginUser = createAsyncThunk('user/login', userLogin);
 
 export const Login = createSlice({

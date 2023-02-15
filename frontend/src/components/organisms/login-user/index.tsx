@@ -1,11 +1,11 @@
 import React from 'react';
 import { Icon } from 'components/atoms/icon';
 import { LoginForm } from 'components/molecules/login-form';
-import { LoginFormValues } from 'components/molecules/login-form';
+import { LoginFormTypes } from 'components/molecules/login-form';
 
 type LoginUserProps = {
   handleRegisterForm: () => void;
-  handleSubmit: (values: LoginFormValues) => void;
+  handleSubmit: (values: LoginFormTypes) => void;
 };
 
 export const LoginUser: React.FC<LoginUserProps> = ({ handleRegisterForm, handleSubmit }) => {

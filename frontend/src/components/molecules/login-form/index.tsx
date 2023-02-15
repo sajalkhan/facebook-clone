@@ -7,23 +7,23 @@ import { Button } from 'components/atoms/button';
 import { DotLoader } from 'react-spinners';
 import { useAppSelector } from 'store/hooks';
 
-export interface LoginFormValues {
+export interface LoginFormTypes {
   email: string;
   password: string;
 }
 
-const initialValues: LoginFormValues = {
+const initialValues: LoginFormTypes = {
   email: '',
   password: ''
 };
 
 type LoginFormProps = {
   handleRegisterForm: () => void;
-  handleSubmit: (values: LoginFormValues) => void;
+  handleSubmit: (values: LoginFormTypes) => void;
 };
 
 export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handleSubmit }) => {
-  const [login, setLogin] = useState<LoginFormValues>(initialValues);
+  const [login, setLogin] = useState<LoginFormTypes>(initialValues);
   const { email, password } = login;
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {

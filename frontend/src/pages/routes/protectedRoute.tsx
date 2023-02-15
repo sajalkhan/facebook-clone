@@ -4,11 +4,10 @@ import Login from 'pages/login';
 
 export const LoggedInRoutes = () => {
   const { login } = useAppSelector(state => ({ ...state }));
-  return login.response ? <Outlet /> : <Login />;
+  return login.fetchLoginStatus === 'SUCCESS' ? <Outlet /> : <Login />;
 };
 
 export const NotLoggedInRoutes = () => {
   const { login } = useAppSelector(state => ({ ...state }));
-
-  return login.response ? <Navigate to="/" /> : <Outlet />;
+  return login.fetchLoginStatus !== 'SUCCESS' ? <Navigate to="/" /> : <Outlet />;
 };
