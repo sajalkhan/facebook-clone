@@ -1,4 +1,4 @@
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import { userLogin } from 'api/userApi';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { loginInfo, registerInfo } from './userInfo.type';
@@ -10,15 +10,14 @@ export interface loginState extends loginInfo, registerInfo {
   fetchLoginStatus?: ApiStatus;
 }
 
-// const user = Cookies.get('user');
+const user = Cookies.get('user');
 const initialState: any = {
   email: '',
   password: '',
-  response: {},
+  response: user ? JSON.parse(user) : {},
   fetchLoginStatus: 'IDLE'
 };
 
-console.log('initial state -- ', initialState);
 export const loginUser = createAsyncThunk('user/login', userLogin);
 
 export const Login = createSlice({
@@ -37,8 +36,11 @@ export const Login = createSlice({
       state.fetchLoginStatus = 'PENDING';
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      const { payload } = action;
       state.fetchLoginStatus = 'SUCCESS';
-      state.response = action.payload;
+      state.response = payload;
+
+      typeof payload !== 'string' && Cookies.set('user', JSON.stringify(payload));
     });
     builder.addCase(loginUser.rejected, state => {
       state.fetchLoginStatus = 'ERROR';

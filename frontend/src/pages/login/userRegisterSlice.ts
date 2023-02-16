@@ -11,21 +11,18 @@ export interface registerState extends registerInfo {
 }
 
 const user = Cookies.get('user');
-const initialState: registerState =
-  user !== undefined
-    ? JSON.parse(user)
-    : {
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        gender: '',
-        response: {},
-        bYear: new Date().getFullYear(),
-        bMonth: new Date().getMonth() + 1,
-        bDay: new Date().getDate(),
-        fetchRegisterStatus: 'IDLE'
-      };
+const initialState: any = {
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  gender: '',
+  response: user ? JSON.parse(user) : {},
+  bYear: new Date().getFullYear(),
+  bMonth: new Date().getMonth() + 1,
+  bDay: new Date().getDate(),
+  fetchRegisterStatus: 'IDLE'
+};
 
 export const registerUser = createAsyncThunk('user/register', userRegister);
 
@@ -45,8 +42,11 @@ export const Register = createSlice({
       state.fetchRegisterStatus = 'PENDING';
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
+      const { payload } = action;
       state.fetchRegisterStatus = 'SUCCESS';
-      state.response = action.payload;
+      state.response = payload;
+
+      typeof payload !== 'string' && Cookies.set('user', JSON.stringify(payload));
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.fetchRegisterStatus = 'ERROR';
