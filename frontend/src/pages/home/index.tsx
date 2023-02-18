@@ -6,7 +6,7 @@ import useOnClickOutside from 'helpers/clickOutside';
 const Home: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(() => false);
-  const { first_name, last_name } = useAppSelector(state => state.login);
+  const { first_name, last_name } = useAppSelector(state => state.login.response);
 
   useOnClickOutside(ref, () => setIsOpen(false));
 
