@@ -1,7 +1,7 @@
 .home-right-area {
   position: fixed;
   left: 80.7vw;
-  top: 4rem;
+  top: 7rem;
   width: 17vw;
 
   &__header {
@@ -47,7 +47,6 @@
     &:nth-child(3) {
       margin-top: -1px;
     }
-
   }
 
   &__contacts-list {
@@ -68,7 +67,6 @@
     &:hover {
       background: #d4d6da3a;
     }
-
 
     span {
       transform: translateY(-5px);

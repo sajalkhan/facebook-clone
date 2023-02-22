@@ -6,8 +6,8 @@ import { UserMenuHelpSupport } from 'components/molecules/user-menu-help-support
 import { UserMenuDisplayAccessibility } from 'components/molecules/user-menu-display-accessibility';
 
 interface UserMenuProps {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   imgUrl?: string;
   ref?: React.Ref<HTMLDivElement>;
 }
@@ -18,7 +18,7 @@ const HELP_SUPPORT_PAGE = 2;
 const DISPLAY_ACCESSIBILITY_PAGE = 3;
 const DEFAULT_IMAGE = process.env.REACT_APP_DEFAULT_IMAGE;
 
-const UserMenu: React.FC<UserMenuProps> = forwardRef(({ first_name, last_name, imgUrl = DEFAULT_IMAGE }, ref) => {
+const UserMenu: React.FC<UserMenuProps> = forwardRef(({ firstName, lastName, imgUrl = DEFAULT_IMAGE }, ref) => {
   const [visible, setVisible] = React.useState(MAIN_PAGE);
 
   return (
@@ -29,8 +29,8 @@ const UserMenu: React.FC<UserMenuProps> = forwardRef(({ first_name, last_name, i
             <img src={imgUrl} alt="" />
             <div className="o-user-menu__header-col">
               <span>
-                {first_name}
-                {last_name}
+                {firstName}
+                {lastName}
               </span>
               <span>See your profile</span>
             </div>

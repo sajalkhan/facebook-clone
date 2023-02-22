@@ -1,32 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { useAppSelector } from 'store/hooks';
 import { Header } from 'components/organisms/header';
-import useOnClickOutside from 'helpers/clickOutside';
+import { HomeLeftArea } from 'components/molecules/home-left-area';
+import { HomeRightArea } from 'components/molecules/home-right-area';
 
 const Home: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(() => false);
-  const { first_name, last_name } = useAppSelector(state => state.login.response);
-
-  useOnClickOutside(ref, () => setIsOpen(false));
+  const { first_name, last_name, picture } = useAppSelector(state => state.login.response);
 
   return (
     <div>
-      <Header first_name={first_name} last_name={last_name} />
-
-      <div className="card">
-        <button onClick={() => setIsOpen(true)} className="button">
-          Open Modal
-        </button>
-        {isOpen && (
-          <div ref={ref} className="modal">
-            <p>This is a modal</p>
-            <button onClick={() => setIsOpen(false)} className="button">
-              Close Modal
-            </button>
-          </div>
-        )}
-      </div>
+      <Header firstName={first_name} lastName={last_name} />
+      <HomeLeftArea firstName={first_name} lastName={last_name} userImg={picture} />
+      <HomeRightArea firstName={first_name} lastName={last_name} userImg={picture} />
     </div>
   );
 };

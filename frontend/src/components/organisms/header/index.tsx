@@ -20,14 +20,14 @@ import AllMenuList from 'components/molecules/menu-list';
 import useClickOutside from 'helpers/clickOutside';
 
 type HeaderProps = {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   imgUrl?: string;
 };
 
 export const Header: React.FC<HeaderProps> = ({
-  first_name,
-  last_name,
+  firstName,
+  lastName,
   imgUrl = process.env.REACT_APP_DEFAULT_IMAGE
 }) => {
   const color = '#65676b';
@@ -76,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="o-header__right">
         <Link to="/profile" className="o-header__right-profile">
           <img src={imgUrl} alt="" />
-          <span>{first_name}</span>
+          <span>{firstName}</span>
         </Link>
 
         <div
@@ -120,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <ArrowDown color={color} />
         </div>
-        {showUserMenu && <UserMenu first_name={first_name} last_name={last_name} ref={userMenuRef} />}
+        {showUserMenu && <UserMenu firstName={firstName} lastName={lastName} ref={userMenuRef} />}
       </div>
     </header>
   );
