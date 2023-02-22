@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HomeLeftData } from 'constants/home-left-area';
+import { HomeLeftData } from 'constants/home';
 import { LeftLink } from 'components/atoms/left-link';
 
 interface Props {
