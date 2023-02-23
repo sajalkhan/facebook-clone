@@ -1,14 +1,11 @@
 .a-icon {
   $root: &;
-  $icons: (
-    // iconList icon name must be kabab case
-    'facebook'
-  );
+  $icons: ('facebook');
 
   display: inline-block;
 
-  width: 14px;
-  height: 14px;
+  width: 100%;
+  height: 100%;
 
   @each $icon-name in $icons {
     $url: '#{$icon-path}/#{$icon-name}.svg';
