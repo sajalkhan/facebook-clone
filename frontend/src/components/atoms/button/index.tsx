@@ -39,7 +39,7 @@ export const Button: React.FC<ButtonProps> = ({
       <a href={href} target={target} className={className} onClick={onClick} {...props}>
         {iconName && (
           <span className="icon-wrapper">
-            <Icon mask iconName={iconName} />
+            <Icon name={iconName} />
           </span>
         )}
         <span className="a-button__text">{children}</span>
@@ -50,7 +50,7 @@ export const Button: React.FC<ButtonProps> = ({
       <button type={type} className={className} onClick={onClick} {...props}>
         {iconName && (
           <span className="icon-wrapper">
-            <Icon mask iconName={iconName} />
+            <Icon name={iconName} />
           </span>
         )}
         <span className="a-button__text">{children}</span>

@@ -13,7 +13,7 @@ export const LoginUser: React.FC<LoginUserProps> = ({ handleRegisterForm, handle
     <div className="o-login-user">
       <div className="o-login-user__container">
         <div className="o-login-user__icon">
-          <Icon iconName="facebook" />
+          <Icon name="facebook" />
         </div>
         <span className="o-login-user__text">Facebook helps you connect and share with the people in your life.</span>
       </div>

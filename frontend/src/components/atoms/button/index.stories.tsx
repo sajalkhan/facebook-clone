@@ -33,6 +33,5 @@ export const IconAtRightPosition = Template.bind({});
 IconAtRightPosition.args = {
   children: '申請書をダウンロード',
   modifiers: 'primary',
-  iconName: 'external-blue',
   iconPositionRight: true
 };

@@ -1,18 +1,24 @@
 import { BaseComponentProps, createComponentBase } from 'libs/component-base/index';
 import React from 'react';
-import { IconType } from './icon-list';
+import { IconType, ColorType } from './icon-list';
 
 export type IconProps = BaseComponentProps & {
-  iconName: IconType;
-  mask?: boolean;
+  name: IconType;
+  color?: ColorType;
+  height?: number;
+  width?: number;
 };
 
-export const Icon: React.FC<IconProps> = ({ iconName, mask, ...props }) => {
-  const componentClassName = 'a-icon';
-  const { Container, elementClass } = createComponentBase(componentClassName, 'span');
-  const modifiers = {
-    [`${iconName}${mask ? '-mask' : ''}`]: !!iconName
-  };
+export const Icon: React.FC<IconProps> = ({ name, color, height, width, ...props }) => {
+  const { Container } = createComponentBase('span');
 
-  return <Container modifiers={modifiers} className={elementClass('icon-size')} {...props} />;
+  return (
+    <Container
+      className="a-icon"
+      data-icon={name}
+      data-color={color}
+      style={{ height: `${height}px`, width: `${width}px` }}
+      {...props}
+    />
+  );
 };
