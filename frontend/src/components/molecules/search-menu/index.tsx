@@ -13,7 +13,7 @@ const SearchMenu: React.FC<SearchMenuProps> = ({ color, setShowSearchMenu }) => 
   useClickOutside(searchMenuRef, () => setShowSearchMenu(false));
 
   return (
-    <div className="m-search-menu scrollbar" ref={searchMenuRef}>
+    <div className="m-search-menu" ref={searchMenuRef}>
       <div className="m-search-menu__wrapper">
         <div className="m-header__logo">
           <div className="m-search-menu__logo-wrapper" onClick={() => setShowSearchMenu(false)}>
