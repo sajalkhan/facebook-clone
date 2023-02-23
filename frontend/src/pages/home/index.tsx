@@ -3,6 +3,7 @@ import { useAppSelector } from 'store/hooks';
 import { Header } from 'components/organisms/header';
 import { HomeLeftArea } from 'components/molecules/home-left-area';
 import { HomeRightArea } from 'components/molecules/home-right-area';
+import { CreatePost } from 'components/molecules/create-post';
 import { Stories } from 'components/molecules/stories';
 import { stories } from 'constants/home';
 
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
       <HomeLeftArea firstName={first_name} lastName={last_name} userImg={picture} />
       <div className="home__middle">
         <Stories userStories={stories} />
+        <CreatePost userImg={picture} firstName={first_name} />
       </div>
       <HomeRightArea firstName={first_name} lastName={last_name} userImg={picture} />
     </div>

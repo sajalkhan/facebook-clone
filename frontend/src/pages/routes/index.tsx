@@ -1,7 +1,7 @@
 import { Loading } from 'components/atoms/loading';
 import { ROUTES } from 'constants/routes';
 import React, { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoggedInRoutes, NotLoggedInRoutes } from './protectedRoute';
 
 const Home = lazy(() => import('pages/home'));
@@ -15,6 +15,7 @@ export const PagesRoutes: React.FC = () => (
       </Route>
       <Route element={<NotLoggedInRoutes />}>
         <Route path={ROUTES.LOGIN} element={<Login />} />
+        <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
       </Route>
     </Routes>
   </Suspense>
