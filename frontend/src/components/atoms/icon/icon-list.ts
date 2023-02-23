@@ -1,6 +1,8 @@
 export const IconList = [
   // iconList
-  'facebook'
+  'facebook',
+  'live-video',
+  'photo'
 ] as const;
 
 export type IconType = typeof IconList[number];
@@ -25,7 +27,8 @@ export const colorList = [
   'soapstone',
   'darkGray',
   'whiteSmoke',
-  'softPeach'
+  'softPeach',
+  'pinkishRed'
 ] as const;
 
 export type ColorType = typeof colorList[number];

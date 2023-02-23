@@ -153,8 +153,7 @@ $color-primary-blue-v-gradient-ms: -ms-linear-gradient(180deg, #3980e2, #20bce3)
 $color-base-white-gradient-ms: -ms-linear-gradient(90deg, $color-base-white, $color-base-snow);
 /* stylelint-enable */
 
-$color-list: (
-  // colorList
+$color-list: ( // colorList
   'brightGray': #eaeaea,
   'grayHexColor': #868686,
   'duskyBlue': #3d5d96,
@@ -173,5 +172,5 @@ $color-list: (
   'soapstone': #fcfbfb,
   'darkGray': #333333,
   'whiteSmoke': #f6f6f6,
-  'softPeach': #efefef
-);
+  'softPeach': #efefef,
+  'pinkishRed': #F3425F);

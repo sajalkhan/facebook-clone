@@ -12,6 +12,22 @@ export const Facebook = Template.bind({});
 Facebook.args = {
   name: 'facebook',
   color: 'duskyBlue',
-  height: 52,
-  width: 60
+  height: 100,
+  width: 100
+};
+
+export const LiveVideo = Template.bind({});
+LiveVideo.args = {
+  name: 'live-video',
+  color: 'pinkishRed',
+  height: 100,
+  width: 100
+};
+
+export const Photo = Template.bind({});
+Photo.args = {
+  name: 'photo',
+  color: 'pinkishRed',
+  height: 100,
+  width: 100
 };

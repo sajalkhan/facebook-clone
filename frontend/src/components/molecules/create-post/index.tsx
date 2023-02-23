@@ -1,4 +1,5 @@
-import { Feeling, LiveVideo, Photo } from 'assets/svg';
+import { Feeling, Photo } from 'assets/svg';
+import { Icon } from 'components/atoms/icon';
 
 interface CreatePostProps {
   userImg: string;
@@ -17,7 +18,7 @@ export const CreatePost: React.FC<CreatePostProps> = ({ userImg = DEFAULT_IMAGE,
       <div className="create_splitter"></div>
       <div className="createPost_body">
         <div className="createPost_icon hover1">
-          <LiveVideo color="#f3425f" />
+          <Icon name="live-video" color="pinkishRed" width={30} height={30} />
           Live Video
         </div>
         <div className="createPost_icon hover1">

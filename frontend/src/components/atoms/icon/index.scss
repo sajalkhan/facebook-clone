@@ -1,6 +1,6 @@
 .a-icon {
   $root: &;
-  $icons: ('facebook');
+  $icons: ('facebook', 'live-video', 'photo');
 
   display: inline-block;
 
@@ -19,7 +19,8 @@
     }
   }
 
-  @each $color, $value in $color-list {
+  @each $color,
+  $value in $color-list {
     &[data-color='#{$color}'] {
       color: $value;
     }

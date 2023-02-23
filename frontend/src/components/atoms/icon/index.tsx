@@ -1,6 +1,6 @@
-import { BaseComponentProps, createComponentBase } from 'libs/component-base/index';
 import React from 'react';
 import { IconType, ColorType } from './icon-list';
+import { BaseComponentProps, createComponentBase } from 'libs/component-base/index';
 
 export type IconProps = BaseComponentProps & {
   name: IconType;
