@@ -12,6 +12,15 @@
     background: #d4d6da3a;
   }
 
+  @include desktop-small {
+    background: var(--bg-third);
+    width: 40px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+
   img {
     width: 36px;
     height: 36px;
@@ -23,11 +32,19 @@
   &__text {
     margin-bottom: 4px;
     margin-left: 1px;
+
+    @include desktop-small {
+      display: none;
+    }
   }
 
   &__notification {
     margin-left: 2px;
     transform: translateY(-2px);
+
+    @include desktop-small {
+      display: none;
+    }
 
     &--text {
       transform: translateX(-1px);

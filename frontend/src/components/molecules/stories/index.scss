@@ -6,6 +6,32 @@
   grid-template-columns: repeat(6, 105px);
   gap: 10px;
   padding: 6px 0;
+  overflow: hidden;
+
+  @include desktop-medium {
+    width: 84%;
+  }
+
+  @include desktop-small {
+    width: 100%;
+  }
+
+  @include tablet-large {
+    width: 95%;
+  }
+
+  @include tablet-medium {
+    width: 113%;
+  }
+
+  @include tablet-small {
+    grid-template-columns: repeat(6, 13vw);
+  }
+
+  @include mobile-large {
+    width: 100%;
+    grid-template-columns: repeat(6, 14vw);
+  }
 
   &__create {
     position: relative;
@@ -16,6 +42,10 @@
     background: $color-white;
     cursor: pointer;
     box-shadow: 0 1px 2px var(--sahdow-1);
+
+    @include mobile-large {
+      height: 30vw;
+    }
   }
 
   &__create-img {
@@ -24,6 +54,10 @@
     width: 100%;
     object-fit: cover;
     filter: brightness(80%);
+
+    @include tablet-small {
+      filter: brightness(96%);
+    }
   }
 
   &__create-icon {
@@ -40,6 +74,14 @@
     background: var(--blue-color);
     cursor: pointer;
     border: 4px solid $color-white;
+
+    @include mobile-large {
+      font-size: 12px;
+
+      svg {
+        width: 20px;
+      }
+    }
   }
 
   &__create-text {
@@ -48,6 +90,10 @@
     left: 20%;
     top: 87%;
     font-size: 12px;
+
+    @include tablet-small {
+      display: none;
+    }
   }
 
   &__user_story {
@@ -86,6 +132,11 @@
       height: 100%;
       object-fit: cover;
     }
+
+    @include tablet-small {
+      width: 7vw;
+      height: 7vw;
+    }
   }
 
   &__user_story-profile-name {
@@ -98,6 +149,10 @@
     color: #fff;
     font-size: 14px;
     padding-left: 10px;
+
+    @include tablet-small {
+      display: none;
+    }
   }
 
   &__white-circle {
@@ -110,8 +165,12 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -5px;
+    right: 3px;
     box-shadow: 1px 2px var(--shadow-1);
     cursor: pointer;
+
+    @include mobile-large {
+      display: none
+    }
   }
 }

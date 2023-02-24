@@ -4,6 +4,23 @@
   top: 7rem;
   width: 17vw;
 
+  @include desktop-medium {
+    width: 18vw;
+  }
+
+  @include desktop-small {
+    width: 20vw;
+  }
+
+  @include tablet-large {
+    left: 78%;
+    width: 20vw;
+  }
+
+  @include tablet-medium {
+    display: none;
+  }
+
   &__header {
     position: relative;
     display: flex;
@@ -20,6 +37,14 @@
       position: absolute;
       right: -9px;
       top: 7px;
+
+      @include desktop-small {
+        right: 10%;
+      }
+
+      @include tablet-large {
+        right: 0;
+      }
     }
   }
 
@@ -31,6 +56,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    @include desktop-small {
+      width: 20px;
+    }
+
+    @include tablet-large {
+      width: 30px;
+    }
 
     &:hover {
       background: #d4d6da3a;

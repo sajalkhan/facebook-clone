@@ -6,6 +6,30 @@
 
   &__middle {
     margin-top: 75px;
-    margin-left: 25.8vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include desktop-medium {
+      margin-left: 5%;
+    }
+
+    @include desktop-small {
+      position: relative;
+      margin-left: 55px;
+    }
+
+    @include tablet-large {
+      margin-left: 10%;
+    }
+
+    @include tablet-medium {
+      margin-left: 9%;
+    }
+
+    @include mobile-large {
+      position: absolute;
+      margin-left: 0;
+    }
   }
 }
