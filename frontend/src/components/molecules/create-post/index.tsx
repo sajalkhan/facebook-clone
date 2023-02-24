@@ -1,5 +1,4 @@
-import { Feeling, Photo } from 'assets/svg';
-import { Icon } from 'components/atoms/icon';
+import { LiveVideo, Feeling, Photo } from 'assets/svg';
 
 interface CreatePostProps {
   userImg: string;
@@ -10,22 +9,24 @@ const DEFAULT_IMAGE = process.env.REACT_APP_DEFAULT_IMAGE;
 
 export const CreatePost: React.FC<CreatePostProps> = ({ userImg = DEFAULT_IMAGE, firstName }) => {
   return (
-    <div className="createPost">
-      <div className="createPost_header">
+    <div className="create-post">
+      <div className="create-post__header">
         <img src={userImg} alt="" />
-        <div className="open_post hover2">What's on your mind, {firstName}</div>
+        <div className="create-post__input hover2">What's on your mind, {firstName}</div>
       </div>
-      <div className="create_splitter"></div>
-      <div className="createPost_body">
-        <div className="createPost_icon hover1">
-          <Icon name="live-video" color="pinkishRed" width={30} height={30} />
+
+      <div className="divider"></div>
+
+      <div className="create-post__body">
+        <div className="create-post__icon">
+          <LiveVideo color="#F3425F" />
           Live Video
         </div>
-        <div className="createPost_icon hover1">
+        <div className="create-post__icon">
           <Photo color="#4bbf67" />
           Photo/Video
         </div>
-        <div className="createPost_icon hover1">
+        <div className="create-post__icon">
           <Feeling color="#f7b928" />
           Feeling/Activity
         </div>
