@@ -3,7 +3,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import User from '../model/user';
 import { generateToken } from '../helpers/token';
 import { Request, Response } from 'express';
-// import { sendVerificationEmail } from '../helpers/mailer';
+import { sendVerificationEmail } from '../helpers/mailer';
 import HttpError, { handleError } from '../helpers/errorHandler';
 
 export const register = async (req: Request, res: Response) => {
@@ -30,9 +30,9 @@ export const register = async (req: Request, res: Response) => {
       gender
     });
 
-    // const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
-    // const verificationURL = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    // sendVerificationEmail(user.email, user.first_name, verificationURL);
+    const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
+    const verificationURL = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    sendVerificationEmail(user.email, user.first_name, verificationURL);
 
     const token = generateToken({ id: user._id.toString() }, '7d');
     res.send({

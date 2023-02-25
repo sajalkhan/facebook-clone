@@ -1,29 +1,15 @@
 import nodemailer from 'nodemailer';
-import { google } from 'googleapis';
-import { Response } from 'express';
-
-const { OAuth2 } = google.auth;
-const oauth_link: string = 'https://developers.google.com/oauthplayground';
-const { EMAIL, MAILING_ID, MAILING_REFRESH_TOKEN, MAILING_SECRET } = process.env;
-
-const auth = new OAuth2(MAILING_ID, MAILING_SECRET, oauth_link);
+const { EMAIL, MAIL_PASSWORD } = process.env;
 
 export const sendVerificationEmail = (email: string, name: string, url: string) => {
-  auth.setCredentials({
-    refresh_token: MAILING_REFRESH_TOKEN
-  });
-  const accessToken = auth.getAccessToken();
   const smtp = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      type: 'OAuth2',
       user: EMAIL,
-      clientId: MAILING_ID,
-      clientSecret: MAILING_SECRET,
-      refreshToken: MAILING_REFRESH_TOKEN,
-      accessToken
+      pass: MAIL_PASSWORD
     }
   });
+
   const mailOptions = {
     from: EMAIL,
     to: email,
