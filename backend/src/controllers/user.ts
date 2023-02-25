@@ -6,6 +6,7 @@ import { Request, Response } from 'express';
 import { sendVerificationEmail } from '../helpers/mailer';
 import HttpError, { handleError } from '../helpers/errorHandler';
 
+//* ------------------Register user------------------------- //
 export const register = async (req: Request, res: Response) => {
   const { first_name, last_name, email, password, bYear, bMonth, bDay, gender } = req.body;
 
@@ -49,7 +50,41 @@ export const register = async (req: Request, res: Response) => {
     handleError(error, res);
   }
 };
+//* ------------------Register user------------------------- //
 
+//* --------------------Login User------------------------- //
+export const login = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new HttpError('Email not found', 400);
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      throw new HttpError('Invalid password', 400);
+    }
+
+    const token = generateToken({ id: user._id.toString() }, '7d');
+    res.json({
+      id: user._id,
+      username: user.username,
+      picture: user.picture,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      token,
+      verified: user.verified,
+      message: 'Login success'
+    });
+  } catch (error: any) {
+    handleError(error, res);
+  }
+};
+//* --------------------Login User------------------------- //
+
+//* ------------------Active Account------------------------ //
 export const activateAccount = async (req: Request, res: Response) => {
   const { token } = req.body;
   const secret: string = process.env.TOKEN_SECRET || '3xgDmbD8WC';
@@ -84,33 +119,4 @@ export const activateAccount = async (req: Request, res: Response) => {
     });
   }
 };
-
-export const login = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-    if (!user) {
-      throw new HttpError('Email not found', 400);
-    }
-
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
-      throw new HttpError('Invalid password', 400);
-    }
-
-    const token = generateToken({ id: user._id.toString() }, '7d');
-    res.json({
-      id: user._id,
-      username: user.username,
-      picture: user.picture,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      token,
-      verified: user.verified,
-      message: 'Login success'
-    });
-  } catch (error: any) {
-    handleError(error, res);
-  }
-};
+//* ------------------Active Account------------------------ //
