@@ -19,5 +19,5 @@ const Template: ComponentStory<typeof SendVerification> = args => <SendVerificat
 
 export const Normal = Template.bind({});
 Normal.args = {
-  success: 'resend mail successfully'
+  response: 'resend mail successfully'
 };

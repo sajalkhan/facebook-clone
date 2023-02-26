@@ -30,3 +30,7 @@ export const userRegister = (register: registerInfo) => makeApiCall<registerInfo
 export const userActivate = async (token: string, userToken: string) => {
   return makeApiCall<{ token: string }>('/activate', { token }, 'post', { Authorization: `Bearer ${userToken}` });
 };
+
+export const userSendVerificationMail = async (userToken: string) => {
+  return makeApiCall<{ token: string }>('/sendVerification', {}, 'post', { Authorization: `Bearer ${userToken}` });
+};
