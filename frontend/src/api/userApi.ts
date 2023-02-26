@@ -11,8 +11,8 @@ type HttpMethod = 'get' | 'post' | 'put' | 'delete';
 const makeApiCall = async <T>(
   endpoint: string,
   data: any,
-  headers: { [key: string]: string } = {},
-  method: HttpMethod = 'post'
+  method: HttpMethod,
+  headers: { [key: string]: string } = {}
 ): Promise<T | string> => {
   try {
     const response: AxiosResponse<T> = await api[method](endpoint, data, { headers });
@@ -23,10 +23,10 @@ const makeApiCall = async <T>(
   }
 };
 
-export const userLogin = (login: loginInfo) => makeApiCall<loginInfo>('/login', login);
+export const userLogin = (login: loginInfo) => makeApiCall<loginInfo>('/login', login, 'post');
 
-export const userRegister = (register: registerInfo) => makeApiCall<registerInfo>('/register', register);
+export const userRegister = (register: registerInfo) => makeApiCall<registerInfo>('/register', register, 'post');
 
 export const userActivate = async (token: string, userToken: string) => {
-  return makeApiCall<{ token: string }>('/activate', { token }, { Authorization: `Bearer ${userToken}` });
+  return makeApiCall<{ token: string }>('/activate', { token }, 'post', { Authorization: `Bearer ${userToken}` });
 };
