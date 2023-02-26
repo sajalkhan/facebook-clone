@@ -44,12 +44,15 @@ export const VerifiedAccount = createSlice({
     builder.addCase(accountVerified.pending, state => {
       state.fetchActivateStatus = 'PENDING';
     });
+
     builder.addCase(accountVerified.fulfilled, (state, action) => {
       const { payload } = action;
       state.fetchActivateStatus = 'SUCCESS';
 
-      if (typeof payload === 'string' && payload.includes('success')) {
-        const user = JSON.parse(Cookies.get('user') || '{}');
+      const user = JSON.parse(Cookies.get('user') || '{}');
+      const isSuccessful =
+        (typeof payload === 'string' && payload.includes('success')) || payload?.message?.includes('successfully');
+      if (isSuccessful) {
         Cookies.set('user', JSON.stringify({ ...user, verified: true }));
       }
 
