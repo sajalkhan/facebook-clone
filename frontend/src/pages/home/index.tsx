@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Header } from 'components/organisms/header';
 import { HomeLeftArea } from 'components/molecules/home-left-area';
 import { HomeRightArea } from 'components/molecules/home-right-area';
@@ -7,20 +7,17 @@ import { Stories } from 'components/molecules/stories';
 import { SendVerification } from 'components/atoms/send-verification';
 import { stories } from 'constants/home';
 
-import { useAppSelector, useAppDispatch } from 'store/hooks';
-import { sendVerificationMail } from './sendVerificationSlice';
+import { useAppSelector } from 'store/hooks';
+import { userSendVerificationMail } from 'api/userApi';
 
 const Home = () => {
-  const dispatch = useAppDispatch();
+  const [message, setMessage] = useState<string>('');
   const { first_name, last_name, picture, token, verified } = useAppSelector(state => state.login.response);
-  const { message } = useAppSelector(state => state.sendVerification?.response);
 
-  const sendVerificationLink = useCallback(
-    (token: string) => {
-      dispatch(sendVerificationMail(token));
-    },
-    [dispatch]
-  );
+  const sendVerificationLink = useCallback(async (token: string) => {
+    const { message } = await userSendVerificationMail(token);
+    setMessage(message);
+  }, []);
 
   return (
     <div className="home">
