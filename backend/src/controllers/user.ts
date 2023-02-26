@@ -85,7 +85,7 @@ export const login = async (req: Request, res: Response) => {
 //* --------------------Login User------------------------- //
 
 //* ------------------Active Account------------------------ //
-export const activateAccount = async (req: any, res: Response) => {
+export const activateAccount = async (req, res: Response) => {
   const { token } = req.body;
   const validUser = req.user.id;
 
@@ -103,7 +103,7 @@ export const activateAccount = async (req: any, res: Response) => {
       throw new HttpError('User not found', 404);
     }
 
-    if (check.verified === true) {
+    if (check.verified) {
       throw new HttpError('This email is already activated.', 400);
     }
 
@@ -125,3 +125,26 @@ export const activateAccount = async (req: any, res: Response) => {
   }
 };
 //* ------------------Active Account------------------------ //
+
+//* ------------------Send Verification------------------------ //
+export const sendVerification = async (req: any, res: any) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (user.verified) {
+      throw new HttpError('This account is already activated.', 400);
+    }
+
+    const emailVerificationToken = generateToken({ id: user._id.toString() }, '30m');
+    const verificationURL = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    sendVerificationEmail(user.email, user.first_name, verificationURL);
+
+    return res.status(200).json({
+      message: 'Email verification link has been sent to your email.'
+    });
+  } catch (error: any) {
+    handleError(error, res);
+  }
+};
+//* ------------------Send Verification------------------------ //
