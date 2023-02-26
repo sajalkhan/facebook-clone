@@ -11,12 +11,13 @@ import { useAppSelector } from 'store/hooks';
 import { userSendVerificationMail } from 'api/userApi';
 
 const Home = () => {
-  const [message, setMessage] = useState<string>('');
+  const [verificationMessage, setVerificationMessage] = useState<string>('');
+
   const { first_name, last_name, picture, token, verified } = useAppSelector(state => state.login.response);
 
-  const sendVerificationLink = useCallback(async (token: string) => {
+  const sendVerificationLink = useCallback(async () => {
     const { message } = await userSendVerificationMail(token);
-    setMessage(message);
+    setVerificationMessage(message);
   }, []);
 
   return (
@@ -25,7 +26,7 @@ const Home = () => {
       <HomeLeftArea firstName={first_name} lastName={last_name} userImg={picture} />
       <div className="home__middle">
         <Stories userStories={stories} />
-        {!verified && <SendVerification onClick={() => sendVerificationLink(token)} response={message} />}
+        {!verified && <SendVerification onClick={sendVerificationLink} response={verificationMessage} />}
         <CreatePost userImg={picture} firstName={first_name} />
       </div>
       <HomeRightArea firstName={first_name} lastName={last_name} userImg={picture} />
