@@ -6,12 +6,21 @@ import { LoggedInRoutes, NotLoggedInRoutes } from './protectedRoute';
 
 const Home = lazy(() => import('pages/home'));
 const Login = lazy(() => import('pages/login'));
+const Activate = lazy(() => import('pages/activate'));
 
 export const PagesRoutes: React.FC = () => (
   <Suspense fallback={<Loading overlay />}>
     <Routes>
       <Route element={<LoggedInRoutes />}>
         <Route path={ROUTES.HOME} element={<Home />} />
+        <Route
+          path={ROUTES.ACTIVATE}
+          element={
+            <Activate>
+              <Home />
+            </Activate>
+          }
+        />
       </Route>
       <Route element={<NotLoggedInRoutes />}>
         <Route path={ROUTES.LOGIN} element={<Login />} />

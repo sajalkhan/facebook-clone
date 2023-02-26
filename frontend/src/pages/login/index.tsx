@@ -8,8 +8,8 @@ import { loginUser as loginUserAction } from './userLoginSlice';
 import { registerUser as registerUserAction } from './userRegisterSlice';
 
 const Login: React.FC = () => {
-  const [visible, setVisible] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const [visible, setVisible] = useState<boolean>(false);
   const handleRegisterForm = () => setVisible(!visible);
 
   const handleLoginSubmit = async (values: LoginFormTypes) => {

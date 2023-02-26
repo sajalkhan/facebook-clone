@@ -1,6 +1,6 @@
 import { userRegister } from 'api/userApi';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { registerInfo } from './userInfo.type';
+import { registerInfo } from '../../types/userInfo.type';
 import Cookies from 'js-cookie';
 
 type ApiStatus = 'IDLE' | 'PENDING' | 'SUCCESS' | 'ERROR';

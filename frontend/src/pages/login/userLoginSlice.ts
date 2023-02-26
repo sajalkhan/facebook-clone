@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import { userLogin } from 'api/userApi';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { loginInfo, registerInfo } from './userInfo.type';
+import { loginInfo, registerInfo } from '../../types/userInfo.type';
 
 type ApiStatus = 'IDLE' | 'PENDING' | 'SUCCESS' | 'ERROR';
 

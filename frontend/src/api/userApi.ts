@@ -1,20 +1,32 @@
 import api from './api';
-import { loginInfo, registerInfo } from 'pages/login/userInfo.type';
+import { AxiosResponse } from 'axios';
+import { loginInfo, registerInfo } from 'types/userInfo.type';
 
-export const userLogin = async (login: loginInfo) => {
+interface ApiError {
+  message: string;
+}
+
+type HttpMethod = 'get' | 'post' | 'put' | 'delete';
+
+const makeApiCall = async <T>(
+  endpoint: string,
+  data: any,
+  headers: { [key: string]: string } = {},
+  method: HttpMethod = 'post'
+): Promise<T | string> => {
   try {
-    const { data } = await api.post<{ login: loginInfo }>('/login', login);
-    return data;
+    const response: AxiosResponse<T> = await api[method](endpoint, data, { headers });
+    return response.data;
   } catch (error: any) {
-    return error.response.data.message;
+    const message = (error?.response?.data as ApiError)?.message;
+    return message;
   }
 };
 
-export const userRegister = async (register: registerInfo) => {
-  try {
-    const { data } = await api.post<{ register: registerInfo }>('/register', register);
-    return data;
-  } catch (error: any) {
-    return error.response.data.message;
-  }
+export const userLogin = (login: loginInfo) => makeApiCall<loginInfo>('/login', login);
+
+export const userRegister = (register: registerInfo) => makeApiCall<registerInfo>('/register', register);
+
+export const userActivate = async (token: string, userToken: string) => {
+  return makeApiCall<{ token: string }>('/activate', { token }, { Authorization: `Bearer ${userToken}` });
 };

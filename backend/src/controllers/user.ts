@@ -85,13 +85,19 @@ export const login = async (req: Request, res: Response) => {
 //* --------------------Login User------------------------- //
 
 //* ------------------Active Account------------------------ //
-export const activateAccount = async (req: Request, res: Response) => {
+export const activateAccount = async (req: any, res: Response) => {
   const { token } = req.body;
+  const validUser = req.user.id;
+
   const secret: string = process.env.TOKEN_SECRET || '3xgDmbD8WC';
 
   try {
     const user = jwt.verify(token, secret) as JwtPayload;
     const check = await User.findById(user.id);
+
+    if (validUser !== user.id) {
+      throw new HttpError("You don't have the authorization to complete this operation.", 404);
+    }
 
     if (!check) {
       throw new HttpError('User not found', 404);
@@ -104,19 +110,18 @@ export const activateAccount = async (req: Request, res: Response) => {
     await User.findByIdAndUpdate(user.id, {
       verified: true
     });
+
     return res.status(200).json({
       message: 'Account has been activated successfully.'
     });
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError) {
-      throw new HttpError('Invalid token.', 400);
+      return handleError(new HttpError('Invalid token.', 400), res);
     }
     if (error instanceof HttpError) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return handleError(error, res);
     }
-    return res.status(500).json({
-      message: 'An unexpected error has occurred.'
-    });
+    return handleError(new HttpError('An unexpected error has occurred.', 500), res);
   }
 };
 //* ------------------Active Account------------------------ //
