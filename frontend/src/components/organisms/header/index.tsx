@@ -14,7 +14,7 @@ import {
   Search,
   Watch
 } from 'assets/svg';
-import UserMenu from 'components/organisms/user-menu';
+import UserMenu from 'components/molecules/user-menu';
 import SearchMenu from 'components/molecules/search-menu';
 import AllMenuList from 'components/molecules/menu-list';
 import useClickOutside from 'helpers/clickOutside';
@@ -23,11 +23,13 @@ type HeaderProps = {
   firstName: string;
   lastName: string;
   imgUrl?: string;
+  handleLogout?: () => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({
   firstName,
   lastName,
+  handleLogout,
   imgUrl = process.env.REACT_APP_DEFAULT_IMAGE
 }) => {
   const color = '#65676b';
@@ -120,7 +122,9 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <ArrowDown color={color} />
         </div>
-        {showUserMenu && <UserMenu firstName={firstName} lastName={lastName} ref={userMenuRef} />}
+        {showUserMenu && (
+          <UserMenu firstName={firstName} lastName={lastName} ref={userMenuRef} handleLogout={handleLogout} />
+        )}
       </div>
     </header>
   );
