@@ -7,13 +7,16 @@ import { HomeRightArea } from 'components/molecules/home-right-area';
 import { CreatePost } from 'components/molecules/create-post';
 import { Stories } from 'components/molecules/stories';
 import { SendVerification } from 'components/atoms/send-verification';
+import { setLoginUser } from 'pages/login/userLoginSlice';
 import { stories } from 'constants/home';
 
-import { useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { userSendVerificationMail } from 'api/userApi';
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [verificationMessage, setVerificationMessage] = useState<string>('');
 
   const { first_name, last_name, picture, token, verified } = useAppSelector(state => state.login.response);
@@ -25,6 +28,19 @@ const Home = () => {
 
   const handleLogout = () => {
     Cookies.set('user', '');
+    dispatch(
+      setLoginUser({
+        email: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        response: {},
+        bYear: 1990,
+        bMonth: 12,
+        bDay: 1,
+        gender: ''
+      })
+    );
     navigate('/login');
   };
 
