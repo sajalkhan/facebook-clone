@@ -22,11 +22,10 @@ const Activate: React.FC<ActivateProps> = ({ children }) => {
         navigate('/');
       }, 3000);
 
-      if (typeof response === 'string') {
-        return response?.includes('success') ? 'success' : 'error';
-      } else if (response.message?.includes('successfully')) {
-        return 'success';
-      }
+      const isSuccessResponse =
+        (typeof response === 'string' && response.includes('success')) || response?.message?.includes('success');
+
+      return isSuccessResponse ? 'success' : 'error';
     }
   }, [response, navigate]);
 
