@@ -26,6 +26,7 @@ const Home = () => {
     setVerificationMessage(message);
   }, []);
 
+  console.log('verified - ', verified);
   const handleLogout = () => {
     Cookies.set('user', '');
     dispatch(
