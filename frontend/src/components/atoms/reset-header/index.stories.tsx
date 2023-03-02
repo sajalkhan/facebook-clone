@@ -21,5 +21,11 @@ const Template: ComponentStory<typeof ResetHeader> = args => (
   </MemoryRouter>
 );
 
+const defaultImg = process.env.REACT_APP_DEFAULT_IMAGE;
 export const Normal = Template.bind({});
 Normal.args = {};
+
+export const HasUser = Template.bind({});
+HasUser.args = {
+  userImg: defaultImg
+};
