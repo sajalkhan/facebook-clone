@@ -9,7 +9,7 @@ type inheritedProps = Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'ta
 export interface ButtonProps extends inheritedProps {
   iconName?: IconType;
   children?: React.ReactNode;
-  modifiers?: ModifierProp<'primary' | 'secondary' | 'transparent-black'>;
+  modifiers?: ModifierProp<'primary' | 'secondary' | 'tertiary' | 'transparent-black'>;
   color?: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'delete';
   iconPositionRight?: boolean;
   size?: 'small' | 'medium' | 'large';

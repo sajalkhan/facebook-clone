@@ -13,7 +13,9 @@
   background-color: $color-white;
   border: 2px solid $color-white;
   border-radius: 10px;
-  transition: background-color fr(10) fr(0), border fr(10) fr(0); /* property name | duration | delay */ /* Apply to 2 properties */
+  transition: background-color fr(10) fr(0), border fr(10) fr(0);
+  /* property name | duration | delay */
+  /* Apply to 2 properties */
 
   // Default Button Hover
   &:hover {
@@ -90,6 +92,18 @@
 
     &:hover {
       background-color: rgba($color-primary, 0.9);
+    }
+  }
+
+  &--tertiary {
+    background-color: $color-grey-1;
+
+    #{$root}__text {
+      color: $color-white;
+    }
+
+    &:hover {
+      background-color: rgba($color-grey-10, 0.9);
     }
   }
 
