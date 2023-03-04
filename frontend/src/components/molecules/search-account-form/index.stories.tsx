@@ -2,11 +2,11 @@ import { store } from 'store';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { PasswordResetForm } from './';
+import { SearchAccountForm } from '.';
 
 export default {
-  title: 'components/molecules/PasswordResetForm',
-  component: PasswordResetForm,
+  title: 'components/molecules/SearchAccountForm',
+  component: SearchAccountForm,
   parameters: {
     paddings: {
       default: 'small'
@@ -15,15 +15,15 @@ export default {
       default: 'gray'
     }
   }
-} as ComponentMeta<typeof PasswordResetForm>;
+} as ComponentMeta<typeof SearchAccountForm>;
 
-const Template: ComponentStory<typeof PasswordResetForm> = args => (
+const Template: ComponentStory<typeof SearchAccountForm> = args => (
   <MemoryRouter>
     <Provider store={store}>
-      <PasswordResetForm {...args} />
+      <SearchAccountForm {...args} />
     </Provider>
   </MemoryRouter>
 );
 
-export const Normal = Template.bind({});
-Normal.args = {};
+export const CodeVerification = Template.bind({});
+CodeVerification.args = {};

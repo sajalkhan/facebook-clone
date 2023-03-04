@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { loginValidation } from './form-validation';
+import { loginValidation } from './validation-schema';
 import { LoginInput } from 'components/atoms/login-input';
 import { Button } from 'components/atoms/button';
 import { DotLoader } from 'react-spinners';

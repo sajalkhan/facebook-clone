@@ -1,13 +1,32 @@
-.reset-form {
-  position: relative;
+.search-account_form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: var(--bg-primary);
   box-shadow: 0 1px 2px var(--shadow-1);
   border-radius: 10px;
-  width: 100%;
+  width: 550px;
   height: 250px;
 
-  @include desktop-large {
-    width: 570px;
+  @include desktop-medium {
+    width: 450px;
+    height: 250px;
+  }
+
+  @include desktop-small {
+    width: 400px;
+    height: 255px;
+  }
+
+  @include tablet-large {
+    width: 390px;
+    height: 330px;
+  }
+
+  @include mobile-large {
+    width: 350px;
+    height: 340px;
   }
 
   &__header {

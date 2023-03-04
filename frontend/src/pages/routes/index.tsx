@@ -6,6 +6,8 @@ import { LoggedInRoutes, NotLoggedInRoutes } from './protectedRoute';
 
 const Home = lazy(() => import('pages/home'));
 const Login = lazy(() => import('pages/login'));
+const Reset = lazy(() => import('pages/reset'));
+
 const Activate = lazy(() => import('pages/activate'));
 
 export const PagesRoutes: React.FC = () => (
@@ -24,6 +26,7 @@ export const PagesRoutes: React.FC = () => (
       </Route>
       <Route element={<NotLoggedInRoutes />}>
         <Route path={ROUTES.LOGIN} element={<Login />} />
+        <Route path={ROUTES.RESET} element={<Reset />} />
         <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
       </Route>
     </Routes>
