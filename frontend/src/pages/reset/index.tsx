@@ -13,15 +13,15 @@ enum ResetFormOrder {
 }
 
 const Reset = () => {
-  const [visibleFormIndx, setShowVisibleForm] = useState<ResetFormOrder>(ResetFormOrder.SearchAccount);
+  const [visibleForm, setVisibleForm] = useState<ResetFormOrder>(ResetFormOrder.SearchAccount);
   const { picture } = useAppSelector(state => state.login.response);
 
   const handleResetCode = (value: object) => {
     console.log('reset code -- ', value);
-    setShowVisibleForm(ResetFormOrder.SendEmail);
+    setVisibleForm(ResetFormOrder.SendEmail);
   };
 
-  const forms = [
+  const formComponents = [
     <SearchAccountForm onSubmit={handleResetCode} />,
     <SendEmailForm userImg={picture} />,
     <CodeVerificationForm onSubmit={handleResetCode} />
@@ -30,7 +30,7 @@ const Reset = () => {
   return (
     <div className="reset">
       <ResetHeader />
-      {forms[visibleFormIndx]}
+      {formComponents[visibleForm]}
       <Footer />
     </div>
   );
