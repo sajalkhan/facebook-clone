@@ -1,34 +1,36 @@
-// import { Link } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import Cookies from "js-cookie";
-// import { useState } from 'react';
 import { Footer } from 'components/atoms/footer';
 import { ResetHeader } from 'components/atoms/reset-header';
 import { CodeVerificationForm } from 'components/molecules/code-verification-form';
+import { SearchAccountForm } from 'components/molecules/search-account-form';
+import { SendEmailForm } from 'components/molecules/send-email-form';
+import { useState } from 'react';
+import { useAppSelector } from 'store/hooks';
+
+enum ResetFormOrder {
+  SendEmail = 1,
+  SearchAccount = 0,
+  VerificationCode = 2
+}
 
 const Reset = () => {
+  const [visibleFormIndx, setShowVisibleForm] = useState<ResetFormOrder>(ResetFormOrder.SearchAccount);
+  const { picture } = useAppSelector(state => state.login.response);
+
   const handleResetCode = (value: object) => {
     console.log('reset code -- ', value);
+    setShowVisibleForm(ResetFormOrder.SendEmail);
   };
+
+  const forms = [
+    <SearchAccountForm onSubmit={handleResetCode} />,
+    <SendEmailForm userImg={picture} />,
+    <CodeVerificationForm onSubmit={handleResetCode} />
+  ];
 
   return (
     <div className="reset">
-      {/* <div className="reset_wrap">
-        {visible === 0 && (
-          <SearchAccount email={email} setEmail={setEmail} error={error} />
-        )}
-        {visible === 1 && <SendEmail user={user} />}
-        {visible === 2 && (
-          <CodeVerification
-            user={user}
-            code={code}
-            setCode={setCode}
-            error={error}
-          />
-        )}
-      </div> */}
       <ResetHeader />
-      <CodeVerificationForm onSubmit={handleResetCode} />
+      {forms[visibleFormIndx]}
       <Footer />
     </div>
   );
