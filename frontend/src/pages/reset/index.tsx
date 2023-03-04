@@ -1,10 +1,10 @@
-import { Footer } from 'components/atoms/footer';
-import { ResetHeader } from 'components/atoms/reset-header';
-import { CodeVerificationForm } from 'components/molecules/code-verification-form';
-import { SearchAccountForm } from 'components/molecules/search-account-form';
-import { SendEmailForm } from 'components/molecules/send-email-form';
 import { useState } from 'react';
 import { useAppSelector } from 'store/hooks';
+import { Footer } from 'components/atoms/footer';
+import { ResetHeader } from 'components/atoms/reset-header';
+import { SendEmailForm } from 'components/molecules/send-email-form';
+import { SearchAccountForm } from 'components/molecules/search-account-form';
+import { CodeVerificationForm } from 'components/molecules/code-verification-form';
 
 enum ResetFormOrder {
   SendEmail = 1,
