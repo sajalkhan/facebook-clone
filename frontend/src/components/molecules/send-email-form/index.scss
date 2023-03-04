@@ -1,0 +1,119 @@
+.send-email_form {
+  $root: &;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-primary);
+  box-shadow: 0 1px 2px var(--shadow-1);
+  border-radius: 10px;
+  width: 600px;
+  height: 300px;
+
+  @include sp {
+    width: 350px;
+    height: auto;
+  }
+
+  &__header {
+    padding: 15px;
+    font-weight: 600;
+    font-size: 24px;
+    border-bottom: 1px solid var(--bg-third);
+  }
+
+  &__text {
+    padding: 15px;
+    font-size: 17px;
+  }
+
+  &__container {
+    display: flex;
+    column-gap: 10px;
+    font-size: 15px;
+    flex: 1;
+    color: var(--color-secondary);
+
+    @include sp {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 5px;
+
+      &:hover {
+        color: var(--color-secondary);
+      }
+    }
+
+    &--left {
+      padding: 15px;
+
+      input {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &--info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--right {
+      width: 250px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      @include sp {
+        width: 100px;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+  }
+
+  .a-button {
+    width: 90px;
+
+    &--tertiary {
+      height: 20px;
+    }
+
+    &--primary {
+      height: 30px;
+    }
+  }
+
+}

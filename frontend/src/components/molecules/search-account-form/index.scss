@@ -65,5 +65,13 @@
 
   .a-button {
     width: 90px;
+
+    &--tertiary {
+      height: 20px;
+    }
+
+    &--primary {
+      height: 30px;
+    }
   }
 }
