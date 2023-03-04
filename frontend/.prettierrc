@@ -7,14 +7,12 @@
   "proseWrap": "never",
   "endOfLine": "auto",
   "trailingComma": "none",
-  "overrides": [
-    {
-      "files": "*.yaml",
-      "options": {
-        "tadWidth": 2,
-        "printWidth": 40,
-        "singleQuote": true
-      }
+  "overrides": [{
+    "files": "*.yaml",
+    "options": {
+      "tadWidth": 2,
+      "printWidth": 40,
+      "singleQuote": true
     }
-  ]
+  }]
 }

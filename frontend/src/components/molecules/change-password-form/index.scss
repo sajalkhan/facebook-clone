@@ -1,4 +1,6 @@
-.search-account_form {
+.change-password_form {
+  $root: &;
+
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,20 +11,12 @@
   width: 550px;
   height: auto;
 
-  @include desktop-medium {
-    width: 450px;
+  form {
+    margin-bottom: 50px;
   }
 
-  @include desktop-small {
+  @include sp {
     width: 400px;
-  }
-
-  @include tablet-large {
-    width: 390px;
-  }
-
-  @include mobile-large {
-    width: 350px;
   }
 
   &__header {
@@ -42,7 +36,6 @@
     flex-direction: column;
     align-items: center;
     border-bottom: 1px solid var(--bg-third);
-    margin-bottom: 50px;
   }
 
   &__button-wrapper {
