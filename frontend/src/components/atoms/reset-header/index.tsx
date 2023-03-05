@@ -5,18 +5,21 @@ import { Button } from 'components/atoms/button';
 
 export type Props = {
   userImg?: any;
+  onClick?: () => void;
 };
 
-export const ResetHeader: React.FC<Props> = ({ userImg }) => {
+export const ResetHeader: React.FC<Props> = ({ userImg, onClick }) => {
   return (
     <div className="a-reset-header">
-      <Icon name="facebook" height={50} width={160} color="duskyBlue" />
+      <Link to="/login">
+        <Icon name="facebook" height={50} width={160} color="duskyBlue" />
+      </Link>
       {userImg ? (
         <div className="a-reset-header__right">
           <Link to="/profile">
             <img src={userImg} alt="" />
           </Link>
-          <Button modifiers="primary" size="small">
+          <Button modifiers="primary" size="small" onClick={onClick}>
             Logout
           </Button>
         </div>

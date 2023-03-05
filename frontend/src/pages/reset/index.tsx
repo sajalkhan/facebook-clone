@@ -1,11 +1,16 @@
-import { useCallback, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from 'store/hooks';
+import { setLoginUser } from 'pages/login/userLoginSlice';
+
 import { Footer } from 'components/atoms/footer';
 import { ResetHeader } from 'components/atoms/reset-header';
 import { SendEmailForm } from 'components/molecules/send-email-form';
 import { SearchAccountForm } from 'components/molecules/search-account-form';
 import { ChangePasswordForm } from 'components/molecules/change-password-form';
 import { CodeVerificationForm } from 'components/molecules/code-verification-form';
-import { userFindByMail, userSendResetPasswordCode, userValidateResetCode } from 'api/userApi';
+import { userFindByMail, userSendResetPasswordCode, userValidateResetCode, userChangePassword } from 'api/userApi';
 
 type UserInfoType = {
   email: string;
@@ -20,9 +25,30 @@ enum ResetFormOrder {
 }
 
 const Reset = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [error, setError] = useState<string>('');
   const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
   const [visibleForm, setVisibleForm] = useState<ResetFormOrder>(ResetFormOrder.SearchAccount);
+  const { picture } = useAppSelector(state => state.login.response);
+
+  const handleLogout = () => {
+    Cookies.set('user', '');
+    dispatch(
+      setLoginUser({
+        email: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        response: {},
+        bYear: 1990,
+        bMonth: 12,
+        bDay: 1,
+        gender: ''
+      })
+    );
+    navigate('/login');
+  };
 
   const handleSearchAccount = useCallback(async ({ email }) => {
     try {
@@ -55,26 +81,34 @@ const Reset = () => {
     }
   }, []);
 
-  const handleVerificationCode = useCallback(
-    async ({ code }) => {
-      try {
-        setError('');
-        if (!userInfo) return;
-        const response = await userValidateResetCode(userInfo.email, +code);
-        if (typeof response !== 'string' && response?.message === 'ok') {
-          setVisibleForm(ResetFormOrder.ChangePassword);
-        } else {
-          typeof response === 'string' && setError(response);
-        }
-      } catch (error) {
-        console.error(error);
+  const handleVerificationCode = useCallback(async ({ code }) => {
+    try {
+      setError('');
+      if (!userInfo) return;
+      const response = await userValidateResetCode(userInfo.email, +code);
+      if (typeof response !== 'string' && response?.message === 'ok') {
+        setVisibleForm(ResetFormOrder.ChangePassword);
+      } else {
+        typeof response === 'string' && setError(response);
       }
-    },
-    [userInfo]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const handleChangePassword = useCallback(value => {
-    console.log('value -- ', value);
+  const handleChangePassword = useCallback(async ({ password }) => {
+    try {
+      setError('');
+      if (!userInfo) return;
+      const response = await userChangePassword(userInfo.email, password);
+      if (typeof response !== 'string' && response?.message === 'ok') {
+        navigate('/');
+      } else {
+        typeof response === 'string' && setError(response);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
   const renderFormComponent = () => {
@@ -103,7 +137,7 @@ const Reset = () => {
       }
 
       case ResetFormOrder.ChangePassword: {
-        return <ChangePasswordForm onSubmit={handleChangePassword} />;
+        return <ChangePasswordForm error={error} onSubmit={handleChangePassword} />;
       }
 
       default:
@@ -113,7 +147,7 @@ const Reset = () => {
 
   return (
     <div className="reset">
-      <ResetHeader />
+      <ResetHeader userImg={picture} onClick={handleLogout} />
       {renderFormComponent()}
       <Footer />
     </div>

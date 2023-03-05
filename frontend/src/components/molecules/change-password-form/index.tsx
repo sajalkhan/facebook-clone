@@ -15,10 +15,11 @@ const initialValues: LoginFormTypes = {
 };
 
 interface ChangePasswordFormProps {
+  error?: string;
   onSubmit: (value: object) => void;
 }
 
-export const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({ onSubmit }) => {
+export const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({ error, onSubmit }) => {
   const [confirmPassword, setConfirmPassword] = useState<LoginFormTypes>(initialValues);
   const { password, conf_password } = confirmPassword;
 
@@ -56,6 +57,8 @@ export const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({ onSubmit
               onChange={handleChange}
               bottom
             />
+
+            {error && <div className="error_text">{error}</div>}
 
             <div className="change-password_form__button-wrapper">
               <Button size="small" modifiers="tertiary" href="/login">

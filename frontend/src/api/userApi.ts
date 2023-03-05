@@ -46,3 +46,7 @@ export const userSendResetPasswordCode = (email: string) => {
 export const userValidateResetCode = (email: string, code: number) => {
   return makeApiCall<{ message: string }>('/validateResetCode', { email, code }, 'post');
 };
+
+export const userChangePassword = (email: string, password: string) => {
+  return makeApiCall<{ message: string }>('/changePassword', { email, password }, 'post');
+};

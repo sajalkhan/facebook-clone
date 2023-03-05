@@ -26,9 +26,9 @@ export const PagesRoutes: React.FC = () => (
       </Route>
       <Route element={<NotLoggedInRoutes />}>
         <Route path={ROUTES.LOGIN} element={<Login />} />
-        <Route path={ROUTES.RESET} element={<Reset />} />
         <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
       </Route>
+      <Route path={ROUTES.RESET} element={<Reset />} />
     </Routes>
   </Suspense>
 );

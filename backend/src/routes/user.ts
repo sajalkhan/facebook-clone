@@ -4,6 +4,7 @@ import {
   login,
   register,
   findUser,
+  changePassword,
   activateAccount,
   sendVerification,
   validateResetCode,
@@ -19,5 +20,6 @@ router.post('/activate', authUser, activateAccount);
 router.post('/findUser', findUser);
 router.post('/sendResetPasswordCode', sendResetPasswordCode);
 router.post('/validateResetCode', validateResetCode);
+router.post('/changePassword', changePassword);
 
 module.exports = router;

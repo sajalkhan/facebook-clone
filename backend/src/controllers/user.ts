@@ -218,3 +218,16 @@ export const validateResetCode = async (req: Request, res: Response) => {
   }
 };
 //* ------------------Validate Reset Code--------------------- //
+
+//* ---------------------Change Password---------------------- //
+export const changePassword = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 12);
+    await User.findOneAndUpdate({ email }, { password: hashedPassword });
+    res.status(200).json({ message: 'ok' });
+  } catch (error: any) {
+    handleError(error, res);
+  }
+};
+//* ---------------------Change Password---------------------- //
