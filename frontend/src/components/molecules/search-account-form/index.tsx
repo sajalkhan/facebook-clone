@@ -10,7 +10,7 @@ interface SearchAccountFormProps {
 }
 
 export const SearchAccountForm: React.FC<SearchAccountFormProps> = ({ error, onSubmit }) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);

@@ -36,5 +36,9 @@ export const userSendVerificationMail = async (userToken: string) => {
 };
 
 export const userFindByMail = (email: string) => {
-  return makeApiCall<{ email: string; picture: string; message: string }>('/findUser', email, 'post');
+  return makeApiCall<{ email: string; picture: string; message: string }>('/findUser', { email }, 'post');
+};
+
+export const userSendResetPasswordCode = (email: string) => {
+  return makeApiCall<{ message: string }>('/sendResetPasswordCode', { email }, 'post');
 };

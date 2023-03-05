@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import HttpError from '../helpers/errorHandler';
-import { generateToken, generateCode, handleError, sendResetCode, sendVerificationEmail } from '../helpers';
+import { generateToken, generateCode, handleError, sendVerificationEmail, sendResetCode } from '../helpers';
 
 import User from '../model/user';
 import Code from '../model/code';
@@ -191,7 +191,7 @@ export const sendResetPasswordCode = async (req: Request, res) => {
     sendResetCode(user.email, user.first_name, code);
 
     return res.status(200).json({
-      message: 'Email reset code has been sent to your email'
+      message: 'Email reset code has been sent to your email successfully!'
     });
   } catch (error: any) {
     handleError(error, res);

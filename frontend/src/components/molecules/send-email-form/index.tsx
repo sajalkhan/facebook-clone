@@ -3,11 +3,13 @@ import React from 'react';
 
 export type SendEmailFormProps = {
   email: string;
+  error?: string;
   userImg: string;
+  onClick: (value: string) => void;
 };
 
 const DEFAULT_IMAGE = process.env.REACT_APP_DEFAULT_IMAGE;
-export const SendEmailForm: React.FC<SendEmailFormProps> = ({ email, userImg = DEFAULT_IMAGE }) => {
+export const SendEmailForm: React.FC<SendEmailFormProps> = ({ email, error, userImg = DEFAULT_IMAGE, onClick }) => {
   return (
     <div className="send-email_form">
       <div className="send-email_form__header">Reset Your Password</div>
@@ -31,13 +33,13 @@ export const SendEmailForm: React.FC<SendEmailFormProps> = ({ email, userImg = D
         </div>
       </div>
 
-      <div className="divider"></div>
+      {error && <span className="send-email_form__error">{error}</span>}
 
       <div className="send-email_form__button-wrapper">
         <Button size="small" modifiers="tertiary" href="/login">
           Not you?
         </Button>
-        <Button type="submit" modifiers="primary" size="small">
+        <Button type="submit" modifiers="primary" size="small" onClick={() => onClick(email)}>
           Continue
         </Button>
       </div>
