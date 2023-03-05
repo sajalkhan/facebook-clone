@@ -2,7 +2,31 @@ import { Schema, model } from 'mongoose';
 
 const ObjectId = Schema.Types.ObjectId;
 
-interface IUser {
+import { Document, Types } from 'mongoose';
+
+interface IDetails extends Document {
+  bio?: string;
+  otherName?: string;
+  job?: string;
+  workplace?: string;
+  highSchool?: string;
+  college?: string;
+  currentCity?: string;
+  hometown?: string;
+  relationship?: 'Single' | 'In a relationship' | 'Married' | 'Divorced';
+  instagram?: string;
+}
+
+interface ISearch extends Document {
+  user: Types.ObjectId;
+}
+
+interface ISavedPost extends Document {
+  post: Types.ObjectId;
+  savedAt: Date;
+}
+
+export interface IUser extends Document {
   first_name: string;
   last_name: string;
   username: string;
@@ -15,13 +39,13 @@ interface IUser {
   bMonth: number;
   bDay: number;
   verified?: boolean;
-  friends?: [];
-  following?: [];
-  followers?: [];
-  requests?: [];
-  search?: [];
-  details?: [];
-  savedPosts?: [];
+  friends?: Types.ObjectId[];
+  following?: Types.ObjectId[];
+  followers?: Types.ObjectId[];
+  requests?: Types.ObjectId[];
+  search?: ISearch[];
+  details?: IDetails;
+  savedPosts?: ISavedPost[];
 }
 
 const userSchema = new Schema<IUser>(

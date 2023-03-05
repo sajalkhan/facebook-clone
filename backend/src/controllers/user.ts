@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt';
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import User from '../model/user';
-import { generateToken } from '../helpers/token';
 import { Request, Response } from 'express';
-import { sendVerificationEmail } from '../helpers/mailer';
-import HttpError, { handleError } from '../helpers/errorHandler';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import HttpError from '../helpers/errorHandler';
+import { generateToken, generateCode, handleError, sendResetCode, sendVerificationEmail } from '../helpers';
+
+import User from '../model/user';
+import Code from '../model/code';
 
 //* ------------------Register user------------------------- //
 export const register = async (req: Request, res: Response) => {
@@ -169,3 +170,31 @@ export const findUser = async (req: Request, res) => {
   }
 };
 //* -------------------------Find User------------------------ //
+
+//* ---------------Send Reset Password Code------------------- //
+export const sendResetPasswordCode = async (req: Request, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select('-password');
+    if (!user) {
+      throw new HttpError('User not found', 404);
+    }
+
+    await Code.findOneAndDelete({ user: user._id });
+    const code = generateCode(5);
+    const resetCode = new Code({
+      code,
+      user: user._id
+    });
+
+    await resetCode.save();
+    sendResetCode(user.email, user.first_name, code);
+
+    return res.status(200).json({
+      message: 'Email reset code has been sent to your email'
+    });
+  } catch (error: any) {
+    handleError(error, res);
+  }
+};
+//* ---------------Send Reset Password Code------------------- //
