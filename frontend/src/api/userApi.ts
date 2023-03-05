@@ -42,3 +42,7 @@ export const userFindByMail = (email: string) => {
 export const userSendResetPasswordCode = (email: string) => {
   return makeApiCall<{ message: string }>('/sendResetPasswordCode', { email }, 'post');
 };
+
+export const userValidateResetCode = (email: string, code: number) => {
+  return makeApiCall<{ message: string }>('/validateResetCode', { email, code }, 'post');
+};

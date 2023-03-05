@@ -5,10 +5,11 @@ import { Button } from 'components/atoms/button';
 import { codeValidation } from './validation-schema';
 
 interface CodeVerificationFormProps {
+  error?: string;
   onSubmit: (value: object) => void;
 }
 
-export const CodeVerificationForm: React.FC<CodeVerificationFormProps> = ({ onSubmit }) => {
+export const CodeVerificationForm: React.FC<CodeVerificationFormProps> = ({ error, onSubmit }) => {
   const [code, setCode] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +26,8 @@ export const CodeVerificationForm: React.FC<CodeVerificationFormProps> = ({ onSu
         {() => (
           <Form>
             <LoginInput type="text" name="code" value={code} placeholder="Code" onChange={handleChange} />
+
+            {error && <div className="error_text">{error}</div>}
 
             <div className="code-verification_form__button-wrapper">
               <Button size="small" modifiers="tertiary" href="/login">

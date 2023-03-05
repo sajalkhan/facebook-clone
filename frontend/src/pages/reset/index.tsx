@@ -3,8 +3,9 @@ import { Footer } from 'components/atoms/footer';
 import { ResetHeader } from 'components/atoms/reset-header';
 import { SendEmailForm } from 'components/molecules/send-email-form';
 import { SearchAccountForm } from 'components/molecules/search-account-form';
+import { ChangePasswordForm } from 'components/molecules/change-password-form';
 import { CodeVerificationForm } from 'components/molecules/code-verification-form';
-import { userFindByMail, userSendResetPasswordCode } from 'api/userApi';
+import { userFindByMail, userSendResetPasswordCode, userValidateResetCode } from 'api/userApi';
 
 type UserInfoType = {
   email: string;
@@ -14,7 +15,8 @@ type UserInfoType = {
 enum ResetFormOrder {
   SearchAccount,
   SendEmail,
-  VerificationCode
+  VerificationCode,
+  ChangePassword
 }
 
 const Reset = () => {
@@ -53,20 +55,35 @@ const Reset = () => {
     }
   }, []);
 
-  const handleResetCode = useCallback(async ({ code }) => {
-    try {
-      console.log('code -- ', code);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleVerificationCode = useCallback(
+    async ({ code }) => {
+      try {
+        setError('');
+        if (!userInfo) return;
+        const response = await userValidateResetCode(userInfo.email, +code);
+        if (typeof response !== 'string' && response?.message === 'ok') {
+          setVisibleForm(ResetFormOrder.ChangePassword);
+        } else {
+          typeof response === 'string' && setError(response);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [userInfo]
+  );
+
+  const handleChangePassword = useCallback(value => {
+    console.log('value -- ', value);
   }, []);
 
   const renderFormComponent = () => {
     switch (visibleForm) {
-      case ResetFormOrder.SearchAccount:
+      case ResetFormOrder.SearchAccount: {
         return <SearchAccountForm onSubmit={handleSearchAccount} error={error} />;
+      }
 
-      case ResetFormOrder.SendEmail:
+      case ResetFormOrder.SendEmail: {
         if (!userInfo) {
           return null;
         }
@@ -79,9 +96,15 @@ const Reset = () => {
             onClick={handleSendResetCode}
           />
         );
+      }
 
-      case ResetFormOrder.VerificationCode:
-        return <CodeVerificationForm onSubmit={handleResetCode} />;
+      case ResetFormOrder.VerificationCode: {
+        return <CodeVerificationForm error={error} onSubmit={handleVerificationCode} />;
+      }
+
+      case ResetFormOrder.ChangePassword: {
+        return <ChangePasswordForm onSubmit={handleChangePassword} />;
+      }
 
       default:
         return null;
