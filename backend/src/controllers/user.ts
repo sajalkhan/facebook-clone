@@ -148,3 +148,23 @@ export const sendVerification = async (req: any, res: any) => {
   }
 };
 //* ------------------Send Verification------------------------ //
+
+//* -------------------------Find User------------------------ //
+export const findUser = async (req: Request, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select('-password');
+
+    if (!user) {
+      throw new HttpError('Account does not exists.', 400);
+    }
+
+    return res.status(200).json({
+      email: user.email,
+      picture: user.picture
+    });
+  } catch (error: any) {
+    handleError(error, res);
+  }
+};
+//* -------------------------Find User------------------------ //
