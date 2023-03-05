@@ -161,7 +161,8 @@ export const findUser = async (req: Request, res) => {
 
     return res.status(200).json({
       email: user.email,
-      picture: user.picture
+      picture: user.picture,
+      message: 'User found successfully!'
     });
   } catch (error: any) {
     handleError(error, res);

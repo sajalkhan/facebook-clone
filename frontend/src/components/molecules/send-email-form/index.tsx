@@ -2,11 +2,12 @@ import { Button } from 'components/atoms/button';
 import React from 'react';
 
 export type SendEmailFormProps = {
+  email: string;
   userImg: string;
 };
 
 const DEFAULT_IMAGE = process.env.REACT_APP_DEFAULT_IMAGE;
-export const SendEmailForm: React.FC<SendEmailFormProps> = ({ userImg = DEFAULT_IMAGE }) => {
+export const SendEmailForm: React.FC<SendEmailFormProps> = ({ email, userImg = DEFAULT_IMAGE }) => {
   return (
     <div className="send-email_form">
       <div className="send-email_form__header">Reset Your Password</div>
@@ -18,14 +19,14 @@ export const SendEmailForm: React.FC<SendEmailFormProps> = ({ userImg = DEFAULT_
             <input type="radio" name="" id="email" checked readOnly />
             <div className="send-email_form__container--info">
               <span>Send code via email</span>
-              <span>email@email.email</span>
+              <span>{email}</span>
             </div>
           </label>
         </div>
 
         <div className="send-email_form__container--right">
           <img src={userImg} alt="" />
-          <span>email@email.email</span>
+          <span>{email}</span>
           <span>Facebook user</span>
         </div>
       </div>

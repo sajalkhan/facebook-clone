@@ -34,3 +34,7 @@ export const userActivate = async (token: string, userToken: string) => {
 export const userSendVerificationMail = async (userToken: string) => {
   return makeApiCall<any>('/sendVerification', {}, 'post', { Authorization: `Bearer ${userToken}` });
 };
+
+export const userFindByMail = (email: string) => {
+  return makeApiCall<{ email: string; picture: string; message: string }>('/findUser', email, 'post');
+};

@@ -5,10 +5,11 @@ import { LoginInput } from 'components/atoms/login-input';
 import { searchAccountValidation } from './validation-schema';
 
 interface SearchAccountFormProps {
+  error?: string;
   onSubmit: (value: object) => void;
 }
 
-export const SearchAccountForm: React.FC<SearchAccountFormProps> = ({ onSubmit }) => {
+export const SearchAccountForm: React.FC<SearchAccountFormProps> = ({ error, onSubmit }) => {
   const [email, setEmail] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +38,8 @@ export const SearchAccountForm: React.FC<SearchAccountFormProps> = ({ onSubmit }
               placeholder="Email address or phone number"
               onChange={handleChange}
             />
+
+            {error && <div className="error_text">{error}</div>}
 
             <div className="search-account_form__button-wrapper">
               <Button size="small" modifiers="tertiary" href="/login">
