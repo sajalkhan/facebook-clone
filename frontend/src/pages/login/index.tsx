@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="login">
-      <div className="login_wrapper">
+      <div className="login__wrapper">
         <LoginUser handleRegisterForm={handleRegisterForm} handleSubmit={handleLoginSubmit} />
         {visible && (
           <RegisterForm handleRegisterForm={handleRegisterForm} handleRegisterSubmit={handleRegisterSubmit} />
