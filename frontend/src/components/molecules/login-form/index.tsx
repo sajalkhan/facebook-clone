@@ -67,7 +67,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ handleRegisterForm, handle
           )}
         </Formik>
 
-        <Link to="/forgot" className="m-login-form__forgot-pass">
+        <Link to="/reset" className="m-login-form__forgot-pass">
           Forgotten password?
         </Link>
 

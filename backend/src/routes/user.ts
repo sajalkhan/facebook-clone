@@ -6,6 +6,7 @@ import {
   findUser,
   activateAccount,
   sendVerification,
+  validateResetCode,
   sendResetPasswordCode
 } from '../controllers/user';
 
@@ -17,5 +18,6 @@ router.post('/sendVerification', authUser, sendVerification);
 router.post('/activate', authUser, activateAccount);
 router.post('/findUser', findUser);
 router.post('/sendResetPasswordCode', sendResetPasswordCode);
+router.post('/validateResetCode', validateResetCode);
 
 module.exports = router;

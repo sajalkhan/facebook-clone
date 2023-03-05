@@ -112,7 +112,7 @@ export const activateAccount = async (req, res: Response) => {
       verified: true
     });
 
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Account has been activated successfully.'
     });
   } catch (error) {
@@ -128,7 +128,7 @@ export const activateAccount = async (req, res: Response) => {
 //* ------------------Active Account------------------------ //
 
 //* ------------------Send Verification------------------------ //
-export const sendVerification = async (req: any, res: any) => {
+export const sendVerification = async (req, res: Response) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId);
@@ -141,7 +141,7 @@ export const sendVerification = async (req: any, res: any) => {
     const verificationURL = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.first_name, verificationURL);
 
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Email verification link has been sent to your email.'
     });
   } catch (error: any) {
@@ -151,7 +151,7 @@ export const sendVerification = async (req: any, res: any) => {
 //* ------------------Send Verification------------------------ //
 
 //* -------------------------Find User------------------------ //
-export const findUser = async (req: Request, res) => {
+export const findUser = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email }).select('-password');
@@ -160,7 +160,7 @@ export const findUser = async (req: Request, res) => {
       throw new HttpError('Account does not exists.', 400);
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       email: user.email,
       picture: user.picture,
       message: 'User found successfully!'
@@ -172,7 +172,7 @@ export const findUser = async (req: Request, res) => {
 //* -------------------------Find User------------------------ //
 
 //* ---------------Send Reset Password Code------------------- //
-export const sendResetPasswordCode = async (req: Request, res) => {
+export const sendResetPasswordCode = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email }).select('-password');
@@ -190,7 +190,7 @@ export const sendResetPasswordCode = async (req: Request, res) => {
     await resetCode.save();
     sendResetCode(user.email, user.first_name, code);
 
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Email reset code has been sent to your email successfully!'
     });
   } catch (error: any) {
@@ -198,3 +198,23 @@ export const sendResetPasswordCode = async (req: Request, res) => {
   }
 };
 //* ---------------Send Reset Password Code------------------- //
+
+//* ------------------Validate Reset Code--------------------- //
+export const validateResetCode = async (req: Request, res: Response) => {
+  try {
+    const { email, code } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) throw new HttpError('User not found.', 404);
+
+    const resetCode = await Code.findOne({ user: user._id });
+    if (!resetCode || resetCode.code !== code) {
+      throw new HttpError('Verification code is wrong.', 400);
+    }
+
+    res.status(200).json({ message: 'ok' });
+  } catch (error: any) {
+    handleError(error, res);
+  }
+};
+//* ------------------Validate Reset Code--------------------- //
