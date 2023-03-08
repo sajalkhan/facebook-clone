@@ -97,4 +97,27 @@
     background: var(--bg-primary);
     color: var(--color-primary);
   }
+
+  &__emoji-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 10px 15px;
+
+    img {
+      width: 39px;
+      cursor: pointer;
+    }
+
+    i:hover {
+      filter: invert(80%);
+    }
+  }
+
+  &__emoji-picker {
+    position: absolute;
+    right: -7rem;
+    bottom: 2.5rem;
+  }
 }

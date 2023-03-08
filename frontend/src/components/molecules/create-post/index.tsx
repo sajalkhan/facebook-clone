@@ -18,7 +18,7 @@ export const CreatePost: React.FC<CreatePostProps> = ({ userImg = DEFAULT_IMAGE,
         </div>
       </div>
 
-      <div className="divider"></div>
+      <div className="divider" />
 
       <div className="create-post__body">
         <div className="create-post__icon">
