@@ -32,6 +32,8 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
 
     const handleEmoji = (emoji: EmojiClickData) => {
       const currentTextRef = textRef.current;
+      currentTextRef?.focus();
+
       if (currentTextRef) {
         currentTextRef.focus();
         const start = text.substring(0, currentTextRef.selectionStart);
