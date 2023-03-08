@@ -1,6 +1,8 @@
+import { EmojiClickData } from 'emoji-picker-react';
 import { useState, useEffect, forwardRef, useRef } from 'react';
 import { EmojiPicker } from 'components/atoms/emoji-picker';
-import { EmojiClickData } from 'emoji-picker-react';
+import { AddToYourPost } from 'components/atoms/add-to-your-post';
+import { Button } from 'components/atoms/button';
 
 interface createPostModalProps {
   userImage: string;
@@ -81,6 +83,9 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
               <EmojiPicker onEmojiClick={handleEmoji} />
             </>
           )}
+
+          <AddToYourPost />
+          <Button modifiers="primary">Post</Button>
         </div>
       </div>
     );

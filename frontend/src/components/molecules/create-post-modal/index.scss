@@ -96,3 +96,8 @@
     color: var(--color-primary);
   }
 }
+
+.a-button {
+  width: calc(100% - 18px);
+  margin: 5px 10px;
+}

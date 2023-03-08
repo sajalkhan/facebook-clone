@@ -16,7 +16,7 @@ export const EmojiPicker: React.FC<EmojiPickerProps> = ({ onEmojiClick }) => {
     <div className="emoji">
       {picker && (
         <div className="emoji__picker" ref={emojiPickerRef}>
-          <Picker onEmojiClick={onEmojiClick} />
+          <Picker onEmojiClick={onEmojiClick} height={350} />
         </div>
       )}
       <img src="../../../icons/colorful.png" alt="" />
