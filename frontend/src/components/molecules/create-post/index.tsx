@@ -3,16 +3,19 @@ import { LiveVideo, Feeling, Photo } from 'assets/svg';
 interface CreatePostProps {
   userImg: string;
   firstName: string;
+  onClick?: () => void;
 }
 
 const DEFAULT_IMAGE = process.env.REACT_APP_DEFAULT_IMAGE;
 
-export const CreatePost: React.FC<CreatePostProps> = ({ userImg = DEFAULT_IMAGE, firstName }) => {
+export const CreatePost: React.FC<CreatePostProps> = ({ userImg = DEFAULT_IMAGE, firstName, onClick }) => {
   return (
     <div className="create-post">
       <div className="create-post__header">
         <img src={userImg} alt="" />
-        <div className="create-post__input hover2">What's on your mind, {firstName}</div>
+        <div className="create-post__input hover2" onClick={onClick}>
+          What's on your mind, {firstName}
+        </div>
       </div>
 
       <div className="divider"></div>

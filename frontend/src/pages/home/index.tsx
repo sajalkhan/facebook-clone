@@ -1,10 +1,11 @@
 import Cookies from 'js-cookie';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from 'components/organisms/header';
 import { HomeLeftArea } from 'components/molecules/home-left-area';
 import { HomeRightArea } from 'components/molecules/home-right-area';
 import { CreatePost } from 'components/molecules/create-post';
+import { CreatePostModal } from 'components/molecules/create-post-modal';
 import { Stories } from 'components/molecules/stories';
 import { SendVerification } from 'components/atoms/send-verification';
 import { setLoginUser } from 'pages/login/userLoginSlice';
@@ -12,13 +13,16 @@ import { stories } from 'constants/home';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { userSendVerificationMail } from 'api/userApi';
+import useClickOutside from 'helpers/clickOutside';
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
+  const createPostModalRef = useRef<HTMLDivElement>(null);
   const [verificationMessage, setVerificationMessage] = useState<string>('');
+  const [visibleCreatePostModal, setVisibleCreatePostModal] = useState<boolean>(false);
 
+  useClickOutside(createPostModalRef, () => setVisibleCreatePostModal(false));
   const { first_name, last_name, picture, token, verified } = useAppSelector(state => state.login.response);
 
   const sendVerificationLink = useCallback(async () => {
@@ -51,7 +55,16 @@ const Home = () => {
       <div className="home__middle">
         <Stories userStories={stories} />
         {!verified && <SendVerification onClick={sendVerificationLink} response={verificationMessage} />}
-        <CreatePost userImg={picture} firstName={first_name} />
+        <CreatePost userImg={picture} firstName={first_name} onClick={() => setVisibleCreatePostModal(true)} />
+        {visibleCreatePostModal && (
+          <CreatePostModal
+            userImage={picture}
+            lastName={last_name}
+            firstName={first_name}
+            ref={createPostModalRef}
+            onClick={() => setVisibleCreatePostModal(false)}
+          />
+        )}
       </div>
       <HomeRightArea firstName={first_name} lastName={last_name} userImg={picture} />
     </div>
