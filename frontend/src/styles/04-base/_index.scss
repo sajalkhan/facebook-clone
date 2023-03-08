@@ -52,6 +52,7 @@ button {
 .blur {
   position: fixed;
   inset: 0;
+  height: 100vh;
   background: rgba(255, 255, 255, 0.768);
   z-index: 99;
 }
