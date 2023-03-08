@@ -1,6 +1,6 @@
 import { useState, useEffect, forwardRef, useRef } from 'react';
-import Picker, { EmojiClickData } from 'emoji-picker-react';
-import useClickOutside from 'helpers/clickOutside';
+import { EmojiPicker } from 'components/atoms/emoji-picker';
+import { EmojiClickData } from 'emoji-picker-react';
 
 interface createPostModalProps {
   userImage: string;
@@ -15,12 +15,8 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
   ({ userImage = defaultImg, firstName, lastName, onClick }, ref) => {
     const [text, setText] = useState('');
     const [showPrev] = useState(false);
-    const [picker, setPicker] = useState(false);
     const textRef = useRef<HTMLTextAreaElement>(null);
     const [cursorPosition, setCursorPosition] = useState<number>(0);
-
-    const emojiPickerRef = useRef<HTMLDivElement>(null);
-    useClickOutside(emojiPickerRef, () => setPicker(false));
 
     useEffect(() => {
       if (textRef.current) {
@@ -77,21 +73,7 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
               ></textarea>
             </div>
           )}
-
-          <div className="create-post-modal__emoji-wrapper">
-            {picker && (
-              <div className="create-post-modal__emoji-picker" ref={emojiPickerRef}>
-                <Picker onEmojiClick={handleEmoji} />
-              </div>
-            )}
-            <img src="../../../icons/colorful.png" alt="" />
-            <i
-              className="emoji_icon_large"
-              onClick={() => {
-                setPicker(prev => !prev);
-              }}
-            ></i>
-          </div>
+          <EmojiPicker onEmojiClick={handleEmoji} />
         </div>
       </div>
     );

@@ -4,8 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--bg-primary);
-  box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2),
-    inset 0 0 0 1px var(--shadow-inset);
+  box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2), inset 0 0 0 1px var(--shadow-inset);
   min-height: 228px;
   width: 500px;
   border-radius: 5px;
@@ -51,7 +50,6 @@
     margin-bottom: 4px;
   }
 
-
   &__profile-privacy {
     display: flex;
     align-items: center;
@@ -96,28 +94,5 @@
     font-size: 24px;
     background: var(--bg-primary);
     color: var(--color-primary);
-  }
-
-  &__emoji-wrapper {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 10px 15px;
-
-    img {
-      width: 39px;
-      cursor: pointer;
-    }
-
-    i:hover {
-      filter: invert(80%);
-    }
-  }
-
-  &__emoji-picker {
-    position: absolute;
-    right: -7rem;
-    bottom: 2.5rem;
   }
 }
