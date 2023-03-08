@@ -4,6 +4,7 @@
   align-items: flex-end;
   justify-content: space-between;
   padding: 10px 15px;
+  height: 10px;
 
   img {
     width: 39px;
@@ -19,4 +20,8 @@
     right: -7rem;
     bottom: 2.5rem;
   }
+}
+
+.EmojiPickerReact {
+  height: 350px !important;
 }

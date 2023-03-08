@@ -19,6 +19,10 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
     const [cursorPosition, setCursorPosition] = useState<number>(0);
 
     useEffect(() => {
+      textRef.current?.focus();
+    }, []);
+
+    useEffect(() => {
       if (textRef.current) {
         textRef.current.selectionEnd = cursorPosition;
       }
@@ -62,18 +66,21 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
           </div>
 
           {!showPrev && (
-            <div className="create-post-modal__input-wrapper">
-              <textarea
-                value={text}
-                ref={textRef}
-                maxLength={120}
-                className="create-post-modal__input"
-                placeholder={`What's on your mind, ${firstName}`}
-                onChange={e => setText(e.target.value)}
-              ></textarea>
-            </div>
+            <>
+              <div className="create-post-modal__input-wrapper">
+                <textarea
+                  value={text}
+                  ref={textRef}
+                  maxLength={120}
+                  className="create-post-modal__input"
+                  placeholder={`What's on your mind, ${firstName}`}
+                  onChange={e => setText(e.target.value)}
+                ></textarea>
+              </div>
+
+              <EmojiPicker onEmojiClick={handleEmoji} />
+            </>
           )}
-          <EmojiPicker onEmojiClick={handleEmoji} />
         </div>
       </div>
     );
