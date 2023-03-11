@@ -67,6 +67,7 @@ export const ImagePreview: React.FC<Props> = ({ images, setImages, setError, set
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    e.dataTransfer.dropEffect = 'move';
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
