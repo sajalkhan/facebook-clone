@@ -1,9 +1,11 @@
 .emoji {
+  $root: &;
+
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 10px 8px;
 
   img {
     width: 39px;
@@ -16,7 +18,17 @@
 
   &__picker {
     position: absolute;
-    right: -7rem;
+    right: 0;
     bottom: 2.5rem;
+
+    #{$root}[data-has-image='false'] & {
+      right: -7rem;
+    }
+
+    #{$root}[data-has-image='true'] & {
+      right: 1rem;
+      top: 4rem;
+    }
   }
+
 }

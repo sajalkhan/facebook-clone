@@ -17,4 +17,11 @@ export default {
 const Template: ComponentStory<typeof EmojiPicker> = args => <EmojiPicker {...args} />;
 
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+  isShowImg: false
+};
+
+export const PreviewImage = Template.bind({});
+PreviewImage.args = {
+  isShowImg: true
+};

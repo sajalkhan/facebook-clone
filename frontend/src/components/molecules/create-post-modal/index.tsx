@@ -1,8 +1,7 @@
-import { EmojiClickData } from 'emoji-picker-react';
-import { useState, useEffect, forwardRef, useRef } from 'react';
-import { EmojiPicker } from 'components/atoms/emoji-picker';
+import { useState, forwardRef } from 'react';
 import { AddToYourPost } from 'components/atoms/add-to-your-post';
 import { Button } from 'components/atoms/button';
+import { TextEmojiEditor } from '../text-emoji-editor';
 
 interface createPostModalProps {
   userImage: string;
@@ -17,33 +16,6 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
   ({ userImage = defaultImg, firstName, lastName, onClick }, ref) => {
     const [text, setText] = useState('');
     const [showPrev] = useState(false);
-    const textRef = useRef<HTMLTextAreaElement>(null);
-    const [cursorPosition, setCursorPosition] = useState<number>(0);
-
-    useEffect(() => {
-      textRef.current?.focus();
-    }, []);
-
-    useEffect(() => {
-      if (textRef.current) {
-        textRef.current.selectionEnd = cursorPosition;
-      }
-    }, [cursorPosition]);
-
-    const handleEmoji = (emoji: EmojiClickData) => {
-      const currentTextRef = textRef.current;
-      currentTextRef?.focus();
-
-      if (currentTextRef) {
-        currentTextRef.focus();
-        const start = text.substring(0, currentTextRef.selectionStart);
-        const end = text.substring(currentTextRef.selectionStart);
-
-        const newText = start + emoji.emoji + end;
-        setText(newText);
-        setCursorPosition(start.length + emoji.emoji.length);
-      }
-    };
 
     return (
       <div className="blur">
@@ -69,22 +41,7 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
             </div>
           </div>
 
-          {!showPrev && (
-            <>
-              <div className="create-post-modal__input-wrapper">
-                <textarea
-                  value={text}
-                  ref={textRef}
-                  maxLength={120}
-                  className="create-post-modal__input"
-                  placeholder={`What's on your mind, ${firstName}`}
-                  onChange={e => setText(e.target.value)}
-                ></textarea>
-              </div>
-
-              <EmojiPicker onEmojiClick={handleEmoji} />
-            </>
-          )}
+          <TextEmojiEditor name={firstName} text={text} setText={setText} isShowImg={showPrev} />
 
           <AddToYourPost />
           <Button modifiers="primary">Post</Button>

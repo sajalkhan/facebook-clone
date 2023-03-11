@@ -8,7 +8,7 @@ const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (event: MouseEv
 
       if (!ref.current || ref.current.contains(event.target as Node)) return;
       if (headerRightIcon && (event.target as HTMLElement).classList.contains(headerRightIcon.className)) return;
-      if (emojiPickerIcon && (event.target as HTMLElement).classList.contains(emojiPickerIcon.className)) return;
+      if (emojiPickerIcon && (event.target as HTMLElement).className.includes(emojiPickerIcon.className)) return;
       if (
         (event.target as SVGElement).tagName === 'svg' ||
         (event.target as SVGElement).tagName === 'circle' ||

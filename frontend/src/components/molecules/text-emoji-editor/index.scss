@@ -1,0 +1,39 @@
+.text-emoji-editor {
+  $root: &;
+
+  display: flex;
+  position: relative;
+
+  &[data-has-image='false'] {
+    flex-direction: column;
+  }
+
+  &__input-wrapper {
+    width: 100%;
+    min-height: 90px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__emoji-wrapper {
+    position: relative;
+    top: 0.5rem;
+  }
+
+  &__input {
+    position: relative;
+    outline: none;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    font-family: inherit;
+    font-size: 24px;
+    background: var(--bg-primary);
+    color: var(--color-primary);
+  }
+}
