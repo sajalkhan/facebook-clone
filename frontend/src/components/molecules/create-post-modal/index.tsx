@@ -1,7 +1,7 @@
 import { useState, forwardRef } from 'react';
-import { AddToYourPost } from 'components/atoms/add-to-your-post';
 import { Button } from 'components/atoms/button';
-import { TextEmojiEditor } from '../text-emoji-editor';
+import { AddToYourPost } from 'components/atoms/add-to-your-post';
+import { TextEmojiEditor } from 'components/molecules/text-emoji-editor';
 
 interface createPostModalProps {
   userImage: string;
