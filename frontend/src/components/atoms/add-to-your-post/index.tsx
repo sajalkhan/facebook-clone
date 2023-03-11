@@ -2,11 +2,15 @@ import Dots from 'assets/svg/dots';
 import Feeling from 'assets/svg/feeling';
 import Photo from 'assets/svg/photo';
 
-export const AddToYourPost = () => {
+type AddToYourPostProps = {
+  setShowPrev: (value: boolean) => void;
+};
+
+export const AddToYourPost: React.FC<AddToYourPostProps> = ({ setShowPrev }) => {
   return (
     <div className="add-to-your-post">
       <div className="add-to-your-post__text">Add to your post</div>
-      <div className="add-to-your-post__icon">
+      <div className="add-to-your-post__icon" onClick={() => setShowPrev(true)}>
         <Photo color="#45bd62" />
       </div>
       <div className="add-to-your-post__icon">

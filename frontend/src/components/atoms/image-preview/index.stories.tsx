@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { AddToYourPost } from './';
+import { ImagePreview } from './';
 
 export default {
-  title: 'components/atoms/AddToYourPost',
-  component: AddToYourPost,
+  title: 'components/atoms/ImagePreview',
+  component: ImagePreview,
   parameters: {
     paddings: {
       default: 'small'
@@ -12,9 +12,9 @@ export default {
       default: 'gray'
     }
   }
-} as ComponentMeta<typeof AddToYourPost>;
+} as ComponentMeta<typeof ImagePreview>;
 
-const Template: ComponentStory<typeof AddToYourPost> = args => <AddToYourPost {...args} />;
+const Template: ComponentStory<typeof ImagePreview> = args => <ImagePreview {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {};

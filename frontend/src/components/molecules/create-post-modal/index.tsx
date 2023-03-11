@@ -1,8 +1,8 @@
 import { useState, forwardRef } from 'react';
 import { Button } from 'components/atoms/button';
+import { ImagePreview } from 'components/atoms/image-preview';
 import { AddToYourPost } from 'components/atoms/add-to-your-post';
 import { TextEmojiEditor } from 'components/molecules/text-emoji-editor';
-
 interface createPostModalProps {
   userImage: string;
   firstName: string;
@@ -14,8 +14,10 @@ interface createPostModalProps {
 const defaultImg = process.env.REACT_APP_DEFAULT_IMAGE;
 export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
   ({ userImage = defaultImg, firstName, lastName, onClick }, ref) => {
+    const [showPrev, setShowPrev] = useState(false);
     const [text, setText] = useState('');
-    const [showPrev] = useState(false);
+    const [, setError] = useState<string>('');
+    const [images, setImages] = useState<string[]>([]);
 
     return (
       <div className="blur">
@@ -42,8 +44,10 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
           </div>
 
           <TextEmojiEditor name={firstName} text={text} setText={setText} isShowImg={showPrev} />
-
-          <AddToYourPost />
+          {showPrev && (
+            <ImagePreview images={images} setImages={setImages} setError={setError} setShowPrev={setShowPrev} />
+          )}
+          <AddToYourPost setShowPrev={setShowPrev} />
           <Button modifiers="primary">Post</Button>
         </div>
       </div>
