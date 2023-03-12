@@ -1,8 +1,5 @@
-import { Schema, model } from 'mongoose';
-
-const ObjectId = Schema.Types.ObjectId;
-
-import { Document, Types } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 interface IDetails extends Document {
   bio?: string;
