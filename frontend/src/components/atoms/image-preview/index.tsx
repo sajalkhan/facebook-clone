@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 
-type Props = {
+type ImagePreviewProps = {
   images: string[];
   setError: (value: string) => void;
   setShowPrev: (value: boolean) => void;
   setImages: (value: string[]) => void;
 };
 
-export const ImagePreview: React.FC<Props> = ({ images, setImages, setError, setShowPrev }) => {
+export const ImagePreview: React.FC<ImagePreviewProps> = ({ images, setImages, setError, setShowPrev }) => {
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const validateImage = (img: File) => {
