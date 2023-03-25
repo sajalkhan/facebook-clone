@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { handleFileInput } from 'libs/imageUtils';
 
 type ImagePreviewProps = {
   images: string[];
@@ -10,57 +11,16 @@ type ImagePreviewProps = {
 export const ImagePreview: React.FC<ImagePreviewProps> = ({ images, setImages, setError, setShowPrev }) => {
   const imageInputRef = useRef<HTMLInputElement>(null);
 
-  const validateImage = (img: File) => {
-    const maxSize = 1024 * 1024 * 5; // 5MB
-    const supportedFormats = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-
-    if (!supportedFormats.includes(img.type)) {
-      throw new Error(`${img.name} format is unsupported! Only Jpeg, Png, Webp, Gif are allowed.`);
-    }
-    if (img.size > maxSize) {
-      throw new Error(`${img.name} size is too large. Max 5MB allowed.`);
-    }
-  };
-
-  const handleFileInput = async (files: File[]) => {
-    try {
-      const validatedFiles = files.filter(img => {
-        try {
-          validateImage(img);
-          return true;
-        } catch (error) {
-          setError((error as Error).message);
-          return false;
-        }
-      });
-
-      const imageStrings = await Promise.all(
-        validatedFiles.map(
-          img =>
-            new Promise<string>(resolve => {
-              const reader = new FileReader();
-              reader.readAsDataURL(img);
-              reader.onload = () => resolve(reader.result as string);
-            })
-        )
-      );
-
-      setImages([...images, ...imageStrings]);
-    } catch (error) {
-      setError((error as Error).message);
-    }
-  };
-
   const handleImages = async (e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (e.type === 'change') {
       const files = Array.from((e.target as HTMLInputElement).files || []);
-      await handleFileInput(files);
+      await handleFileInput(files, images, setImages, setError);
     } else if (e.type === 'drop') {
       const files = Array.from((e as React.DragEvent<HTMLDivElement>).dataTransfer?.files || []);
-      await handleFileInput(files);
+      await handleFileInput(files, images, setImages, setError);
     }
   };
 
