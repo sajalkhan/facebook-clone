@@ -1,10 +1,11 @@
-import { RequestHandler, NextFunction } from 'express';
+import { Request, Response, RequestHandler, NextFunction } from 'express';
+import HttpError, { handleError } from '../helpers/errorHandler';
 import fs from 'fs';
 
-const validateFiles: RequestHandler = async (req: any, res: any, next: NextFunction) => {
+const validateFiles: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!req.files || Object.values(req.files).flat().length === 0) {
-      return res.status(400).json({ message: 'No files selected.' });
+      throw new HttpError('No files selected.', 400);
     }
 
     const files: any = Object.values(req.files).flat();
@@ -25,12 +26,12 @@ const validateFiles: RequestHandler = async (req: any, res: any, next: NextFunct
         }
       });
     } catch (error: any) {
-      return res.status(400).json({ message: error.message });
+      throw new HttpError(error.message, 400);
     }
 
     next();
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    handleError(error, res);
   }
 };
 
