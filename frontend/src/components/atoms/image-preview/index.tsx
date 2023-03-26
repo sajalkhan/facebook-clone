@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { handleFileInput } from 'libs/imageUtils';
+import { handleFileInput } from 'helpers/imageUtils';
 
 type ImagePreviewProps = {
   images: string[];

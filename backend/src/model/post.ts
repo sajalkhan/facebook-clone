@@ -11,7 +11,11 @@ interface IComment {
 export interface IPost extends Document {
   type: 'profilePicture' | 'cover' | null;
   text?: string;
-  images?: string[];
+  images?: [
+    {
+      url: string;
+    }
+  ];
   user: ObjectId;
   background?: string;
   comments: IComment[];
@@ -30,7 +34,7 @@ const postSchema = new Schema<IPost>(
       type: String
     },
     images: {
-      type: [String]
+      type: [{}]
     },
     user: {
       type: ObjectId,

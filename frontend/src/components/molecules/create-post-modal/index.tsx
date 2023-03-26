@@ -1,29 +1,50 @@
 import { useState, forwardRef } from 'react';
+import { PulseLoader } from 'react-spinners';
 import { Button } from 'components/atoms/button';
 import { ImagePreview } from 'components/atoms/image-preview';
 import { AddToYourPost } from 'components/atoms/add-to-your-post';
 import { TextEmojiEditor } from 'components/molecules/text-emoji-editor';
 interface createPostModalProps {
+  ref?: React.Ref<HTMLDivElement>;
   userImage: string;
   firstName: string;
   lastName: string;
-  onClick: () => void;
-  ref?: React.Ref<HTMLDivElement>;
+  isLoadingPost: boolean;
+  postText: string;
+  postImages: string[];
+  postError?: string;
+  setPostText: (value: string) => void;
+  setPostImages: (value: string[]) => void;
+  setPostError: (value: string) => void;
+  handlePost: (text: string, images?: string[]) => void;
+  handlePostModal: () => void;
 }
 
 const defaultImg = process.env.REACT_APP_DEFAULT_IMAGE;
 export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
-  ({ userImage = defaultImg, firstName, lastName, onClick }, ref) => {
+  (
+    {
+      userImage = defaultImg,
+      firstName,
+      lastName,
+      postText,
+      setPostText,
+      postImages,
+      setPostImages,
+      setPostError,
+      handlePostModal,
+      handlePost,
+      isLoadingPost
+    },
+    ref
+  ) => {
     const [showPrev, setShowPrev] = useState(false);
-    const [text, setText] = useState('');
-    const [, setError] = useState<string>('');
-    const [images, setImages] = useState<string[]>([]);
 
     return (
       <div className="blur">
         <div className="create-post-modal" ref={ref}>
           <div className="create-post-modal__header">
-            <div className="small_circle" onClick={onClick}>
+            <div className="small_circle" onClick={handlePostModal}>
               <i className="exit_icon"></i>
             </div>
             <span>Create Post</span>
@@ -43,12 +64,25 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
             </div>
           </div>
 
-          <TextEmojiEditor name={firstName} text={text} setText={setText} isShowImg={showPrev} />
+          <TextEmojiEditor name={firstName} text={postText} setText={setPostText} isShowImg={showPrev} />
           {showPrev && (
-            <ImagePreview images={images} setImages={setImages} setError={setError} setShowPrev={setShowPrev} />
+            <ImagePreview
+              images={postImages}
+              setImages={setPostImages}
+              setError={setPostError}
+              setShowPrev={setShowPrev}
+            />
           )}
+
           <AddToYourPost setShowPrev={setShowPrev} />
-          <Button modifiers="primary">Post</Button>
+
+          <Button
+            modifiers="primary"
+            disabled={isLoadingPost || (!postImages.length && !postText)}
+            onClick={() => handlePost(postText, postImages)}
+          >
+            {isLoadingPost ? <PulseLoader color="#fff" size={5} /> : 'Post'}
+          </Button>
         </div>
       </div>
     );

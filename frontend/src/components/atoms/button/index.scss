@@ -17,6 +17,11 @@
   /* property name | duration | delay */
   /* Apply to 2 properties */
 
+  &:disabled {
+    background-color: rgba($color-blue-eyes, 0.9);
+    cursor: no-drop;
+  }
+
   // Default Button Hover
   &:hover {
     background-color: transparent;
