@@ -29,7 +29,11 @@ const Home = () => {
   const [verificationMessage, setVerificationMessage] = useState<string>('');
   const [visibleCreatePostModal, setVisibleCreatePostModal] = useState<boolean>(false);
 
-  useClickOutside(createPostModalRef, () => setVisibleCreatePostModal(false));
+  useClickOutside(createPostModalRef, () => {
+    setVisibleCreatePostModal(false);
+    setPostError(null);
+  });
+
   const { first_name, last_name, picture, token, verified, id } = useAppSelector(state => state.login.response);
 
   const sendVerificationLink = useCallback(async () => {
