@@ -4,6 +4,7 @@ import { Button } from 'components/atoms/button';
 import { ImagePreview } from 'components/atoms/image-preview';
 import { AddToYourPost } from 'components/atoms/add-to-your-post';
 import { TextEmojiEditor } from 'components/molecules/text-emoji-editor';
+import { PostError } from 'components/atoms/post-error';
 interface createPostModalProps {
   ref?: React.Ref<HTMLDivElement>;
   userImage: string;
@@ -12,7 +13,7 @@ interface createPostModalProps {
   isLoadingPost: boolean;
   postText: string;
   postImages: string[];
-  postError?: string;
+  postError: string | null;
   setPostText: (value: string) => void;
   setPostImages: (value: string[]) => void;
   setPostError: (value: string) => void;
@@ -28,6 +29,7 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
       firstName,
       lastName,
       postText,
+      postError,
       setPostText,
       postImages,
       setPostImages,
@@ -43,6 +45,8 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
     return (
       <div className="blur">
         <div className="create-post-modal" ref={ref}>
+          {postError && <PostError error={postError || ''} setError={setPostError} />}
+
           <div className="create-post-modal__header">
             <div className="small_circle" onClick={handlePostModal}>
               <i className="exit_icon"></i>
@@ -69,6 +73,7 @@ export const CreatePostModal: React.FC<createPostModalProps> = forwardRef(
             <ImagePreview
               images={postImages}
               setImages={setPostImages}
+              postError={postError}
               setError={setPostError}
               setShowPrev={setShowPrev}
             />

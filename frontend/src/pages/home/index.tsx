@@ -24,7 +24,7 @@ const Home = () => {
   const createPostModalRef = useRef<HTMLDivElement>(null);
   const [isLoadingPost, setIsLoadingPost] = useState<boolean>(false);
   const [postText, setPostText] = useState('');
-  const [postError, setPostError] = useState<string>('');
+  const [postError, setPostError] = useState<string | null>(null);
   const [postImages, setPostImages] = useState<string[]>([]);
   const [verificationMessage, setVerificationMessage] = useState<string>('');
   const [visibleCreatePostModal, setVisibleCreatePostModal] = useState<boolean>(false);

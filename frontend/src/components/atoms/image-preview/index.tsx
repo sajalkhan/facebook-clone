@@ -3,12 +3,13 @@ import { handleFileInput } from 'helpers/imageUtils';
 
 type ImagePreviewProps = {
   images: string[];
+  postError: string | null;
   setError: (value: string) => void;
   setShowPrev: (value: boolean) => void;
   setImages: (value: string[]) => void;
 };
 
-export const ImagePreview: React.FC<ImagePreviewProps> = ({ images, setImages, setError, setShowPrev }) => {
+export const ImagePreview: React.FC<ImagePreviewProps> = ({ images, setImages, setError, postError, setShowPrev }) => {
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleImages = async (e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLDivElement>) => {
@@ -56,6 +57,8 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ images, setImages, s
   };
 
   const previewClassName = getPreviewClassName(images.length);
+
+  if (postError) return null;
 
   return (
     <div className="image-preview" onDragOver={handleDragOver} onDrop={handleDrop}>
