@@ -35,6 +35,12 @@ export const uploadToCloudinary = async (file: UploadedFile, path: string): Prom
 
 export const removeTmp = (path: string) => {
   fs.unlink(path, err => {
-    if (err) throw err;
+    if (err) {
+      if (err.code === 'ENOENT') {
+        console.log(`File ${path} does not exist.`);
+      } else {
+        throw err;
+      }
+    }
   });
 };
