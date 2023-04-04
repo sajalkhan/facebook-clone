@@ -1,10 +1,11 @@
-import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import fs from 'fs';
 import dotenv from 'dotenv';
-import { connectDB } from './config/dbConfig';
+import express from 'express';
 import fileUpload from 'express-fileupload';
+import fs from 'fs';
+import path from 'path';
+import { connectDB } from './config/dbConfig';
+const serverless = require('serverless-http');
 
 dotenv.config();
 const app = express();
@@ -28,3 +29,6 @@ connectDB().catch(error => {
 });
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+const serverApp = serverless(app);
+
+export default serverApp;
