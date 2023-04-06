@@ -1,6 +1,5 @@
 service: RestApi
 frameworkVersion: '3'
-
 provider:
   name: aws
   runtime: nodejs16.x
@@ -8,12 +7,12 @@ provider:
   stage: dev
   timeout: 15
   region: ap-south-1
-  lambdaHashingVersion: 20201221
-
+  deploymentBucket:
+    name: facebook-clone-api
 
 functions:
-  hello:
-    handler: handler.hello
+  app-api:
+    handler: './handler.default'
     events:
      - http: ANY /{proxy+}
      - http: ANY /
@@ -22,9 +21,6 @@ functions:
         TOKEN_SECRET: 3xgDmbD8WC
         EMAIL: md.soharubhossen@gmail.com
         MAIL_PASSWORD: jzbqremfzvhnqnvx
-        CLOUD_NAME: sajal-cnq
-        CLOUD_API_KEY: 572156839876236
-        CLOUD_API_SECRET: dmlRwiT8jRZtCi0vT9Ik8RSqsK8
         BUCKET_NAME: facebook-clone2
         BUCKET_REGION: ap-south-1
         AWS_USER_ACCESS_KEY: AKIAXGEMZLEC3URH2DF5

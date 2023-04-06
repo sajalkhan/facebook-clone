@@ -3,6 +3,5 @@ node_modules
 jspm_packages
 /.pnp
 .pnp.js
-
 # Serverless directories
 .serverless
