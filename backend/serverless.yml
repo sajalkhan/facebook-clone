@@ -12,7 +12,7 @@ provider:
 
 functions:
   app-api:
-    handler: './handler.default'
+    handler: build/server.handler
     events:
      - http: ANY /{proxy+}
      - http: ANY /

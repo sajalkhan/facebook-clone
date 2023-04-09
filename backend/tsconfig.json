@@ -9,7 +9,7 @@
     "importHelpers": true,
     "jsx": "react",
     "alwaysStrict": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -29,6 +29,6 @@
       "@middleware/*": ["src/middleware/*"]
     }
   },
-  "include": ["src/**/*", "__tests__/**/*"],
+  "include": ["src/**/*", "__tests__/**/*", "server.tss"],
   "exclude": ["node_modules", "build"]
 }
