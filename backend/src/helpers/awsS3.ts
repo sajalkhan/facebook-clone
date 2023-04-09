@@ -24,7 +24,6 @@ export const uploadToAwsS3 = async (file: UploadedFile, path: string): Promise<{
       ContentType: file.mimetype
     };
 
-  try {
     await s3.send(new PutObjectCommand(params));
     removeTmp(file.tempFilePath);
 
