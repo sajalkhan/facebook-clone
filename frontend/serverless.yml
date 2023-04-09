@@ -1,0 +1,56 @@
+service: facebook-clone-frontend
+
+provider:
+    name: aws
+    runtime: nodejs16.x
+    region: ap-south-1
+    environment:
+      REACT_APP_DEFAULT_IMAGE: https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png
+
+plugins:
+    - serverless-s3-sync
+
+custom:
+    hostedZoneName: facebook-clone2.com
+    aliasHostedZoneId: Z0501774E64NHHSANOQO    # got it from route 53 hosted zone
+    aliasDNSName: s3-website-ap-south-1.amazonaws.com
+    siteName: facebook-clone2.com
+    s3Sync:
+        - bucketName: ${self:custom.hostedZoneName}
+          localDir: build/
+
+resources:
+    Resources:
+        StaticSite:
+            Type: AWS::S3::Bucket
+            Properties:
+                BucketName: ${self:custom.siteName}
+                AccessControl: PublicRead
+                WebsiteConfiguration:
+                    IndexDocument: index.html
+                    ErrorDocument: index.html
+        
+        StaticSiteS3BucketPolicy:
+            Type: AWS::S3::BucketPolicy
+            Properties:
+                Bucket:
+                    Ref: StaticSite
+                PolicyDocument:
+                    Statement:
+                        - Sid: PublicReadGetObject
+                          Effect: Allow
+                          Principal: '*'
+                          Action:
+                              - s3:GetObject
+                          Resource: arn:aws:s3:::${self:custom.siteName}/*
+
+        # DnsRecord:
+        #       Type: "AWS::Route53::RecordSet"
+        #       Properties:
+        #         AliasTarget:
+        #           DNSName: ${self:custom.aliasDNSName}
+        #           HostedZoneId: ${self:custom.aliasHostedZoneId}
+        #         HostedZoneName: ${self:custom.hostedZoneName}
+        #         Name:
+        #           Ref: StaticSite
+        #         Type: 'A'
