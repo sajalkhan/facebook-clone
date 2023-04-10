@@ -11,11 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(
-  fileUpload({
-    useTempFiles: true
-  })
-);
+app.use(fileUpload());
 
 fs.readdirSync(path.resolve(__dirname, './routes')).forEach(file => {
   app.use('/', require(`./routes/${file}`));

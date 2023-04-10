@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { UploadedFile } from 'express-fileupload';
-import { uploadToAwsS3, removeTmp } from '../helpers';
-import { handleError } from '../helpers';
+import { handleError, uploadToAwsS3 } from '../helpers';
 
 type ImageType = {
   url: string;
@@ -15,7 +14,6 @@ export const uploadImages = async (req: Request, res: Response) => {
 
     for (const file of files) {
       const url: ImageType = await uploadToAwsS3(file, path);
-      removeTmp(file.tempFilePath);
       images.push(url);
     }
     res.json(images);
