@@ -5,3 +5,6 @@ jspm_packages
 .pnp.js
 # Serverless directories
 .serverless
+
+# production
+/build
