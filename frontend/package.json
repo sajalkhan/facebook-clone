@@ -46,6 +46,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "deploy": "react-app-rewired build && serverless deploy",
     "eject": "react-app-rewired eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "run-s lint:type lint:ts prettier-write prettier-write:ts prettier-write:style",
@@ -115,6 +116,7 @@
     "react-app-rewired": "^2.2.1",
     "sass": "^1.49.9",
     "sass-resources-loader": "^2.2.4",
+    "serverless-s3-sync": "^3.1.0",
     "stylelint": "^14.6.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recess-order": "^3.0.0",

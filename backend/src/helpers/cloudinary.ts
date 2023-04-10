@@ -37,7 +37,7 @@ export const removeTmp = (path: string) => {
   fs.unlink(path, err => {
     if (err) {
       if (err.code === 'ENOENT') {
-        console.log(`File ${path} does not exist.`);
+        return;
       } else {
         throw err;
       }

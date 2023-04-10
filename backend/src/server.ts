@@ -5,6 +5,7 @@ import fileUpload from 'express-fileupload';
 import fs from 'fs';
 import path from 'path';
 import { connectDB } from './config/dbConfig';
+import serverless from 'serverless-http';
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,8 @@ connectDB().catch(error => {
   console.error('Error connecting to database: ', error);
 });
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-export default app;
+if (process.env.ENVIRONMENT === 'production') {
+  module.exports.handler = serverless(app);
+} else {
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}

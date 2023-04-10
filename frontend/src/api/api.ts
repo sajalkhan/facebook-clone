@@ -3,7 +3,10 @@ import { ApiRequestConfig, WithAbortFn, ApiExecutor, ApiExecutorArgs, ApiError }
 // Default config for the axios instance
 const axiosParams = {
   // Set different base URL based on the environment
-  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8000/' : '/'
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:8000/'
+      : 'https://0zhajdl9r1.execute-api.ap-south-1.amazonaws.com/dev/'
 };
 
 // Create axios instance with default params
